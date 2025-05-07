@@ -1,9 +1,7 @@
 import React from "react";
 import DefaultLayout from "../../layout/DefaultLayout";
-import CarouselHome from "../../components/Carousel";
-import Navbar from "../../components/Navbar";
-import Card from "../../components/Card";
-import Footer from "../../components/Footer";
+import CarouselHome from "../../components/Carousel/Carousel";
+import Card from "../../components/Card/Card";
 import penawaranBg from "../../assets/images/Group.png"
 import penawaranBg2 from "../../assets/images/Group (1).png"
 import vector from "../../assets/images/Vector.png"
