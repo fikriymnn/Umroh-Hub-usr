@@ -36,6 +36,8 @@ layer(base);
   --text-theme-xs: 12px;
   --text-theme-xs--line-height: 18px;
 
+  --color-primary-blue: #001a4d;
+
   --color-current: currentColor;
   --color-transparent: transparent;
   --color-white: #ffffff;

@@ -2,9 +2,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React, { useRef } from "react";
 import Slider from 'react-slick'
-import prevNextIcon from "../assets/icons/Expand_left.svg";
-import umrohcarousel from "../assets/images/pexels-sultan-alhuthali-175963006-18274181.png";
-import "../index.css"
+import prevNextIcon from "../../assets/icons/Expand_left.svg";
+import umrohcarousel from "../../assets/images/pexels-sultan-alhuthali-175963006-18274181.png";
+import "../../index.css"
 
 function CarouselHome() {
     const sliderRef = useRef<Slider>(null);
