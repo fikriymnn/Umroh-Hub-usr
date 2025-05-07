@@ -2,11 +2,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React, { useRef } from "react";
 import Slider from 'react-slick'
-import prevNextIcon from "../assets/icons/Expand_left.svg";
-import exampleProfil from "../assets/images/pexels-chevanon-1108099.png";
-import "../index.css"
-import reactionIcon from "../assets/icons/happy_light.svg"
-import commentIcon from "../assets/icons/Chat.svg"
+import prevNextIcon from "../../assets/icons/Expand_left.svg";
+import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png";
+import "../../index.css"
+import reactionIcon from "../../assets/icons/happy_light.svg"
+import commentIcon from "../../assets/icons/Chat.svg"
 
 function CarouselForum() {
     const sliderRef = useRef<Slider>(null);
@@ -49,12 +49,12 @@ function CarouselForum() {
                         <div className="w-[28%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
                             <div className="w-[90%] h-full flex items-start justify-start">
                                 <div className="w-[30%]">
-                                    <img src={exampleProfil} alt="Profile"className="w-[55px] h-[55px] rounded-full"/>
+                                    <img src={exampleProfil} alt="Profile" className="w-[55px] h-[55px] rounded-full" />
                                 </div>
                                 <div className="w-full h-full flex flex-col space-y-2">
                                     <h1 className="text-[10px] text-white">@Abdullah</h1>
                                     <div className="w-[90%] py-[10px] px-[12px] bg-white h-[75%] rounded-e-[20px] rounded-bl-[20px]">
-                                    <p className="text-[10px] text-[#001A4D] text-center capitalize ">Alhamdulillah Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                                        <p className="text-[10px] text-[#001A4D] text-center capitalize ">Alhamdulillah Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
                                     </div>
                                     <div className="flex justify-between">
                                         <div className="flex space-x-4">
@@ -75,12 +75,12 @@ function CarouselForum() {
                         <div className="w-[28%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
                             <div className="w-[90%] h-full flex items-start justify-start">
                                 <div className="w-[30%]">
-                                    <img src={exampleProfil} alt="Profile"className="w-[55px] h-[55px] rounded-full"/>
+                                    <img src={exampleProfil} alt="Profile" className="w-[55px] h-[55px] rounded-full" />
                                 </div>
                                 <div className="w-full h-full flex flex-col space-y-2">
                                     <h1 className="text-[10px] text-white">@Abdullah</h1>
                                     <div className="w-[90%] py-[10px] px-[12px] bg-white h-[75%] rounded-e-[20px] rounded-bl-[20px]">
-                                    <p className="text-[10px] text-[#001A4D] text-center capitalize ">Alhamdulillah Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                                        <p className="text-[10px] text-[#001A4D] text-center capitalize ">Alhamdulillah Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
                                     </div>
                                     <div className="flex justify-between">
                                         <div className="flex space-x-4">
@@ -103,12 +103,12 @@ function CarouselForum() {
                         <div className="w-[28%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
                             <div className="w-[90%] h-full flex items-start justify-start">
                                 <div className="w-[30%]">
-                                    <img src={exampleProfil} alt="Profile"className="w-[55px] h-[55px] rounded-full"/>
+                                    <img src={exampleProfil} alt="Profile" className="w-[55px] h-[55px] rounded-full" />
                                 </div>
                                 <div className="w-full h-full flex flex-col space-y-2">
                                     <h1 className="text-[10px] text-white">@Abdullah</h1>
                                     <div className="w-[90%] py-[10px] px-[12px] bg-white h-[75%] rounded-e-[20px] rounded-bl-[20px]">
-                                    <p className="text-[10px] text-[#001A4D] text-center capitalize ">Alhamdulillah Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                                        <p className="text-[10px] text-[#001A4D] text-center capitalize ">Alhamdulillah Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
                                     </div>
                                     <div className="flex justify-between">
                                         <div className="flex space-x-4">
@@ -129,12 +129,12 @@ function CarouselForum() {
                         <div className="w-[28%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
                             <div className="w-[90%] h-full flex items-start justify-start">
                                 <div className="w-[30%]">
-                                    <img src={exampleProfil} alt="Profile"className="w-[55px] h-[55px] rounded-full"/>
+                                    <img src={exampleProfil} alt="Profile" className="w-[55px] h-[55px] rounded-full" />
                                 </div>
                                 <div className="w-full h-full flex flex-col space-y-2">
                                     <h1 className="text-[10px] text-white">@Abdullah</h1>
                                     <div className="w-[90%] py-[10px] px-[12px] bg-white h-[75%] rounded-e-[20px] rounded-bl-[20px]">
-                                    <p className="text-[10px] text-[#001A4D] text-center capitalize ">Alhamdulillah Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                                        <p className="text-[10px] text-[#001A4D] text-center capitalize ">Alhamdulillah Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
                                     </div>
                                     <div className="flex justify-between">
                                         <div className="flex space-x-4">
@@ -152,7 +152,7 @@ function CarouselForum() {
                                 </div>
                             </div>
                         </div>
-                   </div>
+                    </div>
                 </div>
                 <div className="w-full h-[500px] bg-blue-600 flex items-center justify-center text-white text-4xl">2</div>
             </Slider>

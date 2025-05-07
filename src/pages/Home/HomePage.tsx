@@ -1,7 +1,8 @@
 import React from "react";
 import DefaultLayout from "../../layout/DefaultLayout";
-import CarouselHome from "../../components/Carousel";
-import Card from "../../components/Card";
+import CarouselHome from "../../components/Carousel/Carousel";
+import CarouselForum from "../../components/Carousel/CarouselForum";
+import Card from "../../components/Card/Card";
 import penawaranBg from "../../assets/images/Group.png"
 import penawaranBg2 from "../../assets/images/Group (1).png"
 import vector from "../../assets/images/Vector.png"
@@ -15,7 +16,6 @@ import hotelIcon2 from "../../assets/icons/Component 7.svg"
 import planeIcon from "../../assets/icons/Component 8.svg"
 import kabahIcon from "../../assets/icons/Component 23.svg"
 import planeIcon2 from "../../assets/icons/Component 24.svg"
-import CarouselForum from "../../components/CarouselForum";
 
 const HomePage: React.FC = () => {
   const hotelList = [

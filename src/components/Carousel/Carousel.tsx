@@ -22,14 +22,14 @@ function CarouselHome() {
     };
     const settings = {
         dots: true,
-        //   appendDots: (dots: React.ReactNode) => (
-        //     <div className="absolute bottom-6 w-full flex justify-center z-10">
-        //       <ul className="flex gap-2">{dots}</ul>
-        //     </div>
-        //   ),
-        //   customPaging: () => (
-        //     <div className="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition-all"></div>
-        //   ),
+        appendDots: (dots: React.ReactNode) => (
+            <div className="absolute bottom-6 w-full flex justify-center z-10">
+                <ul className="flex gap-2">{dots}</ul>
+            </div>
+        ),
+        customPaging: () => (
+            <div className="w-3 h-3 bg-white rounded-full opacity-70 hover:opacity-100 transition-all"></div>
+        ),
         infinite: true,
         speed: 500,
         slidesToShow: 1,
@@ -39,7 +39,7 @@ function CarouselHome() {
     };
 
     return (
-        <div className="slider-container w-full h-[500px] relative overflow-hidden">
+        <div className="slider-container w-full h-[500px] relative overflow-visible">
 
             <Slider {...settings} ref={sliderRef} className="z-0">
                 <div className="relative w-full h-full">
