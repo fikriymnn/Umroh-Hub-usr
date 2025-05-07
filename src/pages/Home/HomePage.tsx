@@ -1,7 +1,7 @@
 import React from "react";
 import DefaultLayout from "../../layout/DefaultLayout";
-import CarouselHome from "../../components/Carousel/Carousel";
-import Card from "../../components/Card/Card";
+import CarouselHome from "../../components/Carousel";
+import Card from "../../components/Card";
 import penawaranBg from "../../assets/images/Group.png"
 import penawaranBg2 from "../../assets/images/Group (1).png"
 import vector from "../../assets/images/Vector.png"
@@ -15,6 +15,7 @@ import hotelIcon2 from "../../assets/icons/Component 7.svg"
 import planeIcon from "../../assets/icons/Component 8.svg"
 import kabahIcon from "../../assets/icons/Component 23.svg"
 import planeIcon2 from "../../assets/icons/Component 24.svg"
+import CarouselForum from "../../components/CarouselForum";
 
 const HomePage: React.FC = () => {
   const hotelList = [
@@ -244,13 +245,24 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* forum */}
-          <div className="bg-white w-full h-[600px]">
-            <div className="w-full h-full flex justify-between z-0">
+          <div className="bg-white w-full h-[700px]">
+            <div className="w-full h-full relative flex justify-between z-0">
               <div className="h-full w-[50%]">
                 <img src={penawaranBg} alt="background" className="w-[90%] h-full object-cover" />
               </div>
               <div className="h-full w-[50%] relative">
                 <img src={penawaranBg2} alt="background" className="w-[90%] h-full absolute right-0 object-cover" />
+              </div>
+              <div className="w-full absolute top-0 h-full py-7 flex flex-col items-center">
+                <h1 className="font-extrabold text-[#001A4D] text-[24px]">
+                  Forum Diskusi
+                </h1>
+                <p className="w-[80%] mt-[21px] text-[#001A4D] text-center text-[12px]">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                </p>
+                <div className="w-[100%] mt-[78px]">
+                  <CarouselForum />
+                </div>
               </div>
             </div>
           </div>
