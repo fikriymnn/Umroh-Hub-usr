@@ -46,7 +46,7 @@ function CarouselForum() {
             <Slider {...settings} ref={sliderRef} className="z-0">
                 <div className="relative w-[100%] justify-center h-full grid grid-rows-2 space-y-5">
                     <div className="w-full row-span-1 flex space-x-6 justify-center">
-                        <div className="w-[28%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
+                        <div className="w-[35%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
                             <div className="w-[90%] h-full flex items-start justify-start">
                                 <div className="w-[30%]">
                                     <img src={exampleProfil} alt="Profile" className="w-[55px] h-[55px] rounded-full" />
@@ -72,7 +72,7 @@ function CarouselForum() {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-[28%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
+                        <div className="w-[35%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
                             <div className="w-[90%] h-full flex items-start justify-start">
                                 <div className="w-[30%]">
                                     <img src={exampleProfil} alt="Profile" className="w-[55px] h-[55px] rounded-full" />
@@ -100,7 +100,7 @@ function CarouselForum() {
                         </div>
                     </div>
                     <div className="w-full row-span-1 flex justify-center space-x-6">
-                        <div className="w-[28%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
+                        <div className="w-[35%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
                             <div className="w-[90%] h-full flex items-start justify-start">
                                 <div className="w-[30%]">
                                     <img src={exampleProfil} alt="Profile" className="w-[55px] h-[55px] rounded-full" />
@@ -126,7 +126,7 @@ function CarouselForum() {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-[28%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
+                        <div className="w-[35%] h-[170px] rounded-[8px] flex flex-col justify-center py-6 items-center bg-gradient-to-r from-[#001A4D] to-[#5AD3FF]">
                             <div className="w-[90%] h-full flex items-start justify-start">
                                 <div className="w-[30%]">
                                     <img src={exampleProfil} alt="Profile" className="w-[55px] h-[55px] rounded-full" />

@@ -16,6 +16,10 @@ import hotelIcon2 from "../../assets/icons/Component 7.svg"
 import planeIcon from "../../assets/icons/Component 8.svg"
 import kabahIcon from "../../assets/icons/Component 23.svg"
 import planeIcon2 from "../../assets/icons/Component 24.svg"
+import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
+import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
+import userIcon from "../../assets/icons/User_fill.svg"
+import checkIcon from "../../assets/icons/check_ring_round.svg"
 
 const HomePage: React.FC = () => {
   const hotelList = [
@@ -269,12 +273,68 @@ const HomePage: React.FC = () => {
 
           {/* mitra */}
           <div className="bg-gradient-to-b from-[#186FD2] to-[#001A4D] w-full h-[600px]">
-            <div className="w-full h-full flex justify-between z-0">
+            <div className="w-full relative h-full flex justify-between z-0">
               <div className="h-full w-[50%]">
                 <img src={penawaranBg} alt="background" className="w-[90%] h-full object-cover" />
               </div>
               <div className="h-full w-[50%] relative">
                 <img src={penawaranBg2} alt="background" className="w-[90%] h-full absolute right-0 object-cover" />
+              </div>
+              <div className="absolute top-0 w-[100%] h-full flex flex-col items-center mt-[56px]">
+                <div className="w-[70%] grid grid-cols-2 px-6">
+                  <div className="flex-col mt-6">
+
+                    <div className="w-[90%] h-[80px] flex space-x-3 border-b-[1px]">
+                      <img src={exampleProfil} alt="Profile" className="w-[65px] h-[65px] mt-2 rounded-full" />
+                      <div className="flex flex-col mt-2">
+                        <h1 className="text-[15px] capitalize font-bold text-white">
+                          Hana Montana<span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span>
+                        </h1>
+                        <div className="flex space-x-4 -ms-0.5">
+                          <div className="flex">
+                            <img src={suitcaseIcon} alt="Suitcase" className="w-[17px] h-[17px]" />
+                            <h1 className="text-[14px] mt-0.5 capitalize font-bold text-white">
+                              34<span className='font-extralight'> Paket</span>
+                            </h1>
+                          </div>
+                          <div className="flex ms-2">
+                            <img src={userIcon} alt="Suitcase" className="w-[30px] h-[30px] -translate-y-1" />
+                            <h1 className="text-[14px] mt-0.5 capitalize -translate-x-3.5 font-bold text-white">
+                              234<span className='font-extralight'> Jemaah</span>
+                            </h1>
+                          </div>
+                          <div className="flex space-x-1">
+                            <img src={planeIcon} alt="Suitcase" className="w-[15px] h-[15px] translate-y-1" />
+                            <h1 className="text-[14px] mt-0.5 capitalize font-bold text-white">
+                              34<span className='font-extralight'> Penerbangan</span>
+                            </h1>
+                          </div>
+                        </div>
+                        <h1 className="text-[#10F5EA] font-bold text-[12px] -translate-y-2">
+                          Lihat detail
+                        </h1>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div className="w-full h-full">
+                    <h1 className="font-extrabold text-white text-[24px]">Mitra Kami</h1>
+                    <p className="font-medium text-[15px] text-white w-full mt-[26px]">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoour partners Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                    </p>
+                    <div className="flex space-x-6 mt-[22px]">
+                      <div className="flex space-x-2">
+                        <img src={checkIcon} alt="Profile" className="w-[22px] h-[22px] mt-2 rounded-full" />
+                        <h1 className="text-[#10F5EA] font-bold text-[14px] mt-2">
+                          Terpercaya
+                        </h1>
+                      </div>
+                      <h1 className="text-[#10F5EA] font-bold text-[14px] mt-2">
+                        100%
+                      </h1>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
