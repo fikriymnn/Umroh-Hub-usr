@@ -3,6 +3,9 @@ import DefaultLayout from "../../layout/DefaultLayout";
 import CarouselHome from "../../components/Carousel/Carousel";
 import CarouselForum from "../../components/Carousel/CarouselForum";
 import Card from "../../components/Card/Card";
+import CardPackage from "../../components/Card/CardPackage";
+import TrustIndicator from "../../components/TrustIndicator";
+import Button from "../../components/Button";
 import penawaranBg from "../../assets/images/Group.png"
 import penawaranBg2 from "../../assets/images/Group (1).png"
 import vector from "../../assets/images/Vector.png"
@@ -67,6 +70,44 @@ const HomePage: React.FC = () => {
     percent: Math.min((100 / 50) * 100, 100),
     label: 'Pesanan: 100/150'
   };
+
+  const packages = [
+    {
+      title: "Umroh Hasanah Hana",
+      image: paketExample,
+      hotelName: "Mekkah",
+      hotelRating: 5,
+      hotelDistance: "200 m ke Masjidil Haram",
+      airline: "Lion Air",
+      airlineRating: 5,
+      route: "Soekarno hatta ke JED",
+      price: "32 Jt",
+      booked: 100,
+      capacity: 150,
+    },
+    {
+      title: "Umroh Amanah Travel",
+      image: paketExample,
+      hotelName: "Madinah",
+      hotelRating: 4,
+      hotelDistance: "500 m ke Nabawi",
+      airline: "Garuda Indonesia",
+      airlineRating: 4,
+      route: "CGK - MED",
+      price: "28 Jt",
+      booked: 70,
+      capacity: 100,
+    },
+  ];
+
+  const valuesTrust = [
+    { label: 'Terpercaya', percentage: '100%' },
+    { label: 'Terjamin', percentage: '100%' },
+    { label: 'Berkualitas', percentage: '100%' },
+    { label: 'Aman', percentage: '100%' },
+    { label: 'Amanah', percentage: '100%' },
+  ];
+
   return (
     <DefaultLayout>
       <div className='w-full min-h-screen flex flex-col'>
@@ -79,7 +120,7 @@ const HomePage: React.FC = () => {
 
           {/* penawaran */}
           <div className="w-full h-[600px] z-10 bg-gradient-to-b from-[#00153E] to-[#3C97FF]">
-            <div className="relative w-full h-[600px] z-10 bg-gradient-to-b from-[#001A4D]/55 via-[#5CE9FF52] to-[#001A4D]">
+            <div className="relative w-full h-[600px] z-10 bg-gradient-to-b from-primary-blue/55 via-[#5CE9FF52] to-[#001A4D]">
               <div className="w-full h-full flex justify-between z-0">
                 <div className="h-full w-[50%]">
                   <img src={penawaranBg} alt="background" className="w-[90%] h-full object-cover" />
@@ -119,59 +160,22 @@ const HomePage: React.FC = () => {
                     Lihat lebih banyak
                   </h1>
                 </div>
-                <div className="grid grid-cols-3 mt-3">
-                  <div className="w-[100%] relative h-[200px] shadow-[-1px_1px_8px] shadow-white">
-                    <img src={paketExample} alt="paket" className='w-full h-full object-cover' />
-                    <div className="w-full h-full bg-gradient-to-b from-black/0 to-black py-3 px-5 flex flex-col space-y-3 absolute top-0">
-                      <h1 className=" text-white capitalize font-bold text-[24px]">
-                        Umroh Hasanah hana
-                      </h1>
-                      <div className="flex space-x-2">
-                        <img src={hotelIcon2} alt="background" className="w-[30px] h-[30px]" />
-                        <div className="flex-col w-full">
-                          <div className="flex w-full">
-                            <h6 className='text-white text-[12px] font-semibold'>Mekkah :
-                              <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span>
-                              (Quad Room)
-                            </h6>
-                          </div>
-                          <h1 className="text-[#5CE9FF] text-[10px] font-semibold">200 m ke Masjidil Haram</h1>
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-between">
-                        <div className="flex space-x-2">
-                          <img src={planeIcon} alt="background" className="w-[30px] h-[30px]" />
-                          <div className="flex-col w-full">
-                            <div className="flex w-full">
-                              <h6 className='text-white text-[12px] capitalize font-semibold'>Lion Air
-                                <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span>
-                              </h6>
-                            </div>
-                            <h1 className="text-[#5CE9FF] text-[10px] font-semibold">Soekarno hatta ke JED</h1>
-                          </div>
-                        </div>
-                        <div className="absolute bottom-11 right-5 text-[45px] font-bold bg-gradient-to-br from-[#10F5EA] to-[#3C97FF] inline-block text-transparent bg-clip-text">
-                          32 Jt
-                        </div>
-                      </div>
-                      <div className="flex justify-between px-[17px] py-[20px] w-full mt-[8px] ">
-                        <div className="flex  space-x-2">
-                          <div className="w-[100px] h-[5px] rounded-[10px] bg-[#E5E5E5]">
-                            <div className="w-[80%] rounded-s-[10px] h-full bg-gradient-to-r from-[#004492] to-[#10F5EA]">
-                            </div>
-                          </div>
-                          <div className="flex-col text-center -translate-y-4">
-                            <h1 className=" text-[9px] font-semibold text-center text-white">Pesanan: 100/150</h1>
-                            <h1 className=" text-[9px] font-semibold text-center text-white">Tersisa: 50</h1>
-                          </div>
-                        </div>
-                        <h1 className=" text-[#10F5EA] font-bold text-[12px] -translate-y-1">
-                          Lihat detail
-                        </h1>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {packages.map((item, index) => (
+                  <CardPackage
+                    key={index}
+                    title={item.title}
+                    image={item.image}
+                    hotelName={item.hotelName}
+                    hotelRating={item.hotelRating}
+                    hotelDistance={item.hotelDistance}
+                    airline={item.airline}
+                    airlineRating={item.airlineRating}
+                    route={item.route}
+                    price={item.price}
+                    booked={item.booked}
+                    capacity={item.capacity}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -188,17 +192,17 @@ const HomePage: React.FC = () => {
                 </div>
                 <div className="flex absolute top-0 w-[100%] py-10 px-[13%] justify-center">
                   <div className="mt-6 flex flex-col">
-                    <h1 className='text-[24px] font-extrabold text-[#001A4D]'>Kenapa Harus Di
-                      <span className='text-white bg-[#001A4D] font-normal rounded-[8px] px-4 py-1 ms-2'>UmrohHub</span>
+                    <h1 className='text-[24px] font-extrabold text-primary-blue'>Kenapa Harus Di
+                      <span className='text-white bg-primary-blue font-normal rounded-[8px] px-4 py-1 ms-2'>UmrohHub</span>
                     </h1>
-                    <p className='text-[12px] text-[#001A4D] mt-[16px] w-[95%]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    <p className='text-[12px] text-primary-blue mt-[16px] w-[95%]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                       Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
                     <div className="flex space-x-5 mt-[26px]">
-                      <button className='py-3 w-[100px] text-[13px] font-semibold rounded-full bg-[#001A4D] text-white'>
+                      <button className='py-3 w-[100px] text-[13px] font-semibold rounded-full bg-primary-blue text-white'>
                         Pesan
                       </button>
-                      <button className='py-3 text-[#001A4D] text-[13px] font-semibold'>
+                      <button className='py-3 text-primary-blue text-[13px] font-semibold'>
                         Baca Selengkapnya
                       </button>
                     </div>
@@ -207,17 +211,17 @@ const HomePage: React.FC = () => {
                       <div className="flex space-x-5 w-[50%] mt-[65px]">
                         <img src={hotelIcon} alt="background" className="w-[30px] h-[30px]" />
                         <div className="flex-col w-[100%]">
-                          <h6 className='text-[#001A4D] text-[13px] font-semibold'>Lorem Ipsum
+                          <h6 className='text-primary-blue text-[13px] font-semibold'>Lorem Ipsum
                           </h6>
-                          <h1 className="text-[#001A4D] text-[10px] w-[70%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</h1>
+                          <h1 className="text-primary-blue text-[10px] w-[70%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</h1>
                         </div>
                       </div>
                       <div className="flex space-x-5 w-[50%] mt-[65px]">
                         <img src={hotelIcon} alt="background" className="w-[30px] h-[30px]" />
                         <div className="flex-col w-[100%]">
-                          <h6 className='text-[#001A4D] text-[13px] font-semibold'>Lorem Ipsum
+                          <h6 className='text-primary-blue text-[13px] font-semibold'>Lorem Ipsum
                           </h6>
-                          <h1 className="text-[#001A4D] text-[10px] w-[70%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</h1>
+                          <h1 className="text-primary text-[10px] w-[70%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</h1>
                         </div>
                       </div>
                     </div>
@@ -225,17 +229,17 @@ const HomePage: React.FC = () => {
                       <div className="flex space-x-5 w-[50%] mt-[65px]">
                         <img src={planeIcon2} alt="background" className="w-[30px] h-[30px]" />
                         <div className="flex-col w-[100%]">
-                          <h6 className='text-[#001A4D] text-[13px] font-semibold'>Lorem Ipsum
+                          <h6 className='text-primary-blue text-[13px] font-semibold'>Lorem Ipsum
                           </h6>
-                          <h1 className="text-[#001A4D] text-[10px] w-[70%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</h1>
+                          <h1 className="text-primary-blue text-[10px] w-[70%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</h1>
                         </div>
                       </div>
                       <div className="flex space-x-5 w-[50%] mt-[65px]">
                         <img src={kabahIcon} alt="background" className="w-[30px] h-[30px]" />
                         <div className="flex-col w-[100%]">
-                          <h6 className='text-[#001A4D] text-[13px] font-semibold'>Lorem Ipsum
+                          <h6 className='text-primary-blue text-[13px] font-semibold'>Lorem Ipsum
                           </h6>
-                          <h1 className="text-[#001A4D] text-[10px] w-[70%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</h1>
+                          <h1 className="text-primary-blue text-[10px] w-[70%]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</h1>
                         </div>
                       </div>
                     </div>
@@ -258,10 +262,10 @@ const HomePage: React.FC = () => {
                 <img src={penawaranBg2} alt="background" className="w-[90%] h-full absolute right-0 object-cover" />
               </div>
               <div className="w-full absolute top-0 h-full py-7 flex flex-col items-center">
-                <h1 className="font-extrabold text-[#001A4D] text-[24px]">
+                <h1 className="font-extrabold text-primary-blue text-[24px]">
                   Forum Diskusi
                 </h1>
-                <p className="w-[80%] mt-[21px] text-[#001A4D] text-center text-[12px]">
+                <p className="w-[80%] mt-[21px] text-primary-blue text-center text-[12px]">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 </p>
                 <div className="w-[100%] mt-[78px]">
@@ -272,7 +276,7 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* mitra */}
-          <div className="bg-gradient-to-b from-[#186FD2] to-[#001A4D] w-full h-[600px]">
+          <div className="bg-gradient-to-b from-[#186FD2] to-primary-blue w-full h-[600px]">
             <div className="w-full relative h-full flex justify-between z-0">
               <div className="h-full w-[50%]">
                 <img src={penawaranBg} alt="background" className="w-[90%] h-full object-cover" />
@@ -287,25 +291,25 @@ const HomePage: React.FC = () => {
                     <div className="w-[90%] h-[80px] flex space-x-3 border-b-[1px]">
                       <img src={exampleProfil} alt="Profile" className="w-[65px] h-[65px] mt-2 rounded-full" />
                       <div className="flex flex-col mt-2">
-                        <h1 className="text-[15px] capitalize font-bold text-white">
+                        <h1 className="text-[15px] capitalize font-bold text-white whitespace-nowrap">
                           Hana Montana<span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span>
                         </h1>
                         <div className="flex space-x-4 -ms-0.5">
                           <div className="flex">
                             <img src={suitcaseIcon} alt="Suitcase" className="w-[17px] h-[17px]" />
-                            <h1 className="text-[14px] mt-0.5 capitalize font-bold text-white">
+                            <h1 className="text-[14px] mt-0.5 capitalize font-bold text-white whitespace-nowrap">
                               34<span className='font-extralight'> Paket</span>
                             </h1>
                           </div>
                           <div className="flex ms-2">
                             <img src={userIcon} alt="Suitcase" className="w-[30px] h-[30px] -translate-y-1" />
-                            <h1 className="text-[14px] mt-0.5 capitalize -translate-x-3.5 font-bold text-white">
+                            <h1 className="text-[14px] mt-0.5 capitalize -translate-x-3.5 font-bold text-white whitespace-nowrap">
                               234<span className='font-extralight'> Jemaah</span>
                             </h1>
                           </div>
                           <div className="flex space-x-1">
                             <img src={planeIcon} alt="Suitcase" className="w-[15px] h-[15px] translate-y-1" />
-                            <h1 className="text-[14px] mt-0.5 capitalize font-bold text-white">
+                            <h1 className="text-[14px] mt-0.5 capitalize font-bold text-white whitespace-nowrap">
                               34<span className='font-extralight'> Penerbangan</span>
                             </h1>
                           </div>
@@ -322,17 +326,23 @@ const HomePage: React.FC = () => {
                     <p className="font-medium text-[15px] text-white w-full mt-[26px]">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoour partners Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
                     </p>
-                    <div className="flex space-x-6 mt-[22px]">
-                      <div className="flex space-x-2">
-                        <img src={checkIcon} alt="Profile" className="w-[22px] h-[22px] mt-2 rounded-full" />
-                        <h1 className="text-[#10F5EA] font-bold text-[14px] mt-2">
-                          Terpercaya
-                        </h1>
-                      </div>
-                      <h1 className="text-[#10F5EA] font-bold text-[14px] mt-2">
-                        100%
-                      </h1>
+                    <div className="mt-[22px]">
+                      {valuesTrust.map((item, index) => (
+                        <TrustIndicator
+                          key={index}
+                          label={item.label}
+                          percentage={item.percentage}
+                          icon={checkIcon}
+                        />
+                      ))}
                     </div>
+                    <Button
+                      variant="primaryBlueGr"
+                      type="button"
+                      className="mt-[20px]"
+                    >
+                      Lihat Selengkapnya
+                    </Button>
                   </div>
                 </div>
               </div>

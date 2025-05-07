@@ -6,11 +6,11 @@ interface ButtonProps {
     type?: 'button' | 'submit';
     className?: string;
     disabled?: boolean;
-    variant?: 'primary' | 'success' | 'danger';
+    variant?: 'primaryBlueGr' | 'success' | 'danger';
 };
 
 const variantClasses = {
-    primary: 'bg-gradient-to-r from-[##3C97FF] to-[##10F5EA] text-white px-4 py-2 rounded disabled:opacity-50',
+    primaryBlueGr: 'bg-gradient-to-r from-[#3C97FF] to-[#10F5EA] text-primary-blue text-[14px] px-4 py-2 rounded-[20px] font-bold',
     success: 'bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded disabled:opacity-50',
     danger: 'bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded disabled:opacity-50'
 };
@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
     type = 'button',
     className = '',
     disabled = false,
-    variant = 'primary'
+    variant = 'primaryBlueGr'
 }) => {
     return (
         <button
