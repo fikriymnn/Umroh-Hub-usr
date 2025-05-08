@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import DefaultLayout from "../../layout/DefaultLayout";
 import CarouselHome from "../../components/Carousel/Carousel";
@@ -15,7 +16,7 @@ import exampleCards from "../../assets/images/pexels-taha-elahi-7984586.png"
 import hotelIcon from "../../assets/icons/Component 1.svg"
 import paketBg from "../../assets/images/Rectangle 111.png"
 import paketExample from "../../assets/images/11848643a6d154484c0aa44d026fef3c.png"
-import hotelIcon2 from "../../assets/icons/Component 7.svg"
+// import hotelIcon2 from "../../assets/icons/Component 7.svg"
 import planeIcon from "../../assets/icons/Component 8.svg"
 import kabahIcon from "../../assets/icons/Component 23.svg"
 import planeIcon2 from "../../assets/icons/Component 24.svg"
