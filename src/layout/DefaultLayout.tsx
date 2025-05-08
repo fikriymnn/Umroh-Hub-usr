@@ -1,5 +1,5 @@
-import React, { useState, ReactNode, useEffect } from "react";
-import axios from "axios";
+import React, { ReactNode,  } from "react";
+// import axios from "axios";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
