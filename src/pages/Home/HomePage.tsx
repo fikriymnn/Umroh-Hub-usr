@@ -25,39 +25,81 @@ import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
 
 const HomePage: React.FC = () => {
-  const hotelList = [
+  const cardDataList = [
     {
-      city: 'Mekkah',
-      roomType: 'Quad Room',
-      distance: '200 m ke Masjidil Haram',
-      icon: hotelIcon
+      cardImage: exampleCards,
+      cardHeader: 'Paket Umroh 1',
+      hotelList: [
+        {
+          city: 'Mekkah',
+          roomType: 'Quad Room',
+          distance: '200 m ke Masjidil Haram',
+          icon: hotelIcon
+        },
+        {
+          city: 'Madinah',
+          roomType: 'Quad Room',
+          distance: '150 m ke Masjid Nabawi',
+          icon: hotelIcon
+        }
+      ],
+      price: {
+        original: 'Rp. 40.000.000/pak',
+        discounted: 'Rp. 24.000.000/pak'
+      },
+      progress: {
+        current: 100,
+        total: 150
+      }
     },
     {
-      city: 'Madinah',
-      roomType: 'Quad Room',
-      distance: '150 m ke Masjid Nabawi',
-      icon: hotelIcon
-    },
+      cardImage: exampleCards,
+      cardHeader: 'Paket Umroh 2',
+      hotelList: [
+        {
+          city: 'Mekkah',
+          roomType: 'Double Room',
+          distance: '250 m ke Masjidil Haram',
+          icon: hotelIcon
+        },
+        {
+          city: 'Madinah',
+          roomType: 'Double Room',
+          distance: '100 m ke Masjid Nabawi',
+          icon: hotelIcon
+        }
+      ],
+      price: {
+        original: 'Rp. 50.000.000/pak',
+        discounted: 'Rp. 30.000.000/pak'
+      },
+      progress: {
+        current: 60,
+        total: 100
+      }
+    }
   ];
 
-  const cardContent = hotelList.map((hotel, index) => (
-    <div className='flex space-x-2 w-full my-2' key={index}>
-      <img src={hotel.icon} alt="icon" className='w-[30px] h-[30px]' />
-      <div className='flex-col w-full'>
-        <h6 className='text-[12px] font-semibold'>
-          {hotel.city} :
-          <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span>({hotel.roomType})
-        </h6>
-        <p className='text-[#209FB2] text-[10px] font-semibold'>{hotel.distance}</p>
+  const renderCardContent = (hotelList: any[]) => (
+    hotelList.map((hotel, index) => (
+      <div className='flex space-x-2 w-full my-2' key={index}>
+        <img src={hotel.icon} alt="icon" className='w-[30px] h-[30px]' />
+        <div className='flex-col w-full'>
+          <h6 className='text-[12px] font-semibold'>
+            {hotel.city} :
+            <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span>({hotel.roomType})
+          </h6>
+          <p className='text-[#209FB2] text-[10px] font-semibold'>{hotel.distance}</p>
+        </div>
       </div>
-    </div>
-  ));
+    ))
+  );
 
-  const cardFooter = (
+  const renderCardFooter = (price: any) => (
     <>
       <div className='flex space-x-2 mt-2'>
-        <h1 className='text-[#ACACAC] text-[12px] font-semibold line-through'>Rp. 40.000.000/pak</h1>
-        <h1 className='text-[#209FB2] text-[15px] font-semibold'>Rp. 24.000.000/pak</h1>
+        <h1 className='text-[#ACACAC] text-[12px] font-semibold line-through'>{price.original}</h1>
+        <h1 className='text-[#209FB2] text-[15px] font-semibold'>{price.discounted}</h1>
       </div>
       <div className='flex w-[80%] ms-1 justify-between mt-[20px]'>
         <button className='py-3 w-[100px] text-[13px] font-semibold rounded-full bg-[#D1F4FA]'>Pesan</button>
@@ -65,11 +107,6 @@ const HomePage: React.FC = () => {
       </div>
     </>
   );
-
-  const cardProgress = {
-    percent: Math.min((100 / 50) * 100, 100),
-    label: 'Pesanan: 100/150'
-  };
 
   const packages = [
     {
@@ -134,14 +171,20 @@ const HomePage: React.FC = () => {
                 <h1 className="text-white font-extrabold text-[24px]">Penawaran Khusus Umroh</h1>
 
                 {/* cards */}
-                <div className='w-[23%]'>
-                  <Card
-                    cardImage={exampleCards}
-                    header="Paket Umroh"
-                    cardContent={cardContent}
-                    cardFooter={cardFooter}
-                    cardProgress={cardProgress}
-                  />
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10'>
+                  {cardDataList.map((data, index) => (
+                    <Card
+                      key={index}
+                      cardImage={data.cardImage}
+                      cardHeader={data.cardHeader}
+                      cardContent={renderCardContent(data.hotelList)}
+                      cardFooter={renderCardFooter(data.price)}
+                      cardProgress={{
+                        percent: Math.min((data.progress.current / data.progress.total) * 100, 100),
+                        label: `Pesanan: ${data.progress.current}/${data.progress.total}`
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -160,22 +203,24 @@ const HomePage: React.FC = () => {
                     Lihat lebih banyak
                   </h1>
                 </div>
-                {packages.map((item, index) => (
-                  <CardPackage
-                    key={index}
-                    title={item.title}
-                    image={item.image}
-                    hotelName={item.hotelName}
-                    hotelRating={item.hotelRating}
-                    hotelDistance={item.hotelDistance}
-                    airline={item.airline}
-                    airlineRating={item.airlineRating}
-                    route={item.route}
-                    price={item.price}
-                    booked={item.booked}
-                    capacity={item.capacity}
-                  />
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
+                  {packages.map((item, index) => (
+                    <CardPackage
+                      key={index}
+                      title={item.title}
+                      image={item.image}
+                      hotelName={item.hotelName}
+                      hotelRating={item.hotelRating}
+                      hotelDistance={item.hotelDistance}
+                      airline={item.airline}
+                      airlineRating={item.airlineRating}
+                      route={item.route}
+                      price={item.price}
+                      booked={item.booked}
+                      capacity={item.capacity}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
