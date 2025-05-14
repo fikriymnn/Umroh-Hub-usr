@@ -45,16 +45,15 @@ function OurPartnersPage() {
 
     return (
         <DefaultLayout>
-           <div className="w-full min-h-screen pt-[230px] pb-20 px-6  background-div"
-//   style={{
-//     backgroundImage: `url(${penawaranBg}), url(${penawaranBg2})`,
-//     backgroundPosition: "left top, right top",
-//     backgroundSize: "50% 100%, 50% 100%", // atau "cover" jika ingin gambar memenuhi area
-//     backgroundRepeat: "no-repeat, no-repeat",
-//     backgroundColor: "blue" // Ganti dengan Tailwind `bg-blue-500` jika perlu
-//   }}
->
-
+            <div className="w-full min-h-screen pt-[230px] pb-20 px-6  background-div"
+            //   style={{
+            //     backgroundImage: `url(${penawaranBg}), url(${penawaranBg2})`,
+            //     backgroundPosition: "left top, right top",
+            //     backgroundSize: "50% 100%, 50% 100%", // atau "cover" jika ingin gambar memenuhi area
+            //     backgroundRepeat: "no-repeat, no-repeat",
+            //     backgroundColor: "blue" // Ganti dengan Tailwind `bg-blue-500` jika perlu
+            //   }}
+            >
                 <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                     {currentItems.map((data, index) => (
                         <CardPartners key={index} {...data} />
