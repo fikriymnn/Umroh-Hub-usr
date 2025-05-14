@@ -43,7 +43,7 @@ function OurPartnersPage() {
 
     return (
         <DefaultLayout>
-            <div className="bg-blue-500 min-h-screen pt-[230px] pb-20 px-6">
+            <div className="bg-blue-600 min-h-screen pt-[230px] pb-20 px-6">
                 <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                     {currentItems.map((data, index) => (
                         <CardPartners key={index} {...data} />

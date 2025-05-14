@@ -14,23 +14,25 @@ const CardPartners = ({
                 </div>
                 <div>
                     <h3 className='text-lg font-semibold'>{name}</h3>
-                    <div className='text-sm text-gray-600'>
-                        {reviewCount} Penilaian
+                    <div className='flex'>
+                        <div className='text-sm text-gray-600 ml-[2px]'>
+                            {reviewCount} Penilaian
+                        </div>
+                        <div className='text-sm text-gray-600 flex items-center gap-1 ml-[35px]'>
+                            Rating
+                            <span className='text-yellow-500'>{"★".repeat(rating)}</span>
+                        </div>
                     </div>
-                    <div className='text-sm text-gray-600 flex items-center gap-1'>
-                        Rating
-                        <span className='text-yellow-500'>{"★".repeat(rating)}</span>
-                    </div>
-                    <div className='text-sm text-gray-600'>
+                    <div className='text-sm text-gray-600 mt-[10px] ml-[2px]'>
                         Nomor Izin Umroh:{" "}
-                        <span className='text-sky-500 underline'>{licenseNumber}</span>
-                    </div>
-                    <div className='text-sm text-sky-500 mt-1 cursor-pointer'>
-                        Lihat Paket Lainnya &gt;
+                        <p className='text-blue-600 font-semibold'>{licenseNumber}</p>
                     </div>
                 </div>
             </div>
-            <div className='flex gap-2 mt-4'>
+            <div className='text-[11px] text-blue-900 mt-[4px] mr-[15px] cursor-pointer text-end'>
+                Selengkapnya &gt;
+            </div>
+            <div className='flex gap-2 mt-[10px]'>
                 {packages.map((pkg: string, index: number) => (
                     <div
                         key={index}
