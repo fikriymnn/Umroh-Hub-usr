@@ -29,7 +29,7 @@ const CardPartners = ({
                     </div>
                 </div>
             </div>
-            <div className='text-[11px] text-blue-900 mt-[4px] mr-[15px] cursor-pointer text-end'>
+            <div className='text-[11px] text-[#004492] mt-[4px] mr-[15px] cursor-pointer text-end'>
                 Selengkapnya &gt;
             </div>
             <div className='flex gap-2 mt-[10px]'>

@@ -1,10 +1,10 @@
-import React, { ReactNode,  } from "react";
+import React, { ReactNode, } from "react";
 // import axios from "axios";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useLocation } from "react-router";
 
-const noFoot = ["/UmrohPackage", "/OurPartners"];
+const noFoot = ["/UmrohPackage"];
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const location = useLocation();
   const noFooter = noFoot.includes(location.pathname)
@@ -14,8 +14,8 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       <main className="flex-grow">
         {children}
       </main>
-      {!noFooter && 
-      <Footer />
+      {!noFooter &&
+        <Footer />
       }
     </div>
   );
