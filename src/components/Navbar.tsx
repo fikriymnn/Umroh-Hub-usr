@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router'
 function Navbar() {
     const location = useLocation();
     const currentPath = location.pathname
+    const isDetailMitra = currentPath.startsWith("/OurPartners/")
     return (
         <div className="w-full flex fixed z-50 justify-center mt-[23px]">
             <nav className="w-[60%] h-[145px] relative z-50">
@@ -29,7 +30,7 @@ function Navbar() {
                         </div>
                         <div className="flex flex-col items-center justify-center">
                             <Link to="/OurPartners" className='font-semibold text-[13px]'>Mitra Kami</Link>
-                            {currentPath === "/OurPartners" &&
+                            {(currentPath === "/OurPartners" || isDetailMitra) &&
                             <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
                             }
                         </div>
