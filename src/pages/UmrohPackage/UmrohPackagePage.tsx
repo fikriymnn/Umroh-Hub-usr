@@ -1,12 +1,177 @@
-import React from 'react'
+import React, { useState } from 'react'
 import DefaultLayout from "../../layout/DefaultLayout";
 import bg from "../../assets/images/makkah-3986709.png"
-import penawaranBg from "../../assets/images/Group.png"
-import penawaranBg2 from "../../assets/images/Group (1).png"
+import paketExample from "../../assets/images/11848643a6d154484c0aa44d026fef3c.png"
+import CardPackage from '../../components/Card/CardPackage';
 function UmrohPackagePage() {
+    const [currentPage, setCurrentPage] = useState(1)
+    const itemPages = 15
+    const packages = [
+        {
+          title: "Umroh Hasanah Hana",
+          image: paketExample,
+          hotelName: "Mekkah",
+          hotelRating: 5,
+          hotelDistance: "200 m ke Masjidil Haram",
+          airline: "Lion Air",
+          airlineRating: 5,
+          route: "Soekarno hatta ke JED",
+          price: "32 Jt",
+          booked: 100,
+          capacity: 150,
+        },
+        {
+            title: "Umroh Hasanah Hana",
+            image: paketExample,
+            hotelName: "Mekkah",
+            hotelRating: 5,
+            hotelDistance: "200 m ke Masjidil Haram",
+            airline: "Lion Air",
+            airlineRating: 5,
+            route: "Soekarno hatta ke JED",
+            price: "32 Jt",
+            booked: 100,
+            capacity: 150,
+          },
+        {
+          title: "Umroh Amanah Travel",
+          image: paketExample,
+          hotelName: "Madinah",
+          hotelRating: 4,
+          hotelDistance: "500 m ke Nabawi",
+          airline: "Garuda Indonesia",
+          airlineRating: 4,
+          route: "CGK - MED",
+          price: "28 Jt",
+          booked: 70,
+          capacity: 100,
+        },
+        {
+            title: "Umroh Hasanah Hana",
+            image: paketExample,
+            hotelName: "Mekkah",
+            hotelRating: 5,
+            hotelDistance: "200 m ke Masjidil Haram",
+            airline: "Lion Air",
+            airlineRating: 5,
+            route: "Soekarno hatta ke JED",
+            price: "32 Jt",
+            booked: 100,
+            capacity: 150,
+          },
+          {
+              title: "Umroh Hasanah Hana",
+              image: paketExample,
+              hotelName: "Mekkah",
+              hotelRating: 5,
+              hotelDistance: "200 m ke Masjidil Haram",
+              airline: "Lion Air",
+              airlineRating: 5,
+              route: "Soekarno hatta ke JED",
+              price: "32 Jt",
+              booked: 100,
+              capacity: 150,
+            },
+          {
+            title: "Umroh Amanah Travel",
+            image: paketExample,
+            hotelName: "Madinah",
+            hotelRating: 4,
+            hotelDistance: "500 m ke Nabawi",
+            airline: "Garuda Indonesia",
+            airlineRating: 4,
+            route: "CGK - MED",
+            price: "28 Jt",
+            booked: 70,
+            capacity: 100,
+        },
+        {
+            title: "Umroh Hasanah Hana",
+            image: paketExample,
+            hotelName: "Mekkah",
+            hotelRating: 5,
+            hotelDistance: "200 m ke Masjidil Haram",
+            airline: "Lion Air",
+            airlineRating: 5,
+            route: "Soekarno hatta ke JED",
+            price: "32 Jt",
+            booked: 100,
+            capacity: 150,
+          },
+          {
+              title: "Umroh Hasanah Hana",
+              image: paketExample,
+              hotelName: "Mekkah",
+              hotelRating: 5,
+              hotelDistance: "200 m ke Masjidil Haram",
+              airline: "Lion Air",
+              airlineRating: 5,
+              route: "Soekarno hatta ke JED",
+              price: "32 Jt",
+              booked: 100,
+              capacity: 150,
+            },
+          {
+            title: "Umroh Amanah Travel",
+            image: paketExample,
+            hotelName: "Madinah",
+            hotelRating: 4,
+            hotelDistance: "500 m ke Nabawi",
+            airline: "Garuda Indonesia",
+            airlineRating: 4,
+            route: "CGK - MED",
+            price: "28 Jt",
+            booked: 70,
+            capacity: 100,
+          },
+          {
+              title: "Umroh Hasanah Hana",
+              image: paketExample,
+              hotelName: "Mekkah",
+              hotelRating: 5,
+              hotelDistance: "200 m ke Masjidil Haram",
+              airline: "Lion Air",
+              airlineRating: 5,
+              route: "Soekarno hatta ke JED",
+              price: "32 Jt",
+              booked: 100,
+              capacity: 150,
+            },
+            {
+                title: "Umroh Hasanah Hana",
+                image: paketExample,
+                hotelName: "Mekkah",
+                hotelRating: 5,
+                hotelDistance: "200 m ke Masjidil Haram",
+                airline: "Lion Air",
+                airlineRating: 5,
+                route: "Soekarno hatta ke JED",
+                price: "32 Jt",
+                booked: 100,
+                capacity: 150,
+              },
+            {
+              title: "Umroh Amanah Travel",
+              image: paketExample,
+              hotelName: "Madinah",
+              hotelRating: 4,
+              hotelDistance: "500 m ke Nabawi",
+              airline: "Garuda Indonesia",
+              airlineRating: 4,
+              route: "CGK - MED",
+              price: "28 Jt",
+              booked: 70,
+              capacity: 100,
+          },
+
+    ];
+    const totalPages = Math.ceil(packages.length / itemPages)
+    const startIndex = (currentPage - 1) * itemPages
+    const currentItems = packages.slice(startIndex, startIndex + itemPages)
+
     return (
       <DefaultLayout>       
-            <div className='w-full min-h-screen'>
+            <div className='w-full pb-20'>
                 <div className="w-full h-[445px] relative">
                     <img src={bg} alt="background" className='w-full h-fit' />
                     <div className="w-full h-full z-10 absolute top-0 bg-gradient-to-br from-black/0 to-black/45">
@@ -25,38 +190,38 @@ function UmrohPackagePage() {
                                             <div className="flex flex-col">
                                                 <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Jenis Keberangkatan</label>
                                                 <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
-                                                    <option value="Bandung">Bandung</option>
-                                                    <option value="Bandung">Bandung</option>
+                                                    <option value="Cepat">Cepat</option>
+                                                    <option value="Lambat">Lambat</option>
                                                 </select>
                                             </div>
                                             <div className="flex flex-col -translate-y-1/6">
-                                                <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Waktu Keberangkatan</label>
-                                                {/* <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
+                                                <label htmlFor="departure time" className='text-white text-[12px] ms-4'>Waktu Keberangkatan</label>
+                                                {/* <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure time" id="">
                                                     <option value="Bandung">Bandung</option>
                                                     <option value="Bandung">Bandung</option>
                                                 </select> */}
-                                                <input type='time' className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""/>
+                                                <input type='time' className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure time" id=""/>
                                             </div>
                                             <div className="flex flex-col -translate-y-1/6">
                                                 <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Durasi Perjalanan</label>
                                                 <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
-                                                    <option value="Bandung">Bandung</option>
-                                                    <option value="Bandung">Bandung</option>
+                                                    <option value="1 Jam">1 Jam</option>
+                                                    <option value="2 Jam">Bandung</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div className="grid grid-cols-2 gap-3 w-full h-full items-start mt-[40px] px-10 justify-center ">
                                             <div className="flex flex-col">
-                                                <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Kota Keberangkatan</label>
+                                                <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Kategori Paket Umroh</label>
                                                 <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
                                                     <option value="Bandung">Bandung</option>
                                                     <option value="Bandung">Bandung</option>
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Jenis Keberangkatan</label>
+                                                <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Estimasi Biaya</label>
                                                 <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
-                                                    <option value="Bandung">Bandung</option>
+                                                    <option value="45 Juta">45 Juta</option>
                                                     <option value="Bandung">Bandung</option>
                                                 </select>
                                             </div>
@@ -65,15 +230,59 @@ function UmrohPackagePage() {
                           </div>
                         </div>
                     </div>
-                    <div className="w-full relative z-0 min-h-screen bg-gradient-to-br from-[#004492] to-[#00152C]">
-                    <div className="w-full h-full flex justify-between z-0">
-                        <div className="h-full w-[50%]">
-                        <img src={penawaranBg} alt="background" className="w-[100%] opacity-25 h-full object-cover" />
+                    <div className="relative w-full h-fit background-div">
+                        
+                        <div className=" mt-[150px] w-full flex flex-col items-center">
+                        <div className="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3 justify-center">
+                  {/* {packages.map((item, index) => (
+                    <CardPackage
+                      key={index}
+                      title={item.title}
+                      image={item.image}
+                      hotelName={item.hotelName}
+                      hotelRating={item.hotelRating}
+                      hotelDistance={item.hotelDistance}
+                      airline={item.airline}
+                      airlineRating={item.airlineRating}
+                      route={item.route}
+                      price={item.price}
+                      booked={item.booked}
+                      capacity={item.capacity}
+                    />
+                  ))} */}
+                                
+                        {currentItems.map((data, index) => (
+                        <CardPackage key={index} {...data} />
+                         ))}
+                            </div>
+                            <div className='flex justify-center mt-10 space-x-4 text-white'>
+                                <button
+                                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                    disabled={currentPage === 1}
+                                    className='px-3 py-1'
+                                >
+                                    &lt;
+                                </button>
+
+                                {[...Array(totalPages)].map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentPage(index + 1)}
+                                        className={`px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-gradient-to-b from-[#109FF5] to-[#0A5D8F] text-white font-bold rounded-2xl' : ''}`}
+                                    >
+                                        {index + 1}
+                                    </button>
+                                ))}
+
+                                <button
+                                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                    disabled={currentPage === totalPages}
+                                    className='px-3 py-1'
+                                >
+                                    &gt;
+                                </button>
+                            </div>
                         </div>
-                        <div className="h-full w-[50%] absolute right-0">
-                        <img src={penawaranBg2} alt="background" className="w-[100%] opacity-25 h-full object-cover" />
-                        </div>
-                    </div>
                     </div>
                 </div>
           </div>
