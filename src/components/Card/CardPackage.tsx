@@ -1,5 +1,5 @@
 import React from 'react'
-import paketBg from "../../assets/images/Rectangle 111.png"
+// import paketBg from "../../assets/images/Rectangle 111.png"
 import paketExample from "../../assets/images/11848643a6d154484c0aa44d026fef3c.png"
 import hotelIcon2 from "../../assets/icons/Component 7.svg"
 import planeIcon from "../../assets/icons/Component 8.svg"
@@ -20,7 +20,7 @@ interface CardPackageProps {
 
 function CardPackage({
     title,
-    image,
+    // image,
     hotelName,
     hotelRating,
     hotelDistance,
