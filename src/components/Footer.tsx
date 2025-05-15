@@ -5,7 +5,7 @@ function Footer() {
     return (
         <div className="bg-primary-blue w-full h-[400px] grid grid-cols-4 px-[10%] py-10">
             <div className="col-span-2">
-                <h1 className='text-white text-[40px]'>Umroh<span className='font-bold'>Hub</span></h1>
+                <h1 className='text-white text-[40px] font-philosopher font-normal'>Umroh<span className='font-bold'>Hub</span></h1>
                 <p className='text-white text-[12px] mt-[27px] w-[80%]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                     quis nostrud exercitation ullamcoLorem ipsum dolor sit amet,

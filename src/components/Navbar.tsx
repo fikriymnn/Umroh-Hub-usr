@@ -11,9 +11,7 @@ function Navbar() {
             <nav className="w-[60%] h-[145px] relative z-50">
                 <div className="w-full h-[92px] bg-[#001A4D] text-white shadow-[11px_13px_7.6px] shadow-black/25 flex items-center  justify-center 
                     rounded-tl-[4px] rounded-tr-[4px] px-4 ">
-                    <h1 className="text-[28px] font-normal">
-                        Umroh<span className="font-extrabold">Hub</span>
-                    </h1>
+                    <h1 className="text-[28px] font-philosopher font-normal">Umroh<span className="font-bold">Hub</span></h1>
                 </div>
                 <div className="w-full h-[53px] sticky flex justify-between p-2 bg-[#D1F4FA] shadow-[9px_11px_7.3px] shadow-black/25 rounded-br-[4px] rounded-bl-[4px]">
                     <div className='w-full h-full items-center ms-[76px] flex space-x-[27px]'>

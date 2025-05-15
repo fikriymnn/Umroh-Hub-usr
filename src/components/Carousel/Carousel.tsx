@@ -44,7 +44,7 @@ function CarouselHome() {
             <Slider {...settings} ref={sliderRef} className="z-0">
                 <div className="relative w-full h-full">
                     <img src={umrohcarousel} alt="Slide 1" className="w-full h-full object-cover" />
-                    <h1 className="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold text-center">
+                    <h1 className="absolute inset-0 font-philosopher flex items-center justify-center text-white text-4xl font-bold text-center">
                         Solusi Untuk <br /> Umroh
                     </h1>
                 </div>

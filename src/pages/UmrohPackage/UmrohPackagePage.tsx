@@ -3,6 +3,7 @@ import DefaultLayout from "../../layout/DefaultLayout";
 import bg from "../../assets/images/makkah-3986709.png"
 import paketExample from "../../assets/images/11848643a6d154484c0aa44d026fef3c.png"
 import CardPackage from '../../components/Card/CardPackage';
+import departureCity from "../../assets/icons/Group 28 (1).svg"
 function UmrohPackagePage() {
     const [currentPage, setCurrentPage] = useState(1)
     const itemPages = 15
@@ -180,13 +181,27 @@ function UmrohPackagePage() {
                           bg-gradient-to-bl from-[#004492] to-[#00152C] shadow-[0px_4px_4px] shadow-black/25">
                             <div className="w-full grid grid-cols-2">
                                         <div className="grid grid-cols-2 gap-3 border-e-[2px] w-full h-full mt-[40px] px-10 justify-center ">
-                                            <div className="flex flex-col">
-                                                <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Kota Keberangkatan</label>
-                                                <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
-                                                    <option value="Bandung">Bandung</option>
-                                                    <option value="Bandung">Bandung</option>
+                                        <div className="flex flex-col">
+                                            <label htmlFor="departure-city" className="text-white text-[12px] ms-4">
+                                                Kota Keberangkatan
+                                            </label>
+                                            <div className="relative">
+                                                <img
+                                                src={departureCity}
+                                                alt="City Icon"
+                                                className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                                                />
+                                                <select
+                                                id="departure-city"
+                                                name="departure city"
+                                                className="bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]"
+                                                >
+                                                <option value="Bandung">Bandung</option>
+                                                <option value="Jakarta">Jakarta</option>
                                                 </select>
                                             </div>
+                                            </div>
+
                                             <div className="flex flex-col">
                                                 <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Jenis Keberangkatan</label>
                                                 <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">

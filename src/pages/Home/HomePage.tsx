@@ -239,7 +239,7 @@ const HomePage: React.FC = () => {
                 <div className="flex absolute top-0 w-[100%] py-10 px-[13%] justify-center">
                   <div className="mt-6 flex flex-col">
                     <h1 className='text-[24px] font-extrabold text-primary-blue'>Kenapa Harus Di
-                      <span className='text-white bg-primary-blue font-normal rounded-[8px] px-4 py-1 ms-2'>UmrohHub</span>
+                      <span className='text-white bg-primary-blue  rounded-[8px] px-4 py-1 ms-2 font-philosopher font-normal'>Umroh<span className="font-bold">Hub</span></span>
                     </h1>
                     <p className='text-[12px] text-primary-blue mt-[16px] w-[95%]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
