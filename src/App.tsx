@@ -4,6 +4,7 @@ import HomePage from "./pages/Home/HomePage";
 import UmrohPackagePage from "./pages/UmrohPackage/UmrohPackagePage";
 import OurPartnersPage from "./pages/OurPartners/OurPartnersPage";
 import PartnersDetail from "./pages/OurPartners/[id]/PartnersDetail";
+import PackageDetail from "./pages/UmrohPackage/[id]/PackageDetail";
 
 export default function App() {
   return (
@@ -47,6 +48,16 @@ export default function App() {
                 <PageTitle title="PT CBL" />
 
                 <PartnersDetail />
+              </>
+            }
+          />
+          <Route
+            path="/UmrohPackage/:id"
+            element={
+              <>
+                <PageTitle title="PT CBL" />
+
+                <PackageDetail />
               </>
             }
           />
