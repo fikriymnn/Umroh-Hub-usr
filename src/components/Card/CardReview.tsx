@@ -22,11 +22,11 @@ const CardReview = ({ ulasan = [], variant = 'carousel' }: any) => {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow w-[1125px] h-[408px] mx-auto p-6 mt-[30px]">
+        <div className="bg-white rounded-lg shadow mx-auto p-6">
 
             {variant === 'list' ? (
-                <div className="flex flex-col gap-6 mb-5">
-                    <h2 className="text-[24px] md:text-2xl font-semibold mb-6">Ulasan Jemaah</h2>
+                <div className="flex flex-col w-[680px] gap-6 mb-7">
+                    <h2 className="text-[24px] md:text-2xl font-semibold mb-4 ml-2">Ulasan Jemaah</h2>
                     {ulasan.map((item: any, i: number) => (
                         <div key={i} className="p-4 rounded-lg">
                             <div className="flex items-center mb-3">
@@ -68,7 +68,7 @@ const CardReview = ({ ulasan = [], variant = 'carousel' }: any) => {
                         dotListClass="flex justify-center mt-6"
                     >
                         {ulasan.map((item: any, i: number) => (
-                            <div key={i} className="w-full max-w-[400px]">
+                            <div key={i} className="w-[1125px] h-[408px] max-w-[400px]">
                                 <div className="p-4 rounded-lg w-full bg-white">
                                     <div className="flex items-center mb-3">
                                         <div className="w-10 h-10 bg-gray-300 rounded-full mr-3" />
