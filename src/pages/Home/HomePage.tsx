@@ -204,23 +204,8 @@ const HomePage: React.FC = () => {
                     Lihat lebih banyak
                   </h1>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-                  {packages.map((item, index) => (
-                    <CardPackage
-                      key={index}
-                      title={item.title}
-                      image={item.image}
-                      hotelName={item.hotelName}
-                      hotelRating={item.hotelRating}
-                      hotelDistance={item.hotelDistance}
-                      airline={item.airline}
-                      airlineRating={item.airlineRating}
-                      route={item.route}
-                      price={item.price}
-                      booked={item.booked}
-                      capacity={item.capacity}
-                    />
-                  ))}
+                <div className="w-full">
+                  <CardPackage packageList={packages} />
                 </div>
               </div>
             </div>

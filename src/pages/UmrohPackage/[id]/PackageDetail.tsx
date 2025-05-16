@@ -9,6 +9,7 @@ import locationIcon from "../../../assets/icons/Pin_alt.svg"
 import exampleImage from "../../../assets/images/pexels-sultan-alhuthali-175963006-18274181.png"
 import CardReview from '../../../components/Card/CardReview'
 import TravelSchedule from '../../../components/TravelSchedule'
+import TravelSchedule2 from '../../../components/TravelSchedule2'
 
 function PackageDetail() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -154,9 +155,7 @@ function PackageDetail() {
                 <div className="bg-white w-10/12 p-[40px] rounded-[5px]">
                     <div>
                         <h1 className='text-[24px] font-medium capitalize mb-10'>Jadwal perjalanan</h1>
-                        {currentItems.map((data, index) => (
-                            <TravelSchedule key={index} {...data} />
-                        ))}
+                        <TravelSchedule2 scheduleList={currentItems} />
                     </div>
                     <div className='flex justify-center mt-10 space-x-4 text-white'>
                         <button

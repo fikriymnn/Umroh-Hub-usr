@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import DefaultLayout from '../../../layout/DefaultLayout'
 import paketExample from "../../../assets/images/11848643a6d154484c0aa44d026fef3c.png"
-import CardPackage from '../../../components/Card/CardPackage';
+import CardPackage from '../../../components/Card/CardPackage'
 import mitraExampleProfile from "../../../assets/images/pexels-chevanon-1108099.png"
 import CardReview from '../../../components/Card/CardReview';
 
@@ -214,27 +214,8 @@ function PartnersDetail() {
                 <div className="flex flex-col w-10/12 items-start mt-[45px] space-y-[25px]">
                     <h1 className="text-white text-[24px] font-semibold capitalize">Paket dari<span className='text-[#3C97FF] font-medium'>hasanah hana</span></h1>
                     <div className=" w-full flex flex-col items-center">
-                        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center">
-                            {/* {packages.map((item, index) => (
-                    <CardPackage
-                      key={index}
-                      title={item.title}
-                      image={item.image}
-                      hotelName={item.hotelName}
-                      hotelRating={item.hotelRating}
-                      hotelDistance={item.hotelDistance}
-                      airline={item.airline}
-                      airlineRating={item.airlineRating}
-                      route={item.route}
-                      price={item.price}
-                      booked={item.booked}
-                      capacity={item.capacity}
-                    />
-                  ))} */}
-
-                            {currentItems.map((data, index) => (
-                                <CardPackage key={index} {...data} />
-                            ))}
+                        <div className="w-full">
+                            <CardPackage packageList={currentItems} />
                         </div>
                         <div className='flex justify-center mt-10 space-x-4 text-white'>
                             <button

@@ -233,27 +233,8 @@ function UmrohPackagePage() {
                     <div className="relative w-full h-fit background-div">
 
                         <div className=" mt-[150px] w-full flex flex-col items-center">
-                            <div className="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3 justify-center">
-                                {/* {packages.map((item, index) => (
-                    <CardPackage
-                      key={index}
-                      title={item.title}
-                      image={item.image}
-                      hotelName={item.hotelName}
-                      hotelRating={item.hotelRating}
-                      hotelDistance={item.hotelDistance}
-                      airline={item.airline}
-                      airlineRating={item.airlineRating}
-                      route={item.route}
-                      price={item.price}
-                      booked={item.booked}
-                      capacity={item.capacity}
-                    />
-                  ))} */}
-
-                                {currentItems.map((data, index) => (
-                                    <CardPackage key={index} {...data} />
-                                ))}
+                            <div className="w-3/4">
+                                <CardPackage packageList={currentItems} />
                             </div>
                             <div className='flex justify-center mt-10 space-x-4 text-white'>
                                 <button
