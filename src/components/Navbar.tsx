@@ -46,9 +46,11 @@ function Navbar() {
                                 Daftar
                             </button>
                         </Link>
-                        <button className='bg-[#D1F4FA] h-[80%] border-[1px] border-[#001A4D] items-center rounded-[2px] px-2'>
-                            Masuk
-                        </button>
+                        <Link to='/Login'>
+                            <button className='bg-[#D1F4FA] h-[80%] border-[1px] border-[#001A4D] items-center rounded-[2px] px-2'>
+                                Masuk
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </nav>
