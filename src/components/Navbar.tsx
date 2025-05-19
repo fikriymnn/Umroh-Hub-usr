@@ -16,27 +16,27 @@ function Navbar() {
                 <div className="w-full h-[53px] sticky flex justify-between p-2 bg-[#D1F4FA] shadow-[9px_11px_7.3px] shadow-black/25 rounded-br-[4px] rounded-bl-[4px]">
                     <div className='w-full h-full items-center ms-[76px] flex space-x-[27px]'>
                         <div className="flex flex-col items-center justify-center">
-                            <Link to="/HomePage" className='font-semibold text-[13px]'>Home</Link>
-                            {currentPath === "/HomePage" &&
-                            <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
+                            <Link to="/" className='font-semibold text-[13px]'>Home</Link>
+                            {currentPath === "/" &&
+                                <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
                             }
                         </div>
                         <div className="flex flex-col items-center justify-center">
                             <Link to="/UmrohPackage" className='font-semibold text-[13px]'>Paket Umroh</Link>
                             {(currentPath === "/UmrohPackage" || isDetailPackage) &&
-                            <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
+                                <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
                             }
                         </div>
                         <div className="flex flex-col items-center justify-center">
                             <Link to="/OurPartners" className='font-semibold text-[13px]'>Mitra Kami</Link>
                             {(currentPath === "/OurPartners" || isDetailMitra) &&
-                            <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
+                                <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
                             }
                         </div>
                         <div className="flex flex-col items-center justify-center">
-                            <Link to="/HomePage" className='font-semibold text-[13px]'>Tentang Kami</Link>
-                            {currentPath === "/HomePage" &&
-                            <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
+                            <Link to="/" className='font-semibold text-[13px]'>Tentang Kami</Link>
+                            {currentPath === "/" &&
+                                <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
                             }
                         </div>
                     </div>

@@ -12,7 +12,7 @@ export default function App() {
       <Router>
         <Routes>
           <Route
-            path="/HomePage"
+            path="/"
             element={
               <>
                 <PageTitle title="PT CBL" />
@@ -41,7 +41,7 @@ export default function App() {
               </>
             }
           />
-           <Route
+          <Route
             path="/OurPartners/:id"
             element={
               <>

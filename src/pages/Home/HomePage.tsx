@@ -81,34 +81,6 @@ const HomePage: React.FC = () => {
     }
   ];
 
-  const renderCardContent = (hotelList: any[]) => (
-    hotelList.map((hotel, index) => (
-      <div className='flex space-x-2 w-full my-2' key={index}>
-        <img src={hotel.icon} alt="icon" className='w-[30px] h-[30px]' />
-        <div className='flex-col w-full'>
-          <h6 className='text-[12px] font-semibold'>
-            {hotel.city} :
-            <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span>({hotel.roomType})
-          </h6>
-          <p className='text-[#209FB2] text-[10px] font-semibold'>{hotel.distance}</p>
-        </div>
-      </div>
-    ))
-  );
-
-  const renderCardFooter = (price: any) => (
-    <>
-      <div className='flex space-x-2 mt-2'>
-        <h1 className='text-[#ACACAC] text-[12px] font-semibold line-through'>{price.original}</h1>
-        <h1 className='text-[#209FB2] text-[15px] font-semibold'>{price.discounted}</h1>
-      </div>
-      <div className='flex w-[80%] ms-1 justify-between mt-[20px]'>
-        <button className='py-3 w-[100px] text-[13px] font-semibold rounded-full bg-[#D1F4FA]'>Pesan</button>
-        <button className='py-3 text-[13px] font-semibold'>Lihat Detail</button>
-      </div>
-    </>
-  );
-
   const packages = [
     {
       title: "Umroh Hasanah Hana",
@@ -139,11 +111,11 @@ const HomePage: React.FC = () => {
   ];
 
   const valuesTrust = [
-    { label: 'Terpercaya', percentage: '100%' },
-    { label: 'Terjamin', percentage: '100%' },
-    { label: 'Berkualitas', percentage: '100%' },
-    { label: 'Aman', percentage: '100%' },
-    { label: 'Amanah', percentage: '100%' },
+    { label: 'Terpercaya', percentage: '100%', icon: checkIcon },
+    { label: 'Terjamin', percentage: '100%', icon: checkIcon },
+    { label: 'Berkualitas', percentage: '100%', icon: checkIcon },
+    { label: 'Aman', percentage: '100%', icon: checkIcon },
+    { label: 'Amanah', percentage: '100%', icon: checkIcon },
   ];
 
   return (
@@ -172,20 +144,8 @@ const HomePage: React.FC = () => {
                 <h1 className="text-white font-extrabold text-[24px]">Penawaran Khusus Umroh</h1>
 
                 {/* cards */}
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10'>
-                  {cardDataList.map((data, index) => (
-                    <Card
-                      key={index}
-                      cardImage={data.cardImage}
-                      cardHeader={data.cardHeader}
-                      cardContent={renderCardContent(data.hotelList)}
-                      cardFooter={renderCardFooter(data.price)}
-                      cardProgress={{
-                        percent: Math.min((data.progress.current / data.progress.total) * 100, 100),
-                        label: `Pesanan: ${data.progress.current}/${data.progress.total}`
-                      }}
-                    />
-                  ))}
+                <div className='mt-10'>
+                  <Card data={cardDataList} />
                 </div>
               </div>
             </div>
@@ -358,14 +318,7 @@ const HomePage: React.FC = () => {
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoour partners Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
                     </p>
                     <div className="mt-[22px]">
-                      {valuesTrust.map((item, index) => (
-                        <TrustIndicator
-                          key={index}
-                          label={item.label}
-                          percentage={item.percentage}
-                          icon={checkIcon}
-                        />
-                      ))}
+                      <TrustIndicator dataTrust={valuesTrust} />
                     </div>
                     <Button
                       variant="primaryBlueGr"
