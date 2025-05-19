@@ -41,9 +41,11 @@ function Navbar() {
                         </div>
                     </div>
                     <div className="flex space-x-[7px] h-full items-center me-[53px]">
-                        <button className='bg-[#001A4D] h-[80%] text-white rounded-[2px] items-center px-2'>
-                            Daftar
-                        </button>
+                        <Link to="/Register">
+                            <button className='bg-[#001A4D] h-[80%] text-white rounded-[2px] items-center px-2'>
+                                Daftar
+                            </button>
+                        </Link>
                         <button className='bg-[#D1F4FA] h-[80%] border-[1px] border-[#001A4D] items-center rounded-[2px] px-2'>
                             Masuk
                         </button>
