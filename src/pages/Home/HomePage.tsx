@@ -24,6 +24,7 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
+import { Link } from "react-router";
 
 const HomePage: React.FC = () => {
   const cardDataList = [
@@ -104,7 +105,9 @@ const HomePage: React.FC = () => {
       </div>
       <div className='flex w-[80%] ms-1 justify-between mt-[20px]'>
         <button className='py-3 w-[100px] text-[13px] font-semibold rounded-full bg-[#D1F4FA]'>Pesan</button>
-        <button className='py-3 text-[13px] font-semibold'>Lihat Detail</button>
+        <Link to="/UmrohPackage/:id">
+          <button className='py-3 text-[13px] font-semibold'>Lihat Detail</button>
+        </Link>
       </div>
     </>
   );

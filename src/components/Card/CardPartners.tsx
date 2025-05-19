@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
+import { Link } from 'react-router'
 
 const CardPartners = ({ partnersList }: any) => {
     return (
@@ -26,9 +27,11 @@ const CardPartners = ({ partnersList }: any) => {
                             </div>
                         </div>
                     </div>
-                    <div className='text-[11px] text-[#004492] mt-[4px] mr-[15px] cursor-pointer text-end'>
-                        Selengkapnya &gt;
-                    </div>
+                    <Link to="/OurPartners/:id">
+                        <div className='text-[11px] text-[#004492] mt-[4px] mr-[15px] cursor-pointer text-end'>
+                            Selengkapnya &gt;
+                        </div>
+                    </Link>
                     <div className='flex gap-2 mt-[10px]'>
                         {part.packages.map((index: number) => (
                             <div
