@@ -5,13 +5,51 @@ import arrowIcons from "../../../src/assets/icons/Vector 664.svg"
 import profileIcon from "../../../src/assets/icons/iconamoon_profile-circle-fill.svg"
 import payTypeIcon from '../../assets/icons/Vector.svg'
 function PaymentData() {
+    const [jamaahList, setJamaahList] = useState([
+        {
+            nama: '',
+            gender: '',
+            telepon: '',
+            email: '',
+            ktp: '',
+            passport: '',
+            kk: ''
+        }
+    ]);
     const [fileName, setFileName] = useState("Belum ada file");
 
-  const handleChange = (e:any) => {
-    setFileName(e.target.files[0]?.name || "Belum ada file");
-  };
+    const handleChangeFile = (e: any) => {
+        setFileName(e.target.files[0]?.name || "Belum ada file");
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        setJamaahList({ ...jamaahList, [e.target.name]: e.target.value })
+    };
+
+    const handleDataJamaah = () => {
+        setJamaahList([
+            ...jamaahList,
+            {
+                nama: '',
+                gender: '',
+                telepon: '',
+                email: '',
+                ktp: '',
+                passport: '',
+                kk: ''
+            }
+        ]);
+    };
+
+    const handleRemoveJamaah = (index: number) => {
+        if (jamaahList.length === 1) return;
+        const updatedList = [...jamaahList];
+        updatedList.splice(index, 1);
+        setJamaahList(updatedList);
+    };
+
     return (
-      <DefaultLayout>           
+        <DefaultLayout>
             <div className='w-full min-h-screen pt-[200px] flex flex-col items-center space-y-[34px] background-div'>
                 <div className="w-4/12 flex items-center space-x-3">
                     <div className="bg-[#5C9FED61] border-[1px] border-white rounded-full w-[37px] h-[37px]
@@ -66,113 +104,158 @@ function PaymentData() {
                         </div>
                     </div>
                     <div className="bg-white rounded-[5px] w-7/12 py-6 px-10">
-                        <div className="flex space-x-3 w-full items-center">
-                            <img src={profileIcon} alt="profile" className='w-[30px] h-[30px]' />
-                            <h1 className='text-[15px] font-bold'>Jamaah ke - 1</h1>
-                        </div>
-                        <div className="w-full flex space-x-[15px] mt-[20px]">
-                            <div className="flex flex-col space-y-[13px]">
-                                <label htmlFor="Gender" className='font-semibold text-[15px]'>Gender</label>
-                                <select name="Gender" className='text-[#959595] border-[1px] rounded-[10px] border-[#959595] px-2 py-[9px] text-[13px] font-semibold' id="">
-                                    <option value="" disabled >Pilih Gender</option>
-                                    <option value="Pria">Pria</option>
-                                    <option value="Wanita">Wanita</option>
-                                </select>
-                            </div>
-                            <div className="flex flex-col space-y-[13px]">
-                                <label htmlFor="Fullname" className='font-semibold text-[15px]'>Nama Lengkap</label>
-                                <input type="text" name='Fullname' placeholder="Ketik Nama Lengkap..."
-                                    className='text-[#959595] border-[1px] w-[400px] rounded-[10px] border-[#959595] p-2 text-[13px] font-semibold' />
-                                <h1 className='text-[11px] font-semibold text-[#3C97FF] text-center'>(Sesuai dengan KTP/ Paspor tanpa gelar)</h1>
-                            </div>
-                        </div>
-                        <div className="w-full flex space-x-[15px] mt-[18px]">
-                            <div className="flex flex-col space-y-[13px]">
-                                    <label htmlFor="Phone" className='font-semibold text-[15px]'>Nomor Telepon</label>
-                                    <input type="text" name='Phone' placeholder="Ketik Nomor Telepon..." className='text-[#959595] border-[1px] w-[203px] rounded-[10px] border-[#959595] p-2 text-[13px] font-semibold' />
-                                </div>
-                            <div className="flex flex-col space-y-[13px]">
-                                <label htmlFor="Email" className='font-semibold text-[15px]'>Email</label>
-                                <input type="text" name='Email' placeholder="Ketik Email..." className='text-[#959595] border-[1px] w-[350px] rounded-[10px] border-[#959595] p-2 text-[13px] font-semibold' />
-                            </div>
-                        </div>
-                        <div className="w-full flex space-x-[15px] mt-[18px]">
-                            <div className="flex flex-col space-y-[13px]">
-                                <label className="block text-lg font-semibold mb-2">Lampiran Foto KTP</label>
-                                <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[300px]">
-
-                                    <div className="relative">
-                                    <input
-                                        id="fileUpload"
-                                        type="file"
-                                        onChange={handleChange}
-                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                                    />
-                                    <label
-                                        htmlFor="fileUpload"
-                                        className="inline-block whitespace-nowrap bg-[#D9D9D9] text-sm font-semibold py-2 px-4 rounded-md hover:bg-gray-300 cursor-pointer"
+                        {jamaahList.map((jamaah, index) => (
+                            <div key={index} className='mb-4 border-b'>
+                                <div className="flex space-x-3 w-full items-center">
+                                    <img src={profileIcon} alt="profile" className='w-[30px] h-[30px]' />
+                                    <h1 className='text-[15px] font-bold'>Jamaah ke - {index + 1}</h1>
+                                    <button
+                                        onClick={() => handleRemoveJamaah(index)}
+                                        className='font-bold text-red-500'
                                     >
-                                        Pilih File
-                                    </label>
-                                    </div>
-                                    
-                                    <p className="text-sm w-[80%] mt-2 text-gray-600 overflow-hidden">{fileName}</p>
+                                        -
+                                    </button>
                                 </div>
-
-                            </div>
-                            <div className="flex flex-col space-y-[13px]">
-                                <label className="block text-lg font-semibold mb-2">Lampiran Foto Passport</label>
-                                <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[300px]">
-
-                                    <div className="relative">
-                                    <input
-                                        id="fileUpload"
-                                        type="file"
-                                        onChange={handleChange}
-                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                                    />
-                                    <label
-                                        htmlFor="fileUpload"
-                                        className="inline-block whitespace-nowrap bg-[#D9D9D9] text-sm font-semibold py-2 px-4 rounded-md hover:bg-gray-300 cursor-pointer"
-                                    >
-                                        Pilih File
-                                    </label>
+                                <div className="w-full flex space-x-[15px] mt-[20px]">
+                                    <div className="flex flex-col space-y-[13px]">
+                                        <label htmlFor="Gender" className='font-semibold text-[15px]'>Gender</label>
+                                        <select
+                                            name="Gender"
+                                            className='text-[#959595] border-[1px] rounded-[10px] border-[#959595] px-2 py-[9px] text-[13px] font-semibold'
+                                            value={jamaah.gender}
+                                            onChange={handleChange}
+                                        >
+                                            <option value="" disabled >Pilih Gender</option>
+                                            <option value="Pria">Pria</option>
+                                            <option value="Wanita">Wanita</option>
+                                        </select>
                                     </div>
-                                    
-                                    <p className="text-sm w-[80%] mt-2 text-gray-600 overflow-hidden">{fileName}</p>
-                                </div>
-
-                            </div>
-                            
-                        </div>
-                        <div className="flex flex-col mt-[20px] space-y-[13px]">
-                                <label className="block text-lg font-semibold mb-2">Lampiran Foto KKs</label>
-                                <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[300px]">
-
-                                    <div className="relative">
-                                    <input
-                                        id="fileUpload"
-                                        type="file"
-                                        onChange={handleChange}
-                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                                    />
-                                    <label
-                                        htmlFor="fileUpload"
-                                        className="inline-block whitespace-nowrap bg-[#D9D9D9] text-sm font-semibold py-2 px-4 rounded-md hover:bg-gray-300 cursor-pointer"
-                                    >
-                                        Pilih File
-                                    </label>
+                                    <div className="flex flex-col space-y-[13px]">
+                                        <label htmlFor="Fullname" className='font-semibold text-[15px]'>Nama Lengkap</label>
+                                        <input
+                                            type="text"
+                                            name='Fullname'
+                                            placeholder="Ketik Nama Lengkap..."
+                                            className='text-[#959595] border-[1px] w-[400px] rounded-[10px] border-[#959595] p-2 text-[13px] font-semibold'
+                                            value={jamaah.nama}
+                                            onChange={handleChange}
+                                        />
+                                        <h1 className='text-[11px] font-semibold text-[#3C97FF] text-center'>(Sesuai dengan KTP/ Paspor tanpa gelar)</h1>
                                     </div>
-                                    
-                                    <p className="text-sm w-[80%] mt-2 text-gray-600 overflow-hidden">{fileName}</p>
                                 </div>
+                                <div className="w-full flex space-x-[15px] mt-[18px]">
+                                    <div className="flex flex-col space-y-[13px]">
+                                        <label htmlFor="Phone" className='font-semibold text-[15px]'>Nomor Telepon</label>
+                                        <input
+                                            type="text"
+                                            name='Phone'
+                                            placeholder="Ketik Nomor Telepon..." className='text-[#959595] border-[1px] w-[203px] rounded-[10px] border-[#959595] p-2 text-[13px] font-semibold'
+                                            value={jamaah.telepon}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                    <div className="flex flex-col space-y-[13px]">
+                                        <label htmlFor="Email" className='font-semibold text-[15px]'>Email</label>
+                                        <input
+                                            type="text"
+                                            name='Email'
+                                            placeholder="Ketik Email..." className='text-[#959595] border-[1px] w-[350px] rounded-[10px] border-[#959595] p-2 text-[13px] font-semibold'
+                                            value={jamaah.email}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="w-full flex space-x-[15px] mt-[18px]">
+                                    <div className="flex flex-col space-y-[13px]">
+                                        <label className="block text-lg font-semibold mb-2">Lampiran Foto KTP</label>
+                                        <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[300px]">
 
+                                            <div className="relative">
+                                                <input
+                                                    id="fileUpload"
+                                                    type="file"
+                                                    value={jamaah.ktp}
+                                                    onChange={handleChangeFile}
+                                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                                />
+                                                <label
+                                                    htmlFor="fileUpload"
+                                                    className="inline-block whitespace-nowrap bg-[#D9D9D9] text-sm font-semibold py-2 px-4 rounded-md hover:bg-gray-300 cursor-pointer"
+                                                >
+                                                    Pilih File
+                                                </label>
+                                            </div>
+
+                                            <p className="text-sm w-[80%] mt-2 text-gray-600 overflow-hidden">{fileName}</p>
+                                        </div>
+
+                                    </div>
+                                    <div className="flex flex-col space-y-[13px]">
+                                        <label className="block text-lg font-semibold mb-2">Lampiran Foto Passport</label>
+                                        <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[300px]">
+
+                                            <div className="relative">
+                                                <input
+                                                    id="fileUpload"
+                                                    type="file"
+                                                    value={jamaah.passport}
+                                                    onChange={handleChangeFile}
+                                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                                />
+                                                <label
+                                                    htmlFor="fileUpload"
+                                                    className="inline-block whitespace-nowrap bg-[#D9D9D9] text-sm font-semibold py-2 px-4 rounded-md hover:bg-gray-300 cursor-pointer"
+                                                >
+                                                    Pilih File
+                                                </label>
+                                            </div>
+
+                                            <p className="text-sm w-[80%] mt-2 text-gray-600 overflow-hidden">{fileName}</p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div className="flex flex-col mt-[20px] space-y-[13px] mb-6">
+                                    <label className="block text-lg font-semibold mb-2">Lampiran Foto KKs</label>
+                                    <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[300px]">
+
+                                        <div className="relative">
+                                            <input
+                                                id="fileUpload"
+                                                type="file"
+                                                value={jamaah.kk}
+                                                onChange={handleChangeFile}
+                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                            />
+                                            <label
+                                                htmlFor="fileUpload"
+                                                className="inline-block whitespace-nowrap bg-[#D9D9D9] text-sm font-semibold py-2 px-4 rounded-md hover:bg-gray-300 cursor-pointer"
+                                            >
+                                                Pilih File
+                                            </label>
+                                        </div>
+
+                                        <p className="text-sm w-[80%] mt-2 text-gray-600 overflow-hidden">{fileName}</p>
+                                    </div>
+
+                                </div>
                             </div>
+                        ))}
+                        <button
+                            onClick={handleDataJamaah}
+                            className="flex items-center w-[243px] h-[45px] gap-2 border border-blue-500 text-blue-600 py-2 rounded-full hover:bg-blue-50 transition"
+                        >
+                            <div className="w-[39px] h-[39px] rounded-full border border-blue-500 flex items-center justify-center ml-0.5">
+                                <span className="text-blue-500 text-[39px] font-bold">+</span>
+                            </div>
+                            <span className="font-medium ml-4">Tambah Jamaah</span>
+                        </button>
                     </div>
                 </div>
-          </div>
-      </DefaultLayout>
-  )
+            </div>
+        </DefaultLayout>
+    )
 }
 
 export default PaymentData
