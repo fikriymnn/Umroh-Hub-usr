@@ -5,9 +5,10 @@ import UmrohPackagePage from "./pages/UmrohPackage/UmrohPackagePage";
 import OurPartnersPage from "./pages/OurPartners/OurPartnersPage";
 import PartnersDetail from "./pages/OurPartners/[id]/PartnersDetail";
 import PackageDetail from "./pages/UmrohPackage/[id]/PackageDetail";
-import Register from "./pages/Authentications/Register";
 import Payment from "./pages/Payment/Payment";
 import PaymentData from "./pages/Payment/PaymentData";
+
+import LoginRegister from "./pages/Authentications/LoginRegister";
 
 export default function App() {
   return (
@@ -64,13 +65,12 @@ export default function App() {
               </>
             }
           />
-           <Route
-            path="/Register"
+          <Route
+            path="/LoginRegister"
             element={
               <>
                 <PageTitle title="PT CBL" />
-
-                <Register />
+                <LoginRegister />
               </>
             }
           />
