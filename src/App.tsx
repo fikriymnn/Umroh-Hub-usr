@@ -5,8 +5,7 @@ import UmrohPackagePage from "./pages/UmrohPackage/UmrohPackagePage";
 import OurPartnersPage from "./pages/OurPartners/OurPartnersPage";
 import PartnersDetail from "./pages/OurPartners/[id]/PartnersDetail";
 import PackageDetail from "./pages/UmrohPackage/[id]/PackageDetail";
-import Register from "./pages/Authentications/Register";
-import Login from "./pages/Authentications/Login";
+import LoginRegister from "./pages/Authentications/LoginRegister";
 
 export default function App() {
   return (
@@ -64,22 +63,12 @@ export default function App() {
             }
           />
           <Route
-            path="/Register"
+            path="/LoginRegister"
             element={
               <>
                 <PageTitle title="PT CBL" />
 
-                <Register />
-              </>
-            }
-          />
-          <Route
-            path="/Login"
-            element={
-              <>
-                <PageTitle title="PT CBL" />
-
-                <Login />
+                <LoginRegister />
               </>
             }
           />
