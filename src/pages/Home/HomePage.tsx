@@ -24,6 +24,7 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
+import { Link } from "react-router";
 
 const HomePage: React.FC = () => {
   const cardDataList = [
