@@ -6,7 +6,8 @@ import OurPartnersPage from "./pages/OurPartners/OurPartnersPage";
 import PartnersDetail from "./pages/OurPartners/[id]/PartnersDetail";
 import PackageDetail from "./pages/UmrohPackage/[id]/PackageDetail";
 import Register from "./pages/Authentications/Register";
-import Login from "./pages/Authentications/Login";
+import Payment from "./pages/Payment/Payment";
+import PaymentData from "./pages/Payment/PaymentData";
 
 export default function App() {
   return (
@@ -43,7 +44,7 @@ export default function App() {
               </>
             }
           />
-          <Route
+           <Route
             path="/OurPartners/:id"
             element={
               <>
@@ -63,7 +64,7 @@ export default function App() {
               </>
             }
           />
-          <Route
+           <Route
             path="/Register"
             element={
               <>
@@ -73,13 +74,23 @@ export default function App() {
               </>
             }
           />
-          <Route
-            path="/Login"
+           <Route
+            path="/Payment"
             element={
               <>
                 <PageTitle title="PT CBL" />
 
-                <Login />
+                <Payment />
+              </>
+            }
+          />
+           <Route
+            path="/PaymentData"
+            element={
+              <>
+                <PageTitle title="PT CBL" />
+
+                <PaymentData />
               </>
             }
           />
