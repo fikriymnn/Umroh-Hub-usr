@@ -1,9 +1,13 @@
+'use client'
 import React, { useState } from 'react'
 import DefaultLayout from '../../../layout/DefaultLayout'
 import paketExample from "../../../assets/images/11848643a6d154484c0aa44d026fef3c.png"
 import CardPackage from '../../../components/Card/CardPackage'
 import mitraExampleProfile from "../../../assets/images/pexels-chevanon-1108099.png"
-import CardReview from '../../../components/Card/CardReview';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Review from '../../../components/Review'
 
 function PartnersDetail() {
     const [currentPage, setCurrentPage] = useState(1)
@@ -181,12 +185,68 @@ function PartnersDetail() {
             komentar: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit amet',
             foto: [1, 2, 3, 4],
         },
+        {
+            nama: 'Dias Nasional',
+            kota: 'Bandung',
+            komentar: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit amet',
+            foto: [1, 2, 3, 4],
+        },
     ];
+
+    const NextArrow = ({ onClick }: any) => (
+        <div
+            className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white shadow-md rounded-full p-2 cursor-pointer z-10 hover:bg-gray-100"
+            onClick={onClick}
+        >
+            <svg className="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+        </div>
+    );
+
+    const PrevArrow = ({ onClick }: any) => (
+        <div
+            className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white shadow-md rounded-full p-2 cursor-pointer z-10 hover:bg-gray-100"
+            onClick={onClick}
+        >
+            <svg className="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+        </div>
+    );
+
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        arrows: true,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
+    };
 
     const totalPages = Math.ceil(packages.length / itemPages)
     const startIndex = (currentPage - 1) * itemPages
     const currentItems = packages.slice(startIndex, startIndex + itemPages)
     return (
+
         <DefaultLayout>
             <div className='background-div pt-[200px] w-full min-h-screen flex flex-col items-center'>
                 <div className="bg-white w-10/12 h-[251px] px-[40px] py-5 rounded-[5px] mt-[20px] ">
@@ -246,55 +306,16 @@ function PartnersDetail() {
                         </div>
                     </div>
                 </div>
-                <CardReview ulasan={dataUlasan} variant="carousel" />
-                {/* <div className="bg-white w-10/12 flex flex-col items-center h-[400px] px-[40px] py-5 rounded-[5px] mt-[20px] ">
-                    <div className="w-9/12 h-full ">
-                        <h1 className="text-[24px] capitalize w-full h-[50px] flex  items-center font-medium">
-                            ulasan jemaah
-                        </h1>
-                        <div className="w-full h-[80%] grid grid-cols-3 mt-[48px] gap-2">
-
-                            <div className='w-full h-full flex flex-col'>
-                                <div className='flex items-start gap-4'>
-                                    <div className='w-[65px] h-[65px] bg-gray-300 rounded-full'>
-                                    </div>
-                                    <div className="flex flex-col">
-
-                                        <h3 className='text-lg font-semibold'>Belia lucuk</h3>
-                                        <div className='text-sm text-gray-600 capitalize'>
-                                            jakarta
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div className='text-sm text-gray-600 flex items-center gap-1'>
-                                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit amet
-                                </div>
-                                <div className=' w-full h-[70px] grid grid-cols-4 gap-2 mt-4'>
-                                    <div
-                                        className='w-full bg-gray-200 rounded-md'
-                                    >
-                                    </div>
-                                    <div
-                                        className='w-full bg-gray-200 rounded-md'
-                                    >
-                                    </div>
-                                    <div
-                                        className='w-full bg-gray-200 rounded-md'
-                                    >
-                                    </div>
-                                    <div
-                                        className='w-full bg-gray-200 rounded-md'
-                                    >
-                                    </div>
-
-
-                                </div>
+                <div className="py-10 px-6 mt-10 bg-white w-[1125px] h-[408px] rounded-[5px]">
+                    <h2 className="text-[24px] md:text-2xl font-semibold mb-4 ml-24">Ulasan Jemaah</h2>
+                    <Slider {...settings}>
+                        {dataUlasan.map((review, index) => (
+                            <div key={index} className="px-14">
+                                <Review ulasan={[review]} />
                             </div>
-                        </div>
-                    </div>
-                </div> */}
+                        ))}
+                    </Slider>
+                </div>
             </div>
         </DefaultLayout>
     )

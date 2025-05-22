@@ -8,7 +8,6 @@ import spoonIcon from "../../../assets/icons/ic_round-restaurant.svg"
 import roomServiceIcon from '../../../assets/icons/ic_baseline-meeting-room.svg'
 import locationIcon from "../../../assets/icons/Pin_alt.svg"
 import exampleImage from "../../../assets/images/pexels-sultan-alhuthali-175963006-18274181.png"
-import CardReview from '../../../components/Card/CardReview'
 import planeIcon from '../../../assets/icons/bxs_plane.svg'
 
 import examplePlane from '../../../assets/images/image 3.png'
@@ -22,6 +21,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import TravelSchedule from '../../../components/TravelSchedule'
+import Review from '../../../components/Review'
 
 
 function PackageDetail() {
@@ -386,11 +386,14 @@ function PackageDetail() {
                 </div>
 
                 <div className="w-10/12 grid gap-5 grid-cols-3">
-                    <CardReview ulasan={review} variant="list" />
+                    <div className='bg-white rounded-[5px] w-[740px] h-[673px]'>
+                        <h2 className="text-[24px] md:text-2xl font-semibold ml-8 mt-6 mb-4">Ulasan Jemaah</h2>
+                        <Review ulasan={review} />
+                    </div>
                     <div>
 
                     </div>
-                    <div className=" bg-white rounded-[5px] p-[40px]">
+                    <div className=" bg-white rounded-[5px] p-[40px] w-[360px] h-[406px]">
                         <h1 className='text-[24px] font-medium'>Persyaratan</h1>
                         <ul className='list-disc ms-8 mt-4'>
                             <li>syarat</li>
