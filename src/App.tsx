@@ -5,10 +5,9 @@ import UmrohPackagePage from "./pages/UmrohPackage/UmrohPackagePage";
 import OurPartnersPage from "./pages/OurPartners/OurPartnersPage";
 import PartnersDetail from "./pages/OurPartners/[id]/PartnersDetail";
 import PackageDetail from "./pages/UmrohPackage/[id]/PackageDetail";
+import LoginRegister from "./pages/Authentications/LoginRegister";
 import Payment from "./pages/Payment/Payment";
 import PaymentData from "./pages/Payment/PaymentData";
-
-import LoginRegister from "./pages/Authentications/LoginRegister";
 
 export default function App() {
   return (
@@ -45,7 +44,7 @@ export default function App() {
               </>
             }
           />
-           <Route
+          <Route
             path="/OurPartners/:id"
             element={
               <>
@@ -70,11 +69,12 @@ export default function App() {
             element={
               <>
                 <PageTitle title="PT CBL" />
+
                 <LoginRegister />
               </>
             }
           />
-           <Route
+          <Route
             path="/Payment"
             element={
               <>
@@ -84,7 +84,7 @@ export default function App() {
               </>
             }
           />
-           <Route
+          <Route
             path="/PaymentData"
             element={
               <>
