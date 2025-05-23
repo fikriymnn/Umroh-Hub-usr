@@ -60,7 +60,7 @@ function Navbar() {
                         </div>
                         <div className="flex flex-col items-center justify-center">
                             <Link to="/UmrohPackage" className='font-semibold text-[13px]'>Paket Umroh</Link>
-                            {(currentPath === "/UmrohPackage" || isDetailPackage || currentPath === "/PaymentData") &&
+                            {(currentPath === "/UmrohPackage" || isDetailPackage || currentPath === "/PaymentData" || currentPath === "/Payment") &&
                                 <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
                             }
                         </div>

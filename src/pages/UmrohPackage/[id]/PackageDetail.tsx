@@ -118,7 +118,7 @@ function PackageDetail() {
             <div className='w-full pt-[200px] min-h-screen background-div flex flex-col space-y-[25px] items-center justify-center'>
                 <div className="grid grid-cols-5 gap-5 w-10/12 mx-auto mt-10">
                     {/* Kartu Kiri */}
-                    <div className="bg-white col-span-2 h-[550px] rounded-[5px] shadow-md overflow-hidden">
+                    <div className="bg-white col-span-2 h-[650px] rounded-[5px] shadow-md overflow-hidden">
                         <div className="relative rounded-t-[5px] overflow-hidden">
                             <Slider {...settings} ref={sliderRef}>
                                 {images.map((src, index) => (
@@ -155,7 +155,7 @@ function PackageDetail() {
                         </div>
 
 
-                        <div className="px-8 py-4 space-y-2">
+                        <div className="px-8 py-4 space-y-[2px]">
                             <p className="text-[15px] font-medium">Harga</p>
                             <h2 className="text-[36px] font-bold bg-gradient-to-r from-[#3C97FF] to-[#245B99] bg-clip-text text-transparent">
                                 Rp 32.000.000
@@ -166,9 +166,13 @@ function PackageDetail() {
                                 <span className="text-[24px] font-medium">Hasanah Hana</span>
                                 <span className='text-yellow-300 text-[18px]'>★ ★ ★ ★ ★</span>
                             </div>
-                            <p className="text-[15px] font-medium">Nomor Izin Umroh</p>
+                            <div className="flex flex-col justify-center space-y-1">
+                                <h1 className="text-[24px] font-medium">Umroh Paket Plus Amanah</h1>
+                                <p className='text-sm'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoLorem ipsum dolor sit amet</p>
+                            </div>
+                            <p className="text-[15px] font-medium mt-2">Nomor Izin Umroh</p>
                             <p className="text-[20px] font-medium">1243214533</p>
-                            <div className="mt-7 w-10/12 h-[14px]">
+                            <div className="mt-4 w-10/12 h-[14px]">
                                 <div className="w-full bg-gray-200 rounded-full h-full">
                                     <div
                                         className="bg-gradient-to-r from-[#004492] to-[#10F5EA] h-full rounded-full w-8/12"
@@ -181,18 +185,18 @@ function PackageDetail() {
                     </div>
 
                     {/* Kartu Kanan */}
-                    <div className="col-span-3 h-[550px] flex flex-col space-y-6">
-                        <div className="bg-white w-full h-10/12 rounded-[5px] py-4 px-[50px] space-y-4 shadow-md">
+                    <div className="col-span-3 h-[650px] flex flex-col space-y-5">
+                        <div className="bg-white w-full h-11/12 rounded-[5px] py-4 px-[50px] space-y-4 shadow-md">
                             <h2 className="font-semibold text-[24px] ms-3">Fasilitas Umroh</h2>
                             <div className="grid grid-cols-2 gapx-8 py-4 text-sm">
-                                <ul className="list-disc list-inside text-[15px] font-medium space-y-1">
+                                <ul className="list-disc list-inside text-[15px] font-medium space-y-2">
                                     <li>lorem ipsum dolor sit amet</li>
                                     <li>lorem ipsum dolor sit amet</li>
                                     <li>lorem ipsum dolor sit amet</li>
                                     <li>lorem ipsum dolor sit amet</li>
                                     <li>lorem ipsum dolor sit amet</li>
                                 </ul>
-                                <ul className="list-disc list-inside text-[15px] font-medium space-y-1">
+                                <ul className="list-disc list-inside text-[15px] font-medium space-y-2">
                                     <li>lorem ipsum dolor sit amet</li>
                                     <li>lorem ipsum dolor sit amet</li>
                                     <li>lorem ipsum dolor sit amet</li>
@@ -200,7 +204,7 @@ function PackageDetail() {
                                 </ul>
                             </div>
 
-                            <div className="grid grid-cols-2 gapx-8 py-4 pt-4 text-sm border-t">
+                            <div className="grid grid-cols-2 gap-x-8 gap-y-2 py-4 pt-4 text-sm border-t">
                                 <div>
                                     <div className="flex space-x-2 h-[16px] items-center">
                                         <img src={bedIcons} alt='Hotels' className='w-[14px] h-[14px]' />
@@ -278,7 +282,7 @@ function PackageDetail() {
                             </div>
                         </div>
 
-                        <div className="bg-gradient-to-r from-[#10F5EA] to-[#3C97FF] w-full h-2/12 flex items-center justify-center rounded-b-[20px] rounded-t-[5px] shadow-md">
+                        <div className="bg-gradient-to-r p-3 from-[#10F5EA] to-[#3C97FF] w-full h-1/12 flex items-center justify-center rounded-b-[20px] rounded-t-[5px] shadow-md">
                             <h1 className="capitalize text-white text-center font-bold text-[30px]">
                                 Pesan Sekarang
                             </h1>
