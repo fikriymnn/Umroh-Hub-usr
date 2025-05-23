@@ -11,12 +11,12 @@ const CardPackage = ({ packageList = [], capacity, booked }: any) => {
             <span key={i} className="text-yellow-300">★</span>
         ))
 
-   
+
     return (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-          
+
             {packageList.map((item: any, index: number) => (
-                <Link key={index} to="/UmrohPackage/:id"  className='w-full relative h-[200px] shadow-[-1px_1px_8px] shadow-white'>
+                <Link key={index} to="/UmrohPackage/:id" className='w-full relative h-[200px] shadow-[-1px_1px_8px] shadow-white'>
                     <img src={item.image} alt="paket" className='w-full h-full object-cover' />
                     <div className="w-full h-full bg-gradient-to-b from-black/0 to-black py-3 px-5 flex flex-col space-y-3 absolute top-0">
                         <h1 className=" text-white capitalize font-bold text-[24px]">

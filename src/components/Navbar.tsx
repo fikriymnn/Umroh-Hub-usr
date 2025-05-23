@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
+import { jwtDecode } from "jwt-decode";
+
 
 function Navbar() {
     const location = useLocation();
@@ -9,6 +11,7 @@ function Navbar() {
 
     // const [, setScrolled] = useState(false);
     const [isVisible, setIsVisible] = useState(true)
+    const [user, setUser] = useState<any>(null)
     // useEffect(() => {
     // const handleScroll = () => {
     //     if (window.scrollY > 400) {
@@ -21,6 +24,19 @@ function Navbar() {
     // window.addEventListener("scroll", handleScroll);
     // return () => window.removeEventListener("scroll", handleScroll);
     // }, []);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            try {
+                const decoded = jwtDecode(token);
+                console.log("Decoded token:", decoded);
+                setUser(decoded); // misalnya akan tampilkan email
+            } catch (error) {
+                console.error("Token tidak valid:", error);
+            }
+        }
+    }, []);
 
     useEffect(() => {
         let lastScrollY = window.scrollY;
@@ -78,16 +94,24 @@ function Navbar() {
                         </div>
                     </div>
                     <div className="flex space-x-[7px] h-full items-center me-[53px]">
-                        <Link to="/Register" className='h-full flex items-center'>
-                            <button className='bg-[#001A4D] h-[80%] text-white rounded-[2px] items-center px-2'>
-                                Daftar
-                            </button>
-                        </Link>
-                        <Link to="/Login" className='h-full flex items-center'>
-                            <button className='bg-[#D1F4FA] h-[80%] border-[1px] border-[#001A4D] items-center rounded-[2px] px-2'>
-                                Masuk
-                            </button>
-                        </Link>
+                        {!user ? (
+                            <>
+                                <Link to="/LoginRegister" className='h-full flex items-center'>
+                                    <button className='bg-[#001A4D] h-[80%] text-white rounded-[2px] items-center px-2'>
+                                        Daftar
+                                    </button>
+                                </Link>
+                                <Link to="/LoginRegister" className='h-full flex items-center'>
+                                    <button className='bg-[#D1F4FA] h-[80%] border-[1px] border-[#001A4D] items-center rounded-[2px] px-2'>
+                                        Masuk
+                                    </button>
+                                </Link>
+                            </>
+                        ) : (
+                            <div className="text-[#001A4D] font-semibold text-sm">
+                                Halo, {user.id}
+                            </div>
+                        )}
                     </div>
                 </div>
             </nav>

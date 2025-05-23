@@ -179,39 +179,39 @@ function UmrohPackagePage() {
                         <div className="relative w-full h-full flex justify-center">
                             <div className="w-[70%] h-[200px] absolute bottom-0 rounded-[10px] translate-y-1/2
                           bg-gradient-to-bl from-[#004492] to-[#00152C] shadow-[0px_4px_4px] shadow-black/25">
-                            <div className="w-full grid grid-cols-2">
-                                        <div className="grid grid-cols-2 gap-3 border-e-[2px] w-full h-full mt-[40px] px-10 justify-center ">
+                                <div className="w-full grid grid-cols-2">
+                                    <div className="grid grid-cols-2 gap-3 border-e-[2px] w-full h-full mt-[40px] px-10 justify-center ">
                                         <div className="flex flex-col">
                                             <label htmlFor="departure-city" className="text-white text-[12px] ms-4">
                                                 Kota Keberangkatan
                                             </label>
                                             <div className="relative">
                                                 <img
-                                                src={departureCity}
-                                                alt="City Icon"
-                                                className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                                                    src={departureCity}
+                                                    alt="City Icon"
+                                                    className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
                                                 />
                                                 <select
-                                                id="departure-city"
-                                                name="departure city"
-                                                className="bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]"
+                                                    id="departure-city"
+                                                    name="departure city"
+                                                    className="bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]"
                                                 >
-                                                <option value="Bandung">Bandung</option>
-                                                <option value="Jakarta">Jakarta</option>
+                                                    <option value="Bandung">Bandung</option>
+                                                    <option value="Jakarta">Jakarta</option>
                                                 </select>
                                             </div>
-                                            </div>
+                                        </div>
 
-                                            <div className="flex flex-col">
-                                                <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Jenis Keberangkatan</label>
-                                                <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
-                                                    <option value="Cepat">Cepat</option>
-                                                    <option value="Lambat">Lambat</option>
-                                                </select>
-                                            </div>
-                                            <div className="flex flex-col -translate-y-1/6">
-                                                <label htmlFor="departure time" className='text-white text-[12px] ms-4'>Waktu Keberangkatan</label>
-                                                {/* <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure time" id="">
+                                        <div className="flex flex-col">
+                                            <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Jenis Keberangkatan</label>
+                                            <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
+                                                <option value="Cepat">Cepat</option>
+                                                <option value="Lambat">Lambat</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col -translate-y-1/6">
+                                            <label htmlFor="departure time" className='text-white text-[12px] ms-4'>Waktu Keberangkatan</label>
+                                            {/* <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure time" id="">
                                         <div className="flex flex-col">
                                             <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Jenis Keberangkatan</label>
                                             <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
