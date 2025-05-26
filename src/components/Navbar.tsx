@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { jwtDecode } from "jwt-decode";

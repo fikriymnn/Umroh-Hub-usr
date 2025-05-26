@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState, useEffect } from 'react'
 import axios from 'axios'
 import DefaultLayout from '../../../layout/DefaultLayout'
@@ -97,8 +98,8 @@ function PackageDetail() {
     ];
 
     const totalPages = Math.ceil(schedule.length / itemPages)
-    const startIndex = (currentPage - 1) * itemPages
-    const currentItems = schedule.slice(startIndex, startIndex + itemPages)
+    // const startIndex = (currentPage - 1) * itemPages
+    // const currentItems = schedule.slice(startIndex, startIndex + itemPages)
 
     const images = [
         exampleImage,
