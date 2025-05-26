@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router'
