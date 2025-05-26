@@ -274,8 +274,13 @@ function PartnersDetail() {
                 <div className="flex flex-col w-10/12 items-start mt-[45px] space-y-[25px]">
                     <h1 className="text-white text-[24px] font-semibold capitalize">Paket dari<span className='text-[#3C97FF] font-medium'>hasanah hana</span></h1>
                     <div className=" w-full flex flex-col items-center">
-                        <div className="w-full">
-                            <CardPackage packageList={currentItems} />
+                        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
+                            {currentItems.map((item: any, index: number) => (
+                                <CardPackage
+                                    key={index}
+                                    packageList={item}
+                                />
+                            ))}
                         </div>
                         <div className='flex justify-center mt-10 space-x-4 text-white'>
                             <button
@@ -310,8 +315,8 @@ function PartnersDetail() {
                     <h2 className="text-[24px] md:text-2xl font-semibold mb-4 ml-24">Ulasan Jemaah</h2>
                     <Slider {...settings}>
                         {dataUlasan.map((review, index) => (
-                            <div key={index} className="px-14">
-                                <Review ulasan={[review]} />
+                            <div key={index} className="px-14 w-full max-w-[600px]">
+                                <Review ulasan={review} />
                             </div>
                         ))}
                     </Slider>

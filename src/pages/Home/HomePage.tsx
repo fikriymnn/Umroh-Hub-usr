@@ -145,8 +145,13 @@ const HomePage: React.FC = () => {
                 <h1 className="text-white font-extrabold text-[24px]">Penawaran Khusus Umroh</h1>
 
                 {/* cards */}
-                <div className='mt-10'>
-                  <Card data={cardDataList} />
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5'>
+                  {cardDataList.map((item: any, index: number) => (
+                    <Card
+                      key={index}
+                      data={item}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -165,8 +170,15 @@ const HomePage: React.FC = () => {
                     Lihat lebih banyak
                   </h1>
                 </div>
-                <div className="w-full">
-                  <CardPackage packageList={packages} />
+                <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
+                  {packages.map((item: any, index: number) => (
+                    <CardPackage
+                      key={index}
+                      packageList={item}
+                      capacity={item.capacity}
+                      booked={item.booked}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -319,7 +331,12 @@ const HomePage: React.FC = () => {
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoour partners Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
                     </p>
                     <div className="mt-[22px]">
-                      <TrustIndicator dataTrust={valuesTrust} />
+                      {valuesTrust.map((item: any, index: number) => (
+                        <TrustIndicator
+                          key={index}
+                          dataTrust={item}
+                        />
+                      ))}
                     </div>
                     <Button
                       variant="primaryBlueGr"

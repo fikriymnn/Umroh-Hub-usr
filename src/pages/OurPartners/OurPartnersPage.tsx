@@ -54,8 +54,13 @@ function OurPartnersPage() {
             //     backgroundColor: "blue" // Ganti dengan Tailwind `bg-blue-500` jika perlu
             //   }}
             >
-                <div className="max-w-5xl mx-auto">
-                    <CardPartners partnersList={currentItems} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    {currentItems.map((item: any, index: number) => (
+                        <CardPartners
+                            key={index}
+                            partnersList={item}
+                        />
+                    ))}
                 </div>
 
                 <div className='flex justify-center mt-10 space-x-4 text-white '>

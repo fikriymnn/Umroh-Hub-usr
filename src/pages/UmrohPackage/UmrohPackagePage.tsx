@@ -258,8 +258,15 @@ function UmrohPackagePage() {
                     <div className="relative w-full h-fit background-div">
 
                         <div className=" mt-[150px] w-full flex flex-col items-center">
-                            <div className="w-3/4">
-                                <CardPackage packageList={currentItems} />
+                            <div className="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
+                                {currentItems.map((item: any, index: number) => (
+                                    <CardPackage
+                                        key={index}
+                                        packageList={item}
+                                        capacity={item.capacity}
+                                        booked={item.booked}
+                                    />
+                                ))}
                             </div>
                             <div className='flex justify-center mt-10 space-x-4 text-white'>
                                 <button
