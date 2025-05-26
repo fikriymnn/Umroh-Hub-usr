@@ -8,6 +8,7 @@ import PackageDetail from "./pages/UmrohPackage/[id]/PackageDetail";
 import LoginRegister from "./pages/Authentications/LoginRegister";
 import Payment from "./pages/Payment/Payment";
 import PaymentData from "./pages/Payment/PaymentData";
+import Profile from "./pages/Profile/Profile";
 
 export default function App() {
   return (
@@ -91,6 +92,16 @@ export default function App() {
                 <PageTitle title="PT CBL" />
 
                 <PaymentData />
+              </>
+            }
+          />
+           <Route
+            path="/Profile"
+            element={
+              <>
+                <PageTitle title="PT CBL" />
+
+                <Profile />
               </>
             }
           />
