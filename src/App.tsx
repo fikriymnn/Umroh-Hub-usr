@@ -95,7 +95,7 @@ export default function App() {
               </>
             }
           />
-           <Route
+          <Route
             path="/Profile"
             element={
               <>
