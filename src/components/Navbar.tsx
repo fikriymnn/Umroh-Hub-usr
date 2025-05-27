@@ -60,14 +60,14 @@ function Navbar() {
     return (
         <div className="w-full flex fixed z-50 justify-center">
             <nav
-                className={`transition-all duration-1000 ease-in-out w-[60%] h-[145px] relative z-50 transform ${isVisible ? "translate-y-[23px]" : "-translate-y-[160px]"
-                    }`}
+                className={`transition-all duration-1000 ease-in-out w-[60%] h-[145px] relative z-50 transform `}
             >
-                <div className="w-full h-[92px] bg-[#001A4D] text-white shadow-[11px_13px_7.6px] shadow-black/25 flex items-center  justify-center 
-                    rounded-tl-[4px] rounded-tr-[4px] px-4 ">
+                <div className={`transition-all mt-6 duration-1000 ease-in-out w-[60%]  relative z-50 transform ${isVisible ? "translate-y-[0px]" : "-translate-y-[100px]"}
+                     w-full h-[92px] bg-[#001A4D] text-white flex items-center  justify-center 
+                    rounded-tl-[4px] rounded-tr-[4px] px-4`}>
                     <h1 className="text-[28px] font-philosopher font-normal">Umroh<span className="font-bold">Hub</span></h1>
                 </div>
-                <div className="w-full h-[53px] sticky flex justify-between p-2 bg-[#D1F4FA] shadow-[9px_11px_7.3px] shadow-black/25 rounded-br-[4px] rounded-bl-[4px]">
+                <div className={`w-full h-[53px] flex justify-between p-2 bg-[#D1F4FA] shadow-[9px_11px_7.3px] shadow-black/25 transform  rounded-br-[4px] rounded-bl-[4px]`}>
                     <div className='w-full h-full items-center ms-[76px] flex space-x-[27px]'>
                         <div className="flex flex-col items-center justify-center">
                             <Link to="/" className='font-semibold text-[13px]'>Home</Link>
