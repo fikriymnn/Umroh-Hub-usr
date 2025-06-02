@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { jwtDecode } from "jwt-decode";
+import axios from 'axios';
 
 
 function Navbar() {
@@ -27,16 +28,19 @@ function Navbar() {
     // }, []);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
+        const fetchUser = async () => {
             try {
-                const decoded = jwtDecode(token);
-                console.log("Decoded token:", decoded);
-                setUser(decoded); // misalnya akan tampilkan email
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/me`);
+
+                console.log(response.data.data);
+
+                setUser(response.data);
             } catch (error) {
-                console.error("Token tidak valid:", error);
+                console.error("Gagal ambil data user:", error);
             }
-        }
+        };
+
+        fetchUser();
     }, []);
 
     useEffect(() => {
@@ -110,7 +114,7 @@ function Navbar() {
                             </>
                         ) : (
                             <div className="text-[#001A4D] font-semibold text-sm">
-                                Halo, {user.id}
+                                Halo, {user.name}
                             </div>
                         )}
                     </div>

@@ -1,33 +1,26 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { User } from '../types/User'
+import { loginUser } from '../services/authServices'
 
-interface User {
-    email?: string,
-    password?: string
+const defaultUser: User = {
+    email: '',
+    password: '',
 }
 
 function LoginForm() {
     const navigate = useNavigate()
-    const [user, setUser] = useState<User>()
+    const [user, setUser] = useState<User>(defaultUser);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setUser({ ...user, [e.target.name]: e.target.value })
     }
 
-    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleLogin = async () => {
         try {
-            // const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-            const res = await axios.post(
-                `https://zshnvs5v-7000.asse.devtunnels.ms/api/auth/login`,
-                user,
-                { withCredentials: true }
-            );
-
+            const res = await loginUser(user);
             console.log(res.data);
-
-            // const token = res.data.token
             localStorage.setItem("token", res.data.token);
 
             alert('Login berhasil')
@@ -43,7 +36,7 @@ function LoginForm() {
             <h1 className="text-[36px] text-[#004492] ml-[80px] font-philosopher">Umroh<span className='font-bold'>Hub</span></h1>
             <div className='mt-[76px]'>
                 <p className="text-sm text-gray-500 ml-[80px] mb-1">Silahkan Isi Data Diri Anda Untuk Daftar</p>
-                <form onSubmit={handleLogin} className="flex flex-col space-y-4 items-center">
+                <div className="flex flex-col space-y-4 items-center">
                     <input
                         type="email"
                         name='email'
@@ -61,12 +54,13 @@ function LoginForm() {
                         required
                     />
                     <button
-                        type="submit"
+                        type="button"
+                        onClick={handleLogin}
                         className="bg-gradient-to-r font-bold from-[#004492] to-[#0A6BDB] text-white py-2 flex items-center justify-center rounded-[20px] mt-2 w-[106px] h-[32px]"
                     >
                         Login
                     </button>
-                </form>
+                </div>
             </div>
         </div>
     )
