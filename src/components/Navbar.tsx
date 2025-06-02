@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
-import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 
 
@@ -64,9 +63,10 @@ function Navbar() {
     return (
         <div className="w-full flex fixed z-50 justify-center">
             <nav
-                className={`transition-all duration-1000 ease-in-out w-[60%] h-[145px] relative z-50 transform `}
+                className={`transition-all duration-1000 ease-in-out w-[60%] h-[145px] relative z-50 transform ${isVisible ? "translate-y-[23px]" : "-translate-y-[180px]"
+                    }`}
             >
-                <div className={`transition-all mt-6 duration-1000 ease-in-out w-[60%]  relative z-50 transform ${isVisible ? "translate-y-[0px]" : "-translate-y-[100px]"}
+                <div className={`transition-all mt-6 duration-1000 ease-in-out w-[60%]  relative z-50 transform
                      w-full h-[92px] bg-[#001A4D] text-white flex items-center  justify-center 
                     rounded-tl-[4px] rounded-tr-[4px] px-4`}>
                     <h1 className="text-[28px] font-philosopher font-normal">Umroh<span className="font-bold">Hub</span></h1>
