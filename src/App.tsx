@@ -10,6 +10,7 @@ import Payment from "./pages/Payment/Payment";
 import PaymentData from "./pages/Payment/PaymentData";
 import Profile from "./pages/Profile/Profile";
 import Transaction from "./pages/Profile/MyTransactions";
+import AboutUs from "./pages/AboutUs/AboutUs";
 
 export default function App() {
   return (
@@ -113,6 +114,16 @@ export default function App() {
                 <PageTitle title="PT CBL" />
 
                 <Transaction />
+              </>
+            }
+          />
+           <Route
+            path="/AboutUs"
+            element={
+              <>
+                <PageTitle title="PT CBL" />
+
+                <AboutUs />
               </>
             }
           />

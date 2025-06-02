@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import React, { useState } from 'react'
 import DefaultLayout from '../../../layout/DefaultLayout'
@@ -272,7 +273,7 @@ function PartnersDetail() {
                     </div>
                 </div>
                 <div className="flex flex-col w-10/12 items-start mt-[45px] space-y-[25px]">
-                    <h1 className="text-white text-[24px] font-semibold capitalize">Paket dari<span className='text-[#3C97FF] font-medium'>hasanah hana</span></h1>
+                    <h1 className="text-white text-[24px] font-semibold capitalize">Paket dari<span className='text-[#3C97FF] ms-3 capitalize font-medium'>hasanah hana</span></h1>
                     <div className=" w-full flex flex-col items-center">
                         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
                             {currentItems.map((item: any, index: number) => (

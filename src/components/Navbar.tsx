@@ -88,8 +88,8 @@ function Navbar() {
                             }
                         </div>
                         <div className="flex flex-col items-center justify-center">
-                            <Link to="/" className='font-semibold text-[13px]'>Tentang Kami</Link>
-                            {currentPath === "/" &&
+                            <Link to="/AboutUs" className='font-semibold text-[13px]'>Tentang Kami</Link>
+                            {currentPath === "/AboutUs" &&
                                 <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
                             }
                         </div>
