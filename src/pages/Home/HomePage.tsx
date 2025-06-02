@@ -24,7 +24,6 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
-import { Link } from "react-router";
 
 const HomePage: React.FC = () => {
   const cardDataList = [
@@ -78,6 +77,33 @@ const HomePage: React.FC = () => {
       progress: {
         current: 60,
         total: 100
+      }
+    },
+     {
+      cardImage: exampleCards,
+      cardHeader: 'Paket Umroh 2',
+      hotelList: [
+        {
+          city: 'Mekkah',
+          roomType: 'Double Room',
+          distance: '250 m ke Masjidil Haram',
+          icon: hotelIcon
+        },
+        {
+          city: 'Madinah',
+          roomType: 'Double Room',
+          distance: '100 m ke Masjid Nabawi',
+          icon: hotelIcon
+        }
+      ],
+      price: {
+        original: 'Rp. 50.000.000/pak',
+        discounted: 'Rp. 30.000.000/pak'
+      },
+      cardProgress: {
+        current: 60,
+        total: 100,
+        label: 'Pesanan: 60/100'
       }
     }
   ];
@@ -145,7 +171,7 @@ const HomePage: React.FC = () => {
                 <h1 className="text-white font-extrabold text-[24px]">Penawaran Khusus Umroh</h1>
 
                 {/* cards */}
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5'>
+                <div className='w-10/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4   mt-5'>
                   {cardDataList.map((item: any, index: number) => (
                     <Card
                       key={index}
@@ -161,7 +187,7 @@ const HomePage: React.FC = () => {
           <div className="w-full h-[550px] relative">
             <img src={paketBg} alt="background" className="w-full h-full object-cover" />
             <div className="w-full absolute top-14 flex justify-center">
-              <div className="w-[80%] mt-3 flex flex-col">
+              <div className="w-10/12 mt-3 flex flex-col">
                 <div className="flex w-full justify-between">
                   <h1 className=" text-white font-bold text-[20px]">
                     Paket yang tersedia
@@ -194,7 +220,7 @@ const HomePage: React.FC = () => {
                 <div className="h-full w-[50%] relative">
                   <img src={vector} alt="background" className="w-[88%] h-full absolute opacity-70 right-0 object-cover" />
                 </div>
-                <div className="flex absolute top-0 w-[100%] py-10 px-[13%] justify-center">
+                <div className="flex absolute top-0 w-10/12 py-10 left-1/7 justify-center">
                   <div className="mt-6 flex flex-col">
                     <h1 className='text-[24px] font-extrabold text-primary-blue'>Kenapa Harus Di
                       <span className='text-white bg-primary-blue  rounded-[8px] px-4 py-1 ms-2 font-philosopher font-normal'>Umroh<span className="font-bold">Hub</span></span>

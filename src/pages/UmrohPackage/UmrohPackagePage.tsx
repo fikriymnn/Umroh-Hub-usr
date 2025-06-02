@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import DefaultLayout from "../../layout/DefaultLayout";
 import bg from "../../assets/images/makkah-3986709.png"
 import paketExample from "../../assets/images/11848643a6d154484c0aa44d026fef3c.png"
 import CardPackage from '../../components/Card/CardPackage';
 import departureCity from "../../assets/icons/Group 28 (1).svg"
+import departureType from "../../assets/icons/Group 206.svg";
+import departureTime from "../../assets/icons/Group 207.svg";
 function UmrohPackagePage() {
     const [currentPage, setCurrentPage] = useState(1)
     const itemPages = 15
@@ -204,10 +207,17 @@ function UmrohPackagePage() {
 
                                         <div className="flex flex-col">
                                             <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Jenis Keberangkatan</label>
-                                            <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
-                                                <option value="Cepat">Cepat</option>
-                                                <option value="Lambat">Lambat</option>
-                                            </select>
+                                            <div className="relative w-full">
+                                                 <img
+                                                    src={departureType}
+                                                    alt="City Icon"
+                                                    className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                                                />
+                                                <select className='bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
+                                                    <option value="Cepat">Cepat</option>
+                                                    <option value="Lambat">Lambat</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div className="flex flex-col -translate-y-1/6">
                                             <label htmlFor="departure time" className='text-white text-[12px] ms-4'>Waktu Keberangkatan</label>
@@ -225,14 +235,28 @@ function UmrohPackagePage() {
                                                     <option value="Bandung">Bandung</option>
                                                     <option value="Bandung">Bandung</option>
                                                 </select> */}
-                                            <input type='time' className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure time" id="" />
+                                             <div className="relative w-full">
+                                                 <img
+                                                    src={departureTime}
+                                                    alt="City Icon"
+                                                    className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                                                />
+                                                <input type='time' className='bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure time" id="" />
+                                                </div>
                                         </div>
                                         <div className="flex flex-col -translate-y-1/6">
                                             <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Durasi Perjalanan</label>
-                                            <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
+                                            <div className="relative w-full">
+                                                 <img
+                                                    src={departureTime}
+                                                    alt="City Icon"
+                                                    className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                                                />
+                                            <select className='bg-white ps-9  w-full pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
                                                 <option value="1 Jam">1 Jam</option>
                                                 <option value="2 Jam">Bandung</option>
-                                            </select>
+                                                </select>
+                                                </div>
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-2 gap-3 w-full h-full items-start mt-[40px] px-10 justify-center ">
@@ -258,10 +282,11 @@ function UmrohPackagePage() {
                     <div className="relative w-full h-fit background-div">
 
                         <div className=" mt-[150px] w-full flex flex-col items-center">
-                            <div className="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
+                            <div className="w-10/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
                                 {currentItems.map((item: any, index: number) => (
                                     <CardPackage
                                         key={index}
+                                       
                                         packageList={item}
                                         capacity={item.capacity}
                                         booked={item.booked}

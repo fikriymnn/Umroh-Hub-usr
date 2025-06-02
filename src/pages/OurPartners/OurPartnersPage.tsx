@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import DefaultLayout from '../../layout/DefaultLayout'
 import CardPartners from '../../components/Card/CardPartners'
@@ -54,7 +55,7 @@ function OurPartnersPage() {
             //     backgroundColor: "blue" // Ganti dengan Tailwind `bg-blue-500` jika perlu
             //   }}
             >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-10/12 mx-auto">
                     {currentItems.map((item: any, index: number) => (
                         <CardPartners
                             key={index}
