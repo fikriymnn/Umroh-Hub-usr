@@ -96,6 +96,13 @@ function PackageDetail() {
 
     const sliderRef = useRef<Slider>(null);
 
+     const formatHarga = (itung: number) => {
+        return new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+        }).format(itung);
+    };
+
     const next = () => {
         if (sliderRef.current) {
             sliderRef.current.slickNext();
@@ -155,7 +162,7 @@ function PackageDetail() {
                             <div className="px-8 py-4 space-y-[2px]">
                                 <p className="text-[15px] font-medium">Harga</p>
                                 <h2 className="text-[36px] font-bold bg-gradient-to-r from-[#3C97FF] to-[#245B99] bg-clip-text text-transparent">
-                                    {packages.price}
+                                    {formatHarga(packages.price)}
                                 </h2>
 
                                 <p className="text-[15px] font-medium">Mitra</p>
