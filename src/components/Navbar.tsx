@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
-import { jwtDecode } from "jwt-decode";
+import { getMe, logOut } from '../services/authServices';
+import { FaChevronDown, FaUserCircle } from 'react-icons/fa'
 
 
 function Navbar() {
@@ -11,6 +12,7 @@ function Navbar() {
     const isDetailMitra = currentPath.startsWith("/OurPartners/")
 
     // const [, setScrolled] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState(false);
     const [isVisible, setIsVisible] = useState(true)
     const [user, setUser] = useState<any>(null)
     // useEffect(() => {
@@ -27,16 +29,18 @@ function Navbar() {
     // }, []);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
+        const fetchUser = async () => {
             try {
-                const decoded = jwtDecode(token);
-                console.log("Decoded token:", decoded);
-                setUser(decoded); // misalnya akan tampilkan email
+                const res = await getMe();
+                console.log(res.data);
+
+                setUser(res.data.data);
             } catch (error) {
-                console.error("Token tidak valid:", error);
+                console.error(`Error: ${error}`);
             }
         }
+
+        fetchUser();
     }, []);
 
     useEffect(() => {
@@ -56,7 +60,20 @@ function Navbar() {
         window.addEventListener("scroll", scrollControler);
 
         return () => window.removeEventListener("scroll", scrollControler)
-    }, [])
+    }, []);
+
+    const handleLogOut = async () => {
+        try {
+            await logOut();
+
+            document.cookie = 'token=; Max-Age=0; path=/;';
+
+            window.location.href = '/LoginRegister';
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    }
+
     return (
         <div className="w-full flex fixed z-50 justify-center">
             <nav
@@ -88,8 +105,8 @@ function Navbar() {
                             }
                         </div>
                         <div className="flex flex-col items-center justify-center">
-                            <Link to="/" className='font-semibold text-[13px]'>Tentang Kami</Link>
-                            {currentPath === "/" &&
+                            <Link to="/AboutUs" className='font-semibold text-[13px]'>Tentang Kami</Link>
+                            {currentPath === "/AboutUs" &&
                                 <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
                             }
                         </div>
@@ -109,8 +126,52 @@ function Navbar() {
                                 </Link>
                             </>
                         ) : (
-                            <div className="text-[#001A4D] font-semibold text-sm">
-                                Halo, {user.id}
+                            <div className="relative px-4 py-2 flex items-center gap-2 cursor-pointer" onClick={() => setOpenDropdown((prev) => !prev)}>
+                                <FaChevronDown className="text-[#001A4D]" />
+
+                                <div className="w-9 h-9 rounded-full overflow-hidden border border-[#001A4D]">
+                                    {user.image_url ? (
+                                        <img
+                                            src={
+                                                user.image_url.startsWith('http')
+                                                    ? user.image_url
+                                                    : `${import.meta.env.VITE_PUBLIC_URL}${user.image_url}`
+                                            }
+                                            alt="Profile"
+                                            className="w-full h-full object-cover"
+                                        />
+                                    ) : (
+                                        <FaUserCircle className="text-[#001A4D] text-2xl w-full h-full" />
+                                    )}
+                                </div>
+
+                                <span className="text-[#001A4D] font-semibold">{user.name}</span>
+
+                                {openDropdown && (
+                                    <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-lg z-10">
+                                        <div className="px-4 py-2 text-sm text-gray-700 border-b">
+                                            {user.name}
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <Link
+                                                    to="/Profile"
+                                                    className="block px-4 py-2 hover:bg-gray-100 text-sm"
+                                                >
+                                                    Profile
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <button
+                                                    onClick={handleLogOut}
+                                                    className="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm"
+                                                >
+                                                    Keluar
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>

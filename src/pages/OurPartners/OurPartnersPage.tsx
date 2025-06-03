@@ -1,44 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import DefaultLayout from '../../layout/DefaultLayout'
 import CardPartners from '../../components/Card/CardPartners'
+import { fetchAllPartners } from '../../services/partnersServices'
 // import penawaranBg from "../../assets/images/Group.png"
 // import penawaranBg2 from "../../assets/images/Group (1).png"
 import '../../app.css'
-function OurPartnersPage() {
-    const [currentPage, setCurrentPage] = useState(1)
-    const itemPages = 4
 
-    const partners = [
-        {
-            name: "Travel Keren Dongs",
-            rating: 5,
-            reviewCount: 60,
-            licenseNumber: "123045694094949",
-            packages: [1, 2, 3],
-        },
-        {
-            name: "Travel Keren Dongs",
-            rating: 5,
-            reviewCount: 60,
-            licenseNumber: "123045694094949",
-            packages: [1, 2, 3],
-        },
-        {
-            name: "Travel Keren Dongs yh kan",
-            rating: 5,
-            reviewCount: 60,
-            licenseNumber: "123045694094949",
-            packages: [1, 2, 3],
-        },
-        {
-            name: "Travel Keren Dongs",
-            rating: 5,
-            reviewCount: 60,
-            licenseNumber: "123045694094949",
-            packages: [1, 2, 3],
-        },
-    ];
+type Partner = {
+    id: number;
+    name: string;
+    logo: string;
+};
+
+function OurPartnersPage() {
+    const [partners, setPartners] = useState<Partner[]>([]);
+    const [currentPage, setCurrentPage] = useState(1)
+    const itemPages = 4;
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const data = await fetchAllPartners();
+                setPartners(data);
+            } catch (error) {
+                console.error(`Error: ${error}`);
+            }
+        }
+
+        loadData();
+    }, []);
 
     const totalPages = Math.ceil(partners.length / itemPages)
     const startIndex = (currentPage - 1) * itemPages
@@ -59,7 +51,7 @@ function OurPartnersPage() {
                     {currentItems.map((item: any, index: number) => (
                         <CardPartners
                             key={index}
-                            partnersList={item}
+                            partners={item}
                         />
                     ))}
                 </div>

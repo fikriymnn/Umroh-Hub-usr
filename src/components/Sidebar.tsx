@@ -5,32 +5,41 @@ import logoutIcon from "../assets/icons/humbleicons_logout.svg"
 import profileIcon2 from "../assets/icons/iconamoon_profile-circle-fill.svg"
 import transactionIcon2 from "../assets/icons/icon-park-solid_transaction-order (1).svg"
 import { Link, useLocation } from 'react-router'
+import { logOut } from '../services/authServices'
 
 function Sidebar() {
     const [showLogout, setShowLogout] = useState(false);
     const location = useLocation();
     const currentPath = location.pathname;
 
+    const handleLogOut = async () => {
+        try {
+            await logOut();
+
+            document.cookie = 'token=; Max-Age=0; path=/;';
+
+            window.location.href = '/LoginRegister';
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    }
+
     return (
         <>
             {/* Logout Confirmation Modal */}
-            {showLogout && 
+            {showLogout &&
                 <div className="fixed inset-0 backdrop-blur bg-black/15 bg-opacity-40 flex items-center justify-center z-50">
                     <div className="bg-white rounded-[5px] shadow-md px-8 py-6 w-5/12 h-5/12 flex flex-col items-center justify-center text-center">
                         <h1 className="text-[40px] font-semibold text-[#282828] mb-6">Yakin untuk keluar?</h1>
                         <div className="flex justify-center space-x-4">
-                            <button 
-                                onClick={() => setShowLogout(false)} 
+                            <button
+                                onClick={() => setShowLogout(false)}
                                 className="bg-[#2DBDFF] text-white font-semibold rounded-full px-10 py-3"
                             >
                                 Ga jadi
                             </button>
-                            <button 
-                                onClick={() => {
-                                    // Add your logout logic here
-                                    console.log("Logging out...");
-                                    setShowLogout(false);
-                                }} 
+                            <button
+                                onClick={handleLogOut}
                                 className="bg-[#FF4848] text-white font-semibold rounded-full px-10 py-3"
                             >
                                 Iya
@@ -55,8 +64,8 @@ function Sidebar() {
                 </Link>
                 <div className="flex w-8/12 space-x-[15px] mt-[152px] cursor-pointer">
                     <img src={logoutIcon} alt="logout" className="w-[28px] h-[28px]" />
-                    <h1 
-                        onClick={() => setShowLogout(true)} 
+                    <h1
+                        onClick={() => setShowLogout(true)}
                         className="font-medium text-left text-[#0A6BDB] capitalize"
                     >
                         Keluar

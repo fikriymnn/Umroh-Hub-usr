@@ -20,8 +20,8 @@ function LoginForm() {
     const handleLogin = async () => {
         try {
             const res = await loginUser(user);
-            console.log(res.data);
-            localStorage.setItem("token", res.data.token);
+            console.log(res);
+            localStorage.setItem("token", res.data);
 
             alert('Login berhasil')
             navigate('/')
