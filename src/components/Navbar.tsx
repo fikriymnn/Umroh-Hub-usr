@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
-import axios from 'axios';
+import { jwtDecode } from "jwt-decode";
 
 
 function Navbar() {
@@ -27,19 +27,16 @@ function Navbar() {
     // }, []);
 
     useEffect(() => {
-        const fetchUser = async () => {
+        const token = localStorage.getItem("token");
+        if (token) {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/me`);
-
-                console.log(response.data.data);
-
-                setUser(response.data);
+                const decoded = jwtDecode(token);
+                console.log("Decoded token:", decoded);
+                setUser(decoded); // misalnya akan tampilkan email
             } catch (error) {
-                console.error("Gagal ambil data user:", error);
+                console.error("Token tidak valid:", error);
             }
-        };
-
-        fetchUser();
+        }
     }, []);
 
     useEffect(() => {
@@ -63,15 +60,14 @@ function Navbar() {
     return (
         <div className="w-full flex fixed z-50 justify-center">
             <nav
-                className={`transition-all duration-1000 ease-in-out w-[60%] h-[145px] relative z-50 transform ${isVisible ? "translate-y-[23px]" : "-translate-y-[180px]"
+                className={`transition-all duration-1000 ease-in-out w-[60%] h-[145px] relative z-50 transform ${isVisible ? "translate-y-[23px]" : "-translate-y-[160px]"
                     }`}
             >
-                <div className={`transition-all mt-6 duration-1000 ease-in-out w-[60%]  relative z-50 transform
-                     w-full h-[92px] bg-[#001A4D] text-white flex items-center  justify-center 
-                    rounded-tl-[4px] rounded-tr-[4px] px-4`}>
+                <div className="w-full h-[92px] bg-[#001A4D] text-white shadow-[11px_13px_7.6px] shadow-black/25 flex items-center  justify-center 
+                    rounded-tl-[4px] rounded-tr-[4px] px-4 ">
                     <h1 className="text-[28px] font-philosopher font-normal">Umroh<span className="font-bold">Hub</span></h1>
                 </div>
-                <div className={`w-full h-[53px] flex justify-between p-2 bg-[#D1F4FA] shadow-[9px_11px_7.3px] shadow-black/25 transform  rounded-br-[4px] rounded-bl-[4px]`}>
+                <div className="w-full h-[53px] sticky flex justify-between p-2 bg-[#D1F4FA] shadow-[9px_11px_7.3px] shadow-black/25 rounded-br-[4px] rounded-bl-[4px]">
                     <div className='w-full h-full items-center ms-[76px] flex space-x-[27px]'>
                         <div className="flex flex-col items-center justify-center">
                             <Link to="/" className='font-semibold text-[13px]'>Home</Link>
@@ -92,8 +88,8 @@ function Navbar() {
                             }
                         </div>
                         <div className="flex flex-col items-center justify-center">
-                            <Link to="/AboutUs" className='font-semibold text-[13px]'>Tentang Kami</Link>
-                            {currentPath === "/AboutUs" &&
+                            <Link to="/" className='font-semibold text-[13px]'>Tentang Kami</Link>
+                            {currentPath === "/" &&
                                 <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
                             }
                         </div>
@@ -114,7 +110,7 @@ function Navbar() {
                             </>
                         ) : (
                             <div className="text-[#001A4D] font-semibold text-sm">
-                                Halo, {user.name}
+                                Halo, {user.id}
                             </div>
                         )}
                     </div>
