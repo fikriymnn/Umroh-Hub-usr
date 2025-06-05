@@ -11,18 +11,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Review from '../../../components/Review'
 import { fetchPartnersById } from '../../../services/partnersServices'
-
-interface Partner {
-    id: number
-    name: string
-    alamat: string
-    compamy_name: string
-    // tambahkan field sesuai kebutuhan
-}
+import { Partners } from '../../../types/Partners'
 
 function PartnersDetail() {
     const { id } = useParams();
-    const [partners, setPartners] = useState<Partner | null>(null);
+    const [partners, setPartners] = useState<Partners | null>(null);
     const [currentPage, setCurrentPage] = useState(1)
     const [loading, setLoading] = useState(true)
     const itemPages = 9;
@@ -272,9 +265,9 @@ function PartnersDetail() {
         ],
     };
 
-    const totalPages = Math.ceil(packages.length / itemPages)
-    const startIndex = (currentPage - 1) * itemPages
-    const currentItems = packages.slice(startIndex, startIndex + itemPages)
+    const totalPages = Math.ceil((partners?.package_umrohs?.length || 0) / itemPages);
+    const startIndex = (currentPage - 1) * itemPages;
+    const currentItems = partners?.package_umrohs?.slice(startIndex, startIndex + itemPages) || [];
 
     return (
 
@@ -311,7 +304,7 @@ function PartnersDetail() {
                                 {currentItems.map((item: any, index: number) => (
                                     <CardPackage
                                         key={index}
-                                        packageList={item}
+                                        packages={item}
                                     />
                                 ))}
                             </div>

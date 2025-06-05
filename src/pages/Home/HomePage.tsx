@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DefaultLayout from "../../layout/DefaultLayout";
 import CarouselHome from "../../components/Carousel/Carousel";
 import CarouselForum from "../../components/Carousel/CarouselForum";
@@ -24,8 +24,26 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
+import { PackageDetail } from "../../types/Package";
+import { fetchAllPackages } from "../../services/packagesSercice";
 
 const HomePage: React.FC = () => {
+  const [packages, setPackages] = useState<PackageDetail[]>([]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const data = await fetchAllPackages();
+        console.log(data);
+        setPackages(data);
+      } catch (error) {
+        console.error(`Error: ${error}`);
+      }
+    }
+
+    loadData();
+  }, []);
+
   const cardDataList = [
     {
       cardImage: exampleCards,
@@ -79,7 +97,7 @@ const HomePage: React.FC = () => {
         total: 100
       }
     },
-     {
+    {
       cardImage: exampleCards,
       cardHeader: 'Paket Umroh 2',
       hotelList: [
@@ -108,7 +126,7 @@ const HomePage: React.FC = () => {
     }
   ];
 
-  const packages = [
+  const packages2 = [
     {
       title: "Umroh Hasanah Hana",
       image: paketExample,
@@ -200,9 +218,7 @@ const HomePage: React.FC = () => {
                   {packages.map((item: any, index: number) => (
                     <CardPackage
                       key={index}
-                      packageList={item}
-                      capacity={item.capacity}
-                      booked={item.booked}
+                      packages={item}
                     />
                   ))}
                 </div>

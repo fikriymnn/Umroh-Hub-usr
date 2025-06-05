@@ -7,15 +7,10 @@ import { fetchAllPartners } from '../../services/partnersServices'
 // import penawaranBg from "../../assets/images/Group.png"
 // import penawaranBg2 from "../../assets/images/Group (1).png"
 import '../../app.css'
-
-type Partner = {
-    id: number;
-    name: string;
-    logo: string;
-};
+import { Partners } from '../../types/Partners'
 
 function OurPartnersPage() {
-    const [partners, setPartners] = useState<Partner[]>([]);
+    const [partners, setPartners] = useState<Partners[]>([]);
     const [currentPage, setCurrentPage] = useState(1)
     const itemPages = 4;
 
