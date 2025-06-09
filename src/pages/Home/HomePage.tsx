@@ -15,7 +15,6 @@ import example4 from "../../assets/images/Rectangle 122.png"
 import exampleCards from "../../assets/images/pexels-taha-elahi-7984586.png"
 import hotelIcon from "../../assets/icons/Component 1.svg"
 import paketBg from "../../assets/images/Rectangle 111.png"
-import paketExample from "../../assets/images/11848643a6d154484c0aa44d026fef3c.png"
 // import hotelIcon2 from "../../assets/icons/Component 7.svg"
 import planeIcon from "../../assets/icons/Component 8.svg"
 import kabahIcon from "../../assets/icons/Component 23.svg"
@@ -24,11 +23,14 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
-import { PackageDetail } from "../../types/Package";
+// Update the import below to match the actual export from "../../types/Package"
+// For example, if the correct export is 'Package', use:
+import type { Package } from "../../types/Package";
+// Then update all usages of 'Package' to 'Package' in this file.
 import { fetchAllPackages } from "../../services/packagesSercice";
 
 const HomePage: React.FC = () => {
-  const [packages, setPackages] = useState<PackageDetail[]>([]);
+  const [packages, setPackages] = useState<Package[]>([]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -126,34 +128,6 @@ const HomePage: React.FC = () => {
     }
   ];
 
-  const packages2 = [
-    {
-      title: "Umroh Hasanah Hana",
-      image: paketExample,
-      hotelName: "Mekkah",
-      hotelRating: 5,
-      hotelDistance: "200 m ke Masjidil Haram",
-      airline: "Lion Air",
-      airlineRating: 5,
-      route: "Soekarno hatta ke JED",
-      price: "32 Jt",
-      booked: 100,
-      capacity: 150,
-    },
-    {
-      title: "Umroh Amanah Travel",
-      image: paketExample,
-      hotelName: "Madinah",
-      hotelRating: 4,
-      hotelDistance: "500 m ke Nabawi",
-      airline: "Garuda Indonesia",
-      airlineRating: 4,
-      route: "CGK - MED",
-      price: "28 Jt",
-      booked: 70,
-      capacity: 100,
-    },
-  ];
 
   const valuesTrust = [
     { label: 'Terpercaya', percentage: '100%', icon: checkIcon },
