@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import DefaultLayout from '../../../layout/DefaultLayout'
-import paketExample from "../../../assets/images/11848643a6d154484c0aa44d026fef3c.png"
 import CardPackage from '../../../components/Card/CardPackage'
 import mitraExampleProfile from "../../../assets/images/pexels-chevanon-1108099.png"
 import Slider from "react-slick";

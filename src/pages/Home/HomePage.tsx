@@ -15,7 +15,6 @@ import example4 from "../../assets/images/Rectangle 122.png"
 import exampleCards from "../../assets/images/pexels-taha-elahi-7984586.png"
 import hotelIcon from "../../assets/icons/Component 1.svg"
 import paketBg from "../../assets/images/Rectangle 111.png"
-import paketExample from "../../assets/images/11848643a6d154484c0aa44d026fef3c.png"
 // import hotelIcon2 from "../../assets/icons/Component 7.svg"
 import planeIcon from "../../assets/icons/Component 8.svg"
 import kabahIcon from "../../assets/icons/Component 23.svg"
@@ -24,7 +23,7 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
-import { Package } from "../../types/Package";
+import type { Package } from "../../types/Package";
 import { getAllPackages } from "../../services/packagesSercice";
 
 const HomePage: React.FC = () => {

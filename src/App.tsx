@@ -11,6 +11,8 @@ import PaymentData from "./pages/Payment/PaymentData";
 import Profile from "./pages/Profile/Profile";
 import Transaction from "./pages/Profile/MyTransactions";
 import AboutUs from "./pages/AboutUs/AboutUs";
+import Forum from "./pages/Forum/Forum";
+import ForumDetail from "./pages/Forum/[id]/Detail";
 
 export default function App() {
   return (
@@ -124,6 +126,26 @@ export default function App() {
                 <PageTitle title="PT CBL" />
 
                 <AboutUs />
+              </>
+            }
+          />
+          <Route
+            path="/Forum"
+            element={
+              <>
+                <PageTitle title="PT CBL" />
+
+                <Forum />
+              </>
+            }
+          />
+          <Route
+            path="/Forum/:id"
+            element={
+              <>
+                <PageTitle title="PT CBL" />
+
+                <ForumDetail />
               </>
             }
           />
