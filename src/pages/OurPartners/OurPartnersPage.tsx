@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import DefaultLayout from '../../layout/DefaultLayout'
 import CardPartners from '../../components/Card/CardPartners'
 import { fetchAllPartners } from '../../services/partnersServices'

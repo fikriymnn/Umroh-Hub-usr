@@ -164,7 +164,7 @@ const HomePage: React.FC = () => {
 
                 {/* cards */}
                 <div className='w-10/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4   mt-5'>
-                  {cardDataList.map((item: any, index: number) => (
+                  {cardDataList?.map((item: any, index: number) => (
                     <Card
                       key={index}
                       data={item}
@@ -189,7 +189,7 @@ const HomePage: React.FC = () => {
                   </h1>
                 </div>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-                  {packages.map((item: any, index: number) => (
+                  {packages?.map((item: any, index: number) => (
                     <CardPackage
                       key={index}
                       packages={item}
@@ -347,7 +347,7 @@ const HomePage: React.FC = () => {
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoour partners Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
                     </p>
                     <div className="mt-[22px]">
-                      {valuesTrust.map((item: any, index: number) => (
+                      {valuesTrust?.map((item: any, index: number) => (
                         <TrustIndicator
                           key={index}
                           dataTrust={item}
