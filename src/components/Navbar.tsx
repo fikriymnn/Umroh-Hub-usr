@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router'
-import { getMe, logOut } from '../services/authServices';
+import { getMe } from '../services/userSevices';
+import { logOut } from '../services/authServices';
 import { FaChevronDown, FaUserCircle } from 'react-icons/fa'
+import { User } from '../types/User';
 
 
 function Navbar() {
@@ -14,7 +16,7 @@ function Navbar() {
     // const [, setScrolled] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(false);
     const [isVisible, setIsVisible] = useState(true)
-    const [user, setUser] = useState<any>(null)
+    const [user, setUser] = useState<User>()
     // useEffect(() => {
     // const handleScroll = () => {
     //     if (window.scrollY > 400) {

@@ -9,7 +9,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Review from '../../../components/Review'
-import { fetchPartnersById } from '../../../services/partnersServices'
+import { getPartnersById } from '../../../services/partnersServices'
 import { Partners } from '../../../types/Partners'
 
 function PartnersDetail() {
@@ -19,20 +19,19 @@ function PartnersDetail() {
     const itemPages = 9;
 
     useEffect(() => {
-        const loadData = async () => {
+        const fetchPackages = async () => {
             try {
                 if (id) {
-                    const data = await fetchPartnersById(id);
-                    setPartners(data);
+                    const res = await getPartnersById(id);
+                    setPartners(res.data.data.data);
                 }
             } catch (error) {
                 console.error(`Error: ${error}`);
             }
         };
 
-        loadData();
+        fetchPackages();
     }, []);
-
 
     const dataUlasan = [
         {

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { register } from '../services/authServices';
 
 const RegisterForm = ({
     isAnimated,
@@ -16,9 +17,8 @@ const RegisterForm = ({
     const [ktp, setKtp] = useState('');
 
     async function Register() {
-        const url = `${import.meta.env.VITE_PUBLIC_URL}/users`;
         try {
-            const res = await axios.post(url, {
+            const res = await register({
                 name: name,
                 email: email,
                 password: password,

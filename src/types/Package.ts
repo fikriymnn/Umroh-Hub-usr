@@ -5,7 +5,7 @@ export interface Mitra {
   password: string;
   phone_number: string;
   address: string;
-  compamy_name: string;
+  company_name: string;
   website: string;
   nib: string;
   npwp: string;

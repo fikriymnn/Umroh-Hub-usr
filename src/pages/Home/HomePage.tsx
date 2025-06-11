@@ -23,27 +23,24 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
-// Update the import below to match the actual export from "../../types/Package"
-// For example, if the correct export is 'Package', use:
 import type { Package } from "../../types/Package";
-// Then update all usages of 'Package' to 'Package' in this file.
-import { fetchAllPackages } from "../../services/packagesSercice";
+import { getAllPackages } from "../../services/packagesSercice";
 
 const HomePage: React.FC = () => {
   const [packages, setPackages] = useState<Package[]>([]);
 
   useEffect(() => {
-    const loadData = async () => {
+    const fetchPackages = async () => {
       try {
-        const data = await fetchAllPackages();
-        console.log(data);
-        setPackages(data);
+        const res = await getAllPackages();
+        console.log(res);
+        setPackages(res.data.data);
       } catch (error) {
         console.error(`Error: ${error}`);
       }
     }
 
-    loadData();
+    fetchPackages();
   }, []);
 
   const cardDataList = [
@@ -127,7 +124,6 @@ const HomePage: React.FC = () => {
       }
     }
   ];
-
 
   const valuesTrust = [
     { label: 'Terpercaya', percentage: '100%', icon: checkIcon },

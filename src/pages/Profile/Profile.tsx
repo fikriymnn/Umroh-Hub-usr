@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import profileExample from "../../assets/images/profile_placeholder.png"
 import Sidebar from '../../components/Sidebar'
-import { getMe } from '../../services/authServices';
+import { getMe } from '../../services/userSevices';
+import { updateUser } from '../../services/userSevices';
+import { User } from '../../types/User';
 
 function Profile() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User>();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const res = await getMe();
         console.log(res.data);
+        const userData = res.data.data;
 
-        setUser(res.data.data);
+        setUser(userData);
+        setName(userData.name);
+        setEmail(userData.email);
+        setPhone(userData.phone_number);
       } catch (error) {
         console.error(`Error: ${error}`);
       }
@@ -20,6 +29,29 @@ function Profile() {
 
     fetchUser();
   }, []);
+
+  const handleUpdate = async () => {
+    if (!user?.id) return;
+
+    try {
+      await updateUser(user.id, {
+        name,
+        email,
+        phone_number: phone
+      });
+
+      alert('Data berhasil diperbarui!');
+      setUser((prev: any) => ({
+        ...prev,
+        name,
+        email,
+        phone_number: phone
+      }));
+    } catch (error) {
+      console.error(`Error: ${error}`);
+      alert('Gagal memperbarui')
+    }
+  };
 
   return (
     <div className='w-full h-screen flex space-x-2 bg-gradient-to-b from-[#004492] to-[#00152C]'>
@@ -31,17 +63,36 @@ function Profile() {
           <div className="w-8/12 h-full p-[39px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
             <div className="mt-[18px] flex flex-col space-y-1">
               <label htmlFor="Nama" className='capitalize ms-1 font-semibold'>Nama</label>
-              <input type="text" placeholder={user.name} className='w-10/12 rounded-[5px] bg-[#EFEFEF] h-[51px] px-[20px] py-[15px]' />
+              <input
+                type="text"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className='w-10/12 rounded-[5px] bg-[#EFEFEF] h-[51px] px-[20px] py-[15px]' />
             </div>
             <div className="mt-[18px] flex flex-col space-y-1">
               <label htmlFor="Phone" className='capitalize ms-1 font-semibold'>No Telepon/whatsApp</label>
-              <input type="text" placeholder={user.phone_number} className='w-10/12 rounded-[5px] bg-[#EFEFEF] h-[51px] px-[20px] py-[15px]' />
+              <input
+                type="text"
+                name="phone_number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className='w-10/12 rounded-[5px] bg-[#EFEFEF] h-[51px] px-[20px] py-[15px]' />
             </div>
             <div className="mt-[18px] flex flex-col space-y-1">
               <label htmlFor="Email" className='capitalize ms-1 font-semibold'>Email</label>
-              <input type="text" placeholder={user.email} className='w-10/12 rounded-[5px] bg-[#EFEFEF] h-[51px] px-[20px] py-[15px]' />
+              <input
+                type="text"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className='w-10/12 rounded-[5px] bg-[#EFEFEF] h-[51px] px-[20px] py-[15px]' />
             </div>
-            <button className="rounded-full font-semibold text-white mt-[36px] px-6 py-2 bg-gradient-to-br capitalize from-[#3C9BFF] to-[#10F5EA]">simpan</button>
+            <button
+              onClick={handleUpdate}
+              className="rounded-full font-semibold text-white mt-[36px] px-6 py-2 bg-gradient-to-br capitalize from-[#3C9BFF] to-[#10F5EA]">
+              simpan
+            </button>
           </div>
           <div className="w-4/12 px-[39px] py-[55px] flex flex-col items-center">
             <img src={profileExample} alt="profile picture" className='w-[173px] h-[173px] rounded-full' />

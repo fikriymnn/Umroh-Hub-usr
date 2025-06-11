@@ -1,27 +1,20 @@
 
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { User } from '../types/User'
 import { loginUser } from '../services/authServices'
 
-const defaultUser: User = {
-    email: '',
-    password: '',
-}
-
 function LoginForm() {
-    const navigate = useNavigate()
-    const [user, setUser] = useState<User>(defaultUser);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setUser({ ...user, [e.target.name]: e.target.value })
-    }
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
         try {
-            const res = await loginUser(user);
+            const res = await loginUser({
+                email: email,
+                password: password
+            });
             console.log(res);
-            localStorage.setItem("token", res.data);
 
             alert('Login berhasil')
             navigate('/')
@@ -40,17 +33,19 @@ function LoginForm() {
                     <input
                         type="email"
                         name='email'
+                        value={email}
                         className="bg-[#F5F5F5] text-[#CECECE] w-[330px] h-[49px] px-4 py-2 rounded-md"
                         placeholder='email'
-                        onChange={handleChange}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                     <input
                         type="password"
                         name='password'
+                        value={password}
                         className="bg-[#F5F5F5] text-[#CECECE] w-[330px] h-[49px] px-4 py-2 rounded-md"
                         placeholder='password'
-                        onChange={handleChange}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                     <button

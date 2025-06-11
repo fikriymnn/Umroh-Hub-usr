@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import DefaultLayout from '../../layout/DefaultLayout'
 import CardPartners from '../../components/Card/CardPartners'
-import { fetchAllPartners } from '../../services/partnersServices'
+import { getAllPartners } from '../../services/partnersServices'
 // import penawaranBg from "../../assets/images/Group.png"
 // import penawaranBg2 from "../../assets/images/Group (1).png"
 import '../../app.css'
@@ -14,16 +14,16 @@ function OurPartnersPage() {
     const itemPages = 4;
 
     useEffect(() => {
-        const loadData = async () => {
+        const fetchPackages = async () => {
             try {
-                const data = await fetchAllPartners();
-                setPartners(data);
+                const res = await getAllPartners();
+                setPartners(res.data.data.data);
             } catch (error) {
                 console.error(`Error: ${error}`);
             }
         }
 
-        loadData();
+        fetchPackages();
     }, []);
 
     const totalPages = Math.ceil(partners.length / itemPages)

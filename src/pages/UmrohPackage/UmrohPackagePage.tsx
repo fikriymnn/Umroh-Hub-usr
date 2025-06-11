@@ -7,27 +7,26 @@ import departureCity from "../../assets/icons/Group 28 (1).svg"
 import departureType from "../../assets/icons/Group 206.svg";
 import departureTime from "../../assets/icons/Group 207.svg";
 import { Package } from '../../types/Package';
-import { fetchAllPackages } from '../../services/packagesSercice';
+import { getAllPackages } from '../../services/packagesSercice';
 function UmrohPackagePage() {
     const [packages, setPackages] = useState<Package[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemPages = 15;
 
     useEffect(() => {
-        const loadData = async () => {
+        const fetchPackages = async () => {
             try {
-                const data = await fetchAllPackages();
-                console.log(data);
-                setPackages(data);
+                const res = await getAllPackages();
+                console.log(res);
+                setPackages(res.data.data);
             } catch (error) {
                 console.error(`Error: ${error}`);
             }
         }
 
-        loadData();
+        fetchPackages();
     }, []);
 
-    
     const totalPages = Math.ceil(packages.length / itemPages)
     const startIndex = (currentPage - 1) * itemPages
     const currentItems = packages.slice(startIndex, startIndex + itemPages)
