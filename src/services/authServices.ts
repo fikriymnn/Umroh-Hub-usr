@@ -7,7 +7,6 @@ export const loginUser = async (user: User) => {
         user,
         { withCredentials: true }
     );
-    return res.data;
 };
 
 // export const registerUser = async (user: User) => {
@@ -15,16 +14,5 @@ export const loginUser = async (user: User) => {
 // };
 
 export const logOut = async () => {
-    try {
-        await axios.delete(`${import.meta.env.VITE_PUBLIC_URL}/logout`);
-    } catch (error) {
-        console.error(`Error: ${error}`);
-    }
+    await axios.delete(`${import.meta.env.VITE_PUBLIC_URL}/logout`);
 };
-
-export const getMe = async () => {
-    return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/users/me`, {
-        withCredentials: true
-    });
-};
-

@@ -21,7 +21,6 @@ function LoginForm() {
         try {
             const res = await loginUser(user);
             console.log(res);
-            localStorage.setItem("token", res.data);
 
             alert('Login berhasil')
             navigate('/')

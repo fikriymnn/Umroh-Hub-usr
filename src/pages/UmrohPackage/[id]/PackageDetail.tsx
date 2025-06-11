@@ -26,6 +26,7 @@ import "slick-carousel/slick/slick-theme.css";
 import TravelSchedule from '../../../components/TravelSchedule'
 import Review from '../../../components/Review'
 import { Package } from '../../../types/Package'
+import { getOnePackages } from '../../../services/packagesSercice'
 
 
 function PackageDetail() {
@@ -42,7 +43,7 @@ function PackageDetail() {
 
     const fetchPackages = async (id: string) => {
         try {
-            const res = await axios.get(`https://zshnvs5v-7000.asse.devtunnels.ms/api/getOnePackageUmroh/${id}`);
+            const res = await getOnePackages(id);
             console.log(res.data);
 
             setPackages(res.data.data);
@@ -168,7 +169,7 @@ function PackageDetail() {
 
                                 <p className="text-[15px] font-medium">Mitra</p>
                                 <div className="flex items-center space-x-4">
-                                    <span className="text-[24px] font-medium">{packages.Mitra.compamy_name}</span>
+                                    <span className="text-[24px] font-medium">{packages.Mitra.company_name}</span>
                                     <span className='text-yellow-300 text-[18px]'>★ ★ ★ ★ ★</span>
                                 </div>
                                 <div className="flex flex-col justify-center space-y-1">
@@ -214,7 +215,7 @@ function PackageDetail() {
                                             <p className="font-bold text-[15px]">Pilihan Kamar</p>
                                         </div>
                                         <p className='font-medium text-[13px] ms-6 mt-3'>
-                                            {packages.package_hotels[0].master_hotel.room_type}
+                                            {packages?.package_hotels?.[0]?.master_hotel?.room_type}
                                         </p>
                                     </div>
                                     <div>
@@ -228,7 +229,7 @@ function PackageDetail() {
                                             </div>
                                             <div className='flex-col w-full'>
                                                 <h6 className='text-[12px] font-semibold'>
-                                                    {packages.package_hotels[0].master_hotel.hotel_name}
+                                                    {packages?.package_hotels?.[0]?.master_hotel?.hotel_name}
                                                     <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Double Room
                                                 </h6>
 
@@ -250,7 +251,7 @@ function PackageDetail() {
                                         <div className='flex-col w-full'>
 
                                             <h6 className='text-[12px] font-semibold'>
-                                                {packages.package_hotels[1].master_hotel.hotel_name}
+                                                {packages?.package_hotels?.[1]?.master_hotel?.hotel_name}
                                                 <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Double Room
                                             </h6>
 
@@ -313,7 +314,7 @@ function PackageDetail() {
                                         <img src={hotelIcon} alt="icon" className='w-[30px] h-[30px]' />
                                         <div className='flex-col w-full'>
                                             <h6 className='text-[12px] font-semibold'>
-                                                {item.master_hotel.hotel_name}
+                                                {item?.master_hotel?.hotel_name}
                                                 <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Double Room
                                             </h6>
                                             <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{item.description}</p>
@@ -328,14 +329,14 @@ function PackageDetail() {
 
                                             <img src={locationIcon} alt="icon" className='w-[18px] h-[18px]' />
                                             <p className="text-[15px] font-medium">
-                                                {item.master_hotel.address}
+                                                {item?.master_hotel?.address}
                                             </p>
                                         </div>
                                         <div className="flex w-8/12 mt-4 space-x-2">
                                             <div className="flex h-[20px] items-center space-x-5 w-7/12">
                                                 <img src={wifiIcon} alt="icon" className='w-[18px] h-[18px]' />
                                                 <p className="text-[15px] capitalize font-medium">
-                                                    {item.master_hotel.hotel_facilities[0].description}
+                                                    {item?.master_hotel?.hotel_facilities?.[0]?.description}
                                                 </p>
                                             </div>
                                             <div className="flex space-x-5 w-7/12">

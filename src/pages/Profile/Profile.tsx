@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import profileExample from "../../assets/images/profile_placeholder.png"
 import Sidebar from '../../components/Sidebar'
-import { getMe } from '../../services/authServices';
+import { getMe } from '../../services/userSevices';
 import { updateUser } from '../../services/userSevices';
 
 function Profile() {

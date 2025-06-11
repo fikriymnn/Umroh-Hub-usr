@@ -24,24 +24,24 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
-import { PackageDetail } from "../../types/Package";
-import { fetchAllPackages } from "../../services/packagesSercice";
+import { Package } from "../../types/Package";
+import { getAllPackages } from "../../services/packagesSercice";
 
 const HomePage: React.FC = () => {
-  const [packages, setPackages] = useState<PackageDetail[]>([]);
+  const [packages, setPackages] = useState<Package[]>([]);
 
   useEffect(() => {
-    const loadData = async () => {
+    const fetchPackages = async () => {
       try {
-        const data = await fetchAllPackages();
-        console.log(data);
-        setPackages(data);
+        const res = await getAllPackages();
+        console.log(res);
+        setPackages(res.data.data);
       } catch (error) {
         console.error(`Error: ${error}`);
       }
     }
 
-    loadData();
+    fetchPackages();
   }, []);
 
   const cardDataList = [
@@ -124,35 +124,6 @@ const HomePage: React.FC = () => {
         label: 'Pesanan: 60/100'
       }
     }
-  ];
-
-  const packages2 = [
-    {
-      title: "Umroh Hasanah Hana",
-      image: paketExample,
-      hotelName: "Mekkah",
-      hotelRating: 5,
-      hotelDistance: "200 m ke Masjidil Haram",
-      airline: "Lion Air",
-      airlineRating: 5,
-      route: "Soekarno hatta ke JED",
-      price: "32 Jt",
-      booked: 100,
-      capacity: 150,
-    },
-    {
-      title: "Umroh Amanah Travel",
-      image: paketExample,
-      hotelName: "Madinah",
-      hotelRating: 4,
-      hotelDistance: "500 m ke Nabawi",
-      airline: "Garuda Indonesia",
-      airlineRating: 4,
-      route: "CGK - MED",
-      price: "28 Jt",
-      booked: 70,
-      capacity: 100,
-    },
   ];
 
   const valuesTrust = [

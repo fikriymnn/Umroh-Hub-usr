@@ -15,16 +15,16 @@ function OurPartnersPage() {
     const itemPages = 4;
 
     useEffect(() => {
-        const loadData = async () => {
+        const fetchPackages = async () => {
             try {
-                const data = await fetchAllPartners();
-                setPartners(data);
+                const res = await fetchAllPartners();
+                setPartners(res.data.data.data);
             } catch (error) {
                 console.error(`Error: ${error}`);
             }
         }
 
-        loadData();
+        fetchPackages();
     }, []);
 
     const totalPages = Math.ceil(partners.length / itemPages)

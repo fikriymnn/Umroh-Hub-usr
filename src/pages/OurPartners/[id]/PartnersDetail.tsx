@@ -17,183 +17,22 @@ function PartnersDetail() {
     const { id } = useParams();
     const [partners, setPartners] = useState<Partners | null>(null);
     const [currentPage, setCurrentPage] = useState(1)
-    const [loading, setLoading] = useState(true)
     const itemPages = 9;
 
     useEffect(() => {
-        const loadData = async () => {
+        const fetchPackages = async () => {
             try {
                 if (id) {
-                    const data = await fetchPartnersById(id);
-                    setPartners(data);
+                    const res = await fetchPartnersById(id);
+                    setPartners(res.data.data.data);
                 }
             } catch (error) {
                 console.error(`Error: ${error}`);
             }
         };
 
-        loadData();
+        fetchPackages();
     }, []);
-
-    const packages = [
-        {
-            title: "Umroh Hasanah Hana",
-            image: paketExample,
-            hotelName: "Mekkah",
-            hotelRating: 5,
-            hotelDistance: "200 m ke Masjidil Haram",
-            airline: "Lion Air",
-            airlineRating: 5,
-            route: "Soekarno hatta ke JED",
-            price: "32 Jt",
-            booked: 100,
-            capacity: 150,
-        },
-        {
-            title: "Umroh Hasanah Hana",
-            image: paketExample,
-            hotelName: "Mekkah",
-            hotelRating: 5,
-            hotelDistance: "200 m ke Masjidil Haram",
-            airline: "Lion Air",
-            airlineRating: 5,
-            route: "Soekarno hatta ke JED",
-            price: "32 Jt",
-            booked: 100,
-            capacity: 150,
-        },
-        {
-            title: "Umroh Amanah Travel",
-            image: paketExample,
-            hotelName: "Madinah",
-            hotelRating: 4,
-            hotelDistance: "500 m ke Nabawi",
-            airline: "Garuda Indonesia",
-            airlineRating: 4,
-            route: "CGK - MED",
-            price: "28 Jt",
-            booked: 70,
-            capacity: 100,
-        },
-        {
-            title: "Umroh Hasanah Hana",
-            image: paketExample,
-            hotelName: "Mekkah",
-            hotelRating: 5,
-            hotelDistance: "200 m ke Masjidil Haram",
-            airline: "Lion Air",
-            airlineRating: 5,
-            route: "Soekarno hatta ke JED",
-            price: "32 Jt",
-            booked: 100,
-            capacity: 150,
-        },
-        {
-            title: "Umroh Hasanah Hana",
-            image: paketExample,
-            hotelName: "Mekkah",
-            hotelRating: 5,
-            hotelDistance: "200 m ke Masjidil Haram",
-            airline: "Lion Air",
-            airlineRating: 5,
-            route: "Soekarno hatta ke JED",
-            price: "32 Jt",
-            booked: 100,
-            capacity: 150,
-        },
-        {
-            title: "Umroh Amanah Travel",
-            image: paketExample,
-            hotelName: "Madinah",
-            hotelRating: 4,
-            hotelDistance: "500 m ke Nabawi",
-            airline: "Garuda Indonesia",
-            airlineRating: 4,
-            route: "CGK - MED",
-            price: "28 Jt",
-            booked: 70,
-            capacity: 100,
-        },
-        {
-            title: "Umroh Hasanah Hana",
-            image: paketExample,
-            hotelName: "Mekkah",
-            hotelRating: 5,
-            hotelDistance: "200 m ke Masjidil Haram",
-            airline: "Lion Air",
-            airlineRating: 5,
-            route: "Soekarno hatta ke JED",
-            price: "32 Jt",
-            booked: 100,
-            capacity: 150,
-        },
-        {
-            title: "Umroh Hasanah Hana",
-            image: paketExample,
-            hotelName: "Mekkah",
-            hotelRating: 5,
-            hotelDistance: "200 m ke Masjidil Haram",
-            airline: "Lion Air",
-            airlineRating: 5,
-            route: "Soekarno hatta ke JED",
-            price: "32 Jt",
-            booked: 100,
-            capacity: 150,
-        },
-        {
-            title: "Umroh Amanah Travel",
-            image: paketExample,
-            hotelName: "Madinah",
-            hotelRating: 4,
-            hotelDistance: "500 m ke Nabawi",
-            airline: "Garuda Indonesia",
-            airlineRating: 4,
-            route: "CGK - MED",
-            price: "28 Jt",
-            booked: 70,
-            capacity: 100,
-        },
-        {
-            title: "Umroh Hasanah Hana",
-            image: paketExample,
-            hotelName: "Mekkah",
-            hotelRating: 5,
-            hotelDistance: "200 m ke Masjidil Haram",
-            airline: "Lion Air",
-            airlineRating: 5,
-            route: "Soekarno hatta ke JED",
-            price: "32 Jt",
-            booked: 100,
-            capacity: 150,
-        },
-        {
-            title: "Umroh Hasanah Hana",
-            image: paketExample,
-            hotelName: "Mekkah",
-            hotelRating: 5,
-            hotelDistance: "200 m ke Masjidil Haram",
-            airline: "Lion Air",
-            airlineRating: 5,
-            route: "Soekarno hatta ke JED",
-            price: "32 Jt",
-            booked: 100,
-            capacity: 150,
-        },
-        {
-            title: "Umroh Amanah Travel",
-            image: paketExample,
-            hotelName: "Madinah",
-            hotelRating: 4,
-            hotelDistance: "500 m ke Nabawi",
-            airline: "Garuda Indonesia",
-            airlineRating: 4,
-            route: "CGK - MED",
-            price: "28 Jt",
-            booked: 70,
-            capacity: 100,
-        },
-
-    ];
 
     const dataUlasan = [
         {
