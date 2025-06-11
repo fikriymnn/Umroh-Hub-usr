@@ -27,7 +27,6 @@ function UmrohPackagePage() {
         fetchPackages();
     }, []);
 
-    
     const totalPages = Math.ceil(packages.length / itemPages)
     const startIndex = (currentPage - 1) * itemPages
     const currentItems = packages.slice(startIndex, startIndex + itemPages)
