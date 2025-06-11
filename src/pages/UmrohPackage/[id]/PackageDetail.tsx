@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState, useEffect } from 'react'
-import axios from 'axios'
 import { useParams } from 'react-router'
 import DefaultLayout from '../../../layout/DefaultLayout'
 import hotelIcon from "../../../assets/icons/Component 1.svg"

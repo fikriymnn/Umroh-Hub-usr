@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import DefaultLayout from '../../layout/DefaultLayout'
 import eyeIcon from "../../assets/icons/Eye (2).svg"
 import reactionIcon2 from "../../assets/icons/Group 1000004446.svg"
@@ -7,11 +7,17 @@ import makkahImage from '../../assets/images/makkah-3986709 (1).png'
 import profileExample from "../../assets/images/profile_placeholder.png"
 import reactionIcon from "../../assets/icons/Group 1000004448.svg"
 import replyIcon from "../../assets/icons/Group 1000004447.svg"
+import AddContent from '../../components/AddContent'
 
 function Forum() {
+  const [showContent, setShowContent] = useState(false)
+  // const handleAddContent = () => {
+  //   setShowContent(true)
+  // }
     return (
         <DefaultLayout>
         <div className='w-full min-h-screen background-div flex flex-col items-center'> 
+         
         <div className="w-full relative h-fit">
   <img src={makkahImage} alt="Makkah Image" className="w-full h-fit" />
 
@@ -28,13 +34,22 @@ function Forum() {
                             <h1 className='text-[15px] font-medium text-[#0A6BDB]'>Semua</h1>
                             <h1 className='text-[15px] font-medium'>Ulasan Saya</h1>
                         </div>
-                        <div className="flex space-x-[5px]">
-                            <div className="w-[24px] h-[24px] rounded-full border-2 border-black flex items-center justify-center">
+                       <div className="relative">
+    <div
+      className="flex space-x-[5px] cursor-pointer"
+      onClick={() => setShowContent(true)}
+    >
+      <div className="w-[24px] h-[24px] rounded-full border-2 border-black flex items-center justify-center">
+        <h1 className="text-[15px] font-medium">+</h1>
+      </div>
+      <h1 className="text-[15px] font-medium">Buat Ulasan</h1>
+    </div>
 
-                            <h1 className='text-[15px] font-medium'>+</h1>
-                            </div>
-                            <h1 className='text-[15px] font-medium'>Buat Ulasan</h1>
-                        </div>
+    {showContent && (
+      <AddContent isVisible={showContent} onClose={() => setShowContent(false)} />
+    )}
+  </div>
+
                     </div>
 
                     <div className="px-4 pt-4 pb-10 mt-[43px] border-b border-[#929292] w-full">
