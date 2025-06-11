@@ -36,21 +36,21 @@ function PackageDetail() {
     const itemPages = 4;
 
     useEffect(() => {
-        if (id) {
-            fetchPackages(id);
-        }
-    }, [id]);
+        const fetchPackages = async () => {
+            try {
+                if (id) {
+                    const res = await getOnePackages(id);
+                    console.log(res.data);
 
-    const fetchPackages = async (id: string) => {
-        try {
-            const res = await getOnePackages(id);
-            console.log(res.data);
-
-            setPackages(res.data.data);
-        } catch (error) {
-            console.error(`Error: ${error}`);
+                    setPackages(res.data.data);
+                }
+            } catch (error) {
+                console.error(`Error: ${error}`);
+            }
         }
-    }
+
+        fetchPackages();
+    }, []);
 
     const review = [
         {

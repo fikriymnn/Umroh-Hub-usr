@@ -3,14 +3,13 @@ import profileExample from "../../assets/images/profile_placeholder.png"
 import Sidebar from '../../components/Sidebar'
 import { getMe } from '../../services/userSevices';
 import { updateUser } from '../../services/userSevices';
+import { User } from '../../types/User';
 
 function Profile() {
-  const [user, setUser] = useState<any>(null);
-  const [formData, setFormData] = useState({
-    name: '',
-    phone_number: '',
-    email: ''
-  });
+  const [user, setUser] = useState<User>();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -20,11 +19,9 @@ function Profile() {
         const userData = res.data.data;
 
         setUser(userData);
-        setFormData({
-          name: userData.name || '',
-          phone_number: userData.phone_number || '',
-          email: userData.email || ''
-        })
+        setName(userData.name);
+        setEmail(userData.email);
+        setPhone(userData.phone_number);
       } catch (error) {
         console.error(`Error: ${error}`);
       }
@@ -33,18 +30,23 @@ function Profile() {
     fetchUser();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!formData) return;
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSave = async () => {
+  const handleUpdate = async () => {
     if (!user?.id) return;
 
     try {
-      await updateUser(user.id, formData);
+      await updateUser(user.id, {
+        name,
+        email,
+        phone_number: phone
+      });
+
       alert('Data berhasil diperbarui!');
-      setUser((prev: any) => ({ ...prev, ...formData }));
+      setUser((prev: any) => ({
+        ...prev,
+        name,
+        email,
+        phone_number: phone
+      }));
     } catch (error) {
       console.error(`Error: ${error}`);
       alert('Gagal memperbarui')
@@ -64,8 +66,8 @@ function Profile() {
               <input
                 type="text"
                 name="name"
-                value={formData.name}
-                onChange={handleChange}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className='w-10/12 rounded-[5px] bg-[#EFEFEF] h-[51px] px-[20px] py-[15px]' />
             </div>
             <div className="mt-[18px] flex flex-col space-y-1">
@@ -73,8 +75,8 @@ function Profile() {
               <input
                 type="text"
                 name="phone_number"
-                value={formData.phone_number}
-                onChange={handleChange}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 className='w-10/12 rounded-[5px] bg-[#EFEFEF] h-[51px] px-[20px] py-[15px]' />
             </div>
             <div className="mt-[18px] flex flex-col space-y-1">
@@ -82,12 +84,12 @@ function Profile() {
               <input
                 type="text"
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className='w-10/12 rounded-[5px] bg-[#EFEFEF] h-[51px] px-[20px] py-[15px]' />
             </div>
             <button
-              onClick={handleSave}
+              onClick={handleUpdate}
               className="rounded-full font-semibold text-white mt-[36px] px-6 py-2 bg-gradient-to-br capitalize from-[#3C9BFF] to-[#10F5EA]">
               simpan
             </button>

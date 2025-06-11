@@ -1,18 +1,27 @@
 import axios from 'axios';
-import { User } from '../types/User';
 
-export const loginUser = async (user: User) => {
-    const res = await axios.post(
+export const loginUser = async (data: {
+    email: string;
+    password: string;
+}) => {
+    return await axios.post(
         `${import.meta.env.VITE_PUBLIC_URL}/auth/login/user`,
-        user,
+        data,
         { withCredentials: true }
     );
 };
 
-// export const registerUser = async (user: User) => {
-//     const res = await axios.post('')
-// };
+export const register = async (data: {
+    name: string;
+    email: string;
+    password: string;
+    phone_number: string;
+    address: string;
+    no_ktp: string;
+}) => {
+    return await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/users`, data);
+};
 
 export const logOut = async () => {
-    await axios.delete(`${import.meta.env.VITE_PUBLIC_URL}/logout`);
+    await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/auth/logout`);
 };

@@ -6,6 +6,10 @@ export const getMe = async () => {
     });
 };
 
-export const updateUser = async (id: number, data: any) => {
+export const updateUser = async (id: number, data: {
+    name: string;
+    email: string;
+    phone_number: string | number;
+}) => {
     return await axios.put(`${import.meta.env.VITE_PUBLIC_URL}/users/${id}`, data);
 };
