@@ -9,7 +9,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Review from '../../../components/Review'
-import { fetchPartnersById } from '../../../services/partnersServices'
+import { getPartnersById } from '../../../services/partnersServices'
 import { Partners } from '../../../types/Partners'
 
 function PartnersDetail() {
@@ -22,7 +22,7 @@ function PartnersDetail() {
         const fetchPackages = async () => {
             try {
                 if (id) {
-                    const res = await fetchPartnersById(id);
+                    const res = await getPartnersById(id);
                     setPartners(res.data.data.data);
                 }
             } catch (error) {

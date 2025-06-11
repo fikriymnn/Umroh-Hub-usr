@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const fetchAllPartners = async () => {
+export const getAllPartners = async () => {
     return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/mitras`);
 };
 
-export const fetchPartnersById = async (id: string | number) => {
+export const getPartnersById = async (id: string | number) => {
     return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/mitras/${id}`);
 };
