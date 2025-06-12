@@ -1,35 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from 'react';
 import DefaultLayout from "../../layout/DefaultLayout";
 import bg from "../../assets/images/makkah-3986709.png"
 import CardPackage from '../../components/Card/CardPackage';
 import departureCity from "../../assets/icons/Group 28 (1).svg"
 import departureType from "../../assets/icons/Group 206.svg";
 import departureTime from "../../assets/icons/Group 207.svg";
-import { Package } from '../../types/Package';
-import { getAllPackages } from '../../services/packagesSercice';
+import usePackages from '../../hooks/packages/usePackages';
+
 function UmrohPackagePage() {
-    const [packages, setPackages] = useState<Package[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemPages = 15;
-
-    useEffect(() => {
-        const fetchPackages = async () => {
-            try {
-                const res = await getAllPackages();
-                console.log(res);
-                setPackages(res.data.data);
-            } catch (error) {
-                console.error(`Error: ${error}`);
-            }
-        }
-
-        fetchPackages();
-    }, []);
-
-    const totalPages = Math.ceil(packages.length / itemPages)
-    const startIndex = (currentPage - 1) * itemPages
-    const currentItems = packages.slice(startIndex, startIndex + itemPages)
+    const {
+        currentPage, setCurrentPage,
+        totalPages,
+        currentItems
+    } = usePackages();
 
     return (
         <DefaultLayout>

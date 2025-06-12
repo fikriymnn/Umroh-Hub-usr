@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import DefaultLayout from "../../layout/DefaultLayout";
 import CarouselHome from "../../components/Carousel/Carousel";
 import CarouselForum from "../../components/Carousel/CarouselForum";
@@ -23,25 +23,12 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
-import type { Package } from "../../types/Package";
-import { getAllPackages } from "../../services/packagesSercice";
+import usePackages from "../../hooks/packages/usePackages";
 
 const HomePage: React.FC = () => {
-  const [packages, setPackages] = useState<Package[]>([]);
-
-  useEffect(() => {
-    const fetchPackages = async () => {
-      try {
-        const res = await getAllPackages();
-        console.log(res);
-        setPackages(res.data.data);
-      } catch (error) {
-        console.error(`Error: ${error}`);
-      }
-    }
-
-    fetchPackages();
-  }, []);
+  const {
+    packages
+  } = usePackages();
 
   const cardDataList = [
     {

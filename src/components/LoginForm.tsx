@@ -1,28 +1,12 @@
-
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
-import { loginUser } from '../services/authServices'
+import useLogin from '../hooks/auth/useLogin';
 
 function LoginForm() {
-    const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const {
+        email, setEmail,
+        password, setPassword,
+        handleLogin
+    } = useLogin();
 
-    const handleLogin = async () => {
-        try {
-            const res = await loginUser({
-                email: email,
-                password: password
-            });
-            console.log(res);
-
-            alert('Login berhasil')
-            navigate('/')
-        } catch (error) {
-            console.error(error);
-            alert('Login gagal');
-        }
-    }
     return (
         <div className="w-full h-full px-10 py-12 items-center">
             <h2 className="text-[20px] font-medium mt-5 text-[#004492] ml-[80px]">Selamat Datang Di</h2>

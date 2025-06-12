@@ -1,34 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from 'react'
+
+import React from 'react'
 import DefaultLayout from '../../layout/DefaultLayout'
 import CardPartners from '../../components/Card/CardPartners'
-import { getAllPartners } from '../../services/partnersServices'
 // import penawaranBg from "../../assets/images/Group.png"
 // import penawaranBg2 from "../../assets/images/Group (1).png"
 import '../../app.css'
-import { Partners } from '../../types/Partners'
+import usePartners from '../../hooks/partners/usePartners'
 
 function OurPartnersPage() {
-    const [partners, setPartners] = useState<Partners[]>([]);
-    const [currentPage, setCurrentPage] = useState(1)
-    const itemPages = 4;
-
-    useEffect(() => {
-        const fetchPackages = async () => {
-            try {
-                const res = await getAllPartners();
-                setPartners(res.data.data.data);
-            } catch (error) {
-                console.error(`Error: ${error}`);
-            }
-        }
-
-        fetchPackages();
-    }, []);
-
-    const totalPages = Math.ceil(partners.length / itemPages)
-    const startIndex = (currentPage - 1) * itemPages
-    const currentItems = partners.slice(startIndex, startIndex + itemPages)
+    const {
+        currentPage, setCurrentPage,
+        totalPages,
+        currentItems
+    } = usePartners();
 
     return (
         <DefaultLayout>
