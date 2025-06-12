@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
 import DefaultLayout from '../../../layout/DefaultLayout'
 import CardPackage from '../../../components/Card/CardPackage'
 import mitraExampleProfile from "../../../assets/images/pexels-chevanon-1108099.png"
@@ -9,50 +7,16 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Review from '../../../components/Review'
-import { getPartnersById } from '../../../services/partnersServices'
-import { Partners } from '../../../types/Partners'
+import useDetailPartner from '../../../hooks/partners/useDetailPartner'
 
 function PartnersDetail() {
-    const { id } = useParams();
-    const [partners, setPartners] = useState<Partners | null>(null);
-    const [currentPage, setCurrentPage] = useState(1)
-    const itemPages = 9;
-
-    useEffect(() => {
-        const fetchPackages = async () => {
-            try {
-                if (id) {
-                    const res = await getPartnersById(id);
-                    setPartners(res.data.data.data);
-                }
-            } catch (error) {
-                console.error(`Error: ${error}`);
-            }
-        };
-
-        fetchPackages();
-    }, []);
-
-    const dataUlasan = [
-        {
-            nama: 'Acep Waskuy',
-            kota: 'Jakarta',
-            komentar: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit amet',
-            foto: [1, 2, 3, 4],
-        },
-        {
-            nama: 'Adul Sahrumi',
-            kota: 'Bandung',
-            komentar: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit amet',
-            foto: [1, 2, 3, 4],
-        },
-        {
-            nama: 'Dias Nasional',
-            kota: 'Bandung',
-            komentar: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit amet',
-            foto: [1, 2, 3, 4],
-        },
-    ];
+    const {
+        partner,
+        currentPage, setCurrentPage,
+        dataUlasan,
+        totalPages,
+        currentItems
+    } = useDetailPartner();
 
     const NextArrow = ({ onClick }: any) => (
         <div
@@ -103,14 +67,10 @@ function PartnersDetail() {
         ],
     };
 
-    const totalPages = Math.ceil((partners?.package_umrohs?.length || 0) / itemPages);
-    const startIndex = (currentPage - 1) * itemPages;
-    const currentItems = partners?.package_umrohs?.slice(startIndex, startIndex + itemPages) || [];
-
     return (
 
         <DefaultLayout>
-            {partners && (
+            {partner && (
                 <div className='background-div pt-[200px] w-full min-h-screen flex flex-col items-center'>
 
                     <div className="bg-white w-10/12 h-[251px] px-[40px] py-5 rounded-[5px] mt-[20px] ">
@@ -122,7 +82,7 @@ function PartnersDetail() {
                             />
                             <div className="flex flex-col">
                                 <h1 className="text-[50px] capitalize w-full h-[50px] flex  items-center font-medium">
-                                    {partners.compamy_name}<span className="text-yellow-300 text-[30px] ms-6">★</span> <span className='ms-6 text-[24px]'>(89)</span>
+                                    {partner.compamy_name}<span className="text-yellow-300 text-[30px] ms-6">★</span> <span className='ms-6 text-[24px]'>(89)</span>
                                 </h1>
                                 <p className='text-[12px] mt-2 w-[95%]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
@@ -136,7 +96,7 @@ function PartnersDetail() {
                         </div>
                     </div>
                     <div className="flex flex-col w-10/12 items-start mt-[45px] space-y-[25px]">
-                        <h1 className="text-white text-[24px] font-semibold capitalize">Paket dari<span className='text-[#3C97FF] ms-3 capitalize font-medium'>hasanah hana</span></h1>
+                        <h1 className="text-white text-[24px] font-semibold capitalize">Paket dari<span className='text-[#3C97FF] ms-3 capitalize font-medium'>{partner?.compamy_name}</span></h1>
                         <div className=" w-full flex flex-col items-center">
                             <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
                                 {currentItems.map((item: any, index: number) => (

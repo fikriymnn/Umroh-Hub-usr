@@ -1,57 +1,15 @@
-import React, { useState, useEffect } from 'react'
 import profileExample from "../../assets/images/profile_placeholder.png"
 import Sidebar from '../../components/Sidebar'
-import { getMe } from '../../services/userSevices';
-import { updateUser } from '../../services/userSevices';
-import { User } from '../../types/User';
+import useProfile from '../../hooks/user/useProfile';
 
 function Profile() {
-  const [user, setUser] = useState<User>();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await getMe();
-        console.log(res.data);
-        const userData = res.data.data;
-
-        setUser(userData);
-        setName(userData.name);
-        setEmail(userData.email);
-        setPhone(userData.phone_number);
-      } catch (error) {
-        console.error(`Error: ${error}`);
-      }
-    }
-
-    fetchUser();
-  }, []);
-
-  const handleUpdate = async () => {
-    if (!user?.id) return;
-
-    try {
-      await updateUser(user.id, {
-        name,
-        email,
-        phone_number: phone
-      });
-
-      alert('Data berhasil diperbarui!');
-      setUser((prev: any) => ({
-        ...prev,
-        name,
-        email,
-        phone_number: phone
-      }));
-    } catch (error) {
-      console.error(`Error: ${error}`);
-      alert('Gagal memperbarui')
-    }
-  };
+  const {
+    user,
+    name, setName,
+    email, setEmail,
+    phone, setPhone,
+    handleUpdate
+  } = useProfile();
 
   return (
     <div className='w-full h-screen flex space-x-2 bg-gradient-to-b from-[#004492] to-[#00152C]'>

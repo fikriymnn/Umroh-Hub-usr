@@ -1,46 +1,17 @@
-import axios from 'axios'
-import React, { useState } from 'react'
-import { register } from '../services/authServices';
+import { useState } from 'react';
+import useRegister from '../hooks/auth/useRegister';
 
-const RegisterForm = ({
-    isAnimated,
-    setIsAnimated,
-}: {
-    isAnimated: boolean;
-    setIsAnimated: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [phone, setPhone] = useState('');
-    const [address, setAddress] = useState('');
-    const [ktp, setKtp] = useState('');
-
-    async function Register() {
-        try {
-            const res = await register({
-                name: name,
-                email: email,
-                password: password,
-                phone_number: phone,
-                address: address,
-                no_ktp: ktp
-            });
-
-            console.log(res);
-            setIsAnimated(!isAnimated);
-            alert('Register berhasil');
-            setName('');
-            setEmail('');
-            setPassword('');
-            setPhone('');
-            setAddress('');
-            setKtp('');
-        } catch (error) {
-            console.error(`Error: ${error}`);
-            alert('Register gagal');
-        }
-    }
+const RegisterForm = () => {
+    const [isAnimated, setIsAnimated] = useState(false);
+    const {
+        name, setName,
+        email, setEmail,
+        password, setPassword,
+        phone, setPhone,
+        address, setAddress,
+        ktp, setKtp,
+        handleRegister
+    } = useRegister({ isAnimated, setIsAnimated });
 
     return (
         <div id="Register" className="w-full h-full px-10 py-12 overflow-y-auto ">
@@ -108,7 +79,7 @@ const RegisterForm = ({
                 />
                 <button
                     type="button"
-                    onClick={Register}
+                    onClick={handleRegister}
                     className="bg-gradient-to-r font-bold from-[#004492] to-[#0A6BDB] text-white py-2 rounded-[20px] flex items-center justify-center w-[106px] h-[32px]"
                 >
                     Daftar
