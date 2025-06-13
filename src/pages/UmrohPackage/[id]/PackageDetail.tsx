@@ -22,9 +22,13 @@ import "slick-carousel/slick/slick-theme.css";
 import TravelSchedule from '../../../components/TravelSchedule'
 import Review from '../../../components/Review'
 import useDetailPackage from '../../../hooks/packages/useDetailPackage'
+import { useNavigate } from 'react-router'
+import { saveSelectedPackage } from '../../../utils/storage'
 
 
 function PackageDetail() {
+    const navigate = useNavigate();
+
     const {
         packages,
         currentPage, setCurrentPage,
@@ -38,6 +42,11 @@ function PackageDetail() {
         next, previous
     } = useDetailPackage();
 
+    const handleOrderClick = () => {
+        saveSelectedPackage(packages);
+        navigate('/PaymentData')
+    };
+
     return (
         <DefaultLayout>
             {packages && (
@@ -49,7 +58,7 @@ function PackageDetail() {
                         <div className="bg-white col-span-2 h-[650px] rounded-[5px] shadow-md overflow-hidden">
                             <div className="relative rounded-t-[5px] overflow-hidden">
                                 <Slider {...settings} ref={sliderRef}>
-                                    {images.map((src, index) => (
+                                    {images?.map((src, index) => (
                                         <div key={index} className="h-[220px]">
                                             <img
                                                 src={src}
@@ -86,20 +95,20 @@ function PackageDetail() {
                             <div className="px-8 py-4 space-y-[2px]">
                                 <p className="text-[15px] font-medium">Harga</p>
                                 <h2 className="text-[36px] font-bold bg-gradient-to-r from-[#3C97FF] to-[#245B99] bg-clip-text text-transparent">
-                                    {formatHarga(packages.price)}
+                                    {formatHarga(packages?.price)}
                                 </h2>
 
                                 <p className="text-[15px] font-medium">Mitra</p>
                                 <div className="flex items-center space-x-4">
-                                    <span className="text-[24px] font-medium">{packages.Mitra.company_name}</span>
+                                    <span className="text-[24px] font-medium">{packages?.Mitra?.company_name}</span>
                                     <span className='text-yellow-300 text-[18px]'>★ ★ ★ ★ ★</span>
                                 </div>
                                 <div className="flex flex-col justify-center space-y-1">
-                                    <h1 className="text-[24px] font-medium">{packages.package_name}</h1>
-                                    <p className='text-sm'>{packages.description}</p>
+                                    <h1 className="text-[24px] font-medium">{packages?.package_name}</h1>
+                                    <p className='text-sm'>{packages?.description}</p>
                                 </div>
                                 <p className="text-[15px] font-medium mt-2">Nomor Izin Umroh</p>
-                                <p className="text-[20px] font-medium">1243214533</p>
+                                <p className="text-[20px] font-medium">{packages?.Mitra?.siuppiu}</p>
                                 <div className="mt-4 w-10/12 h-[14px]">
                                     <div className="w-full bg-gray-200 rounded-full h-full">
                                         <div
@@ -118,8 +127,8 @@ function PackageDetail() {
                                 <h2 className="font-semibold text-[24px] ms-3">Fasilitas Umroh</h2>
                                 <div className="grid grid-cols-2 gapx-8 py-4 text-sm">
                                     <ul className="list-disc list-inside text-[15px] font-medium space-y-2">
-                                        {packages.package_facilities.map((facility: any, i: number) => (
-                                            <li key={i}>{facility.description}</li>
+                                        {packages?.package_facilities?.map((facility, i) => (
+                                            <li key={i}>{facility?.description}</li>
                                         ))}
                                     </ul>
                                     <ul className="list-disc list-inside text-[15px] font-medium space-y-2">
@@ -155,7 +164,7 @@ function PackageDetail() {
                                                     <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Double Room
                                                 </h6>
 
-                                                <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{packages.package_hotels[0]?.description}</p>
+                                                <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{packages?.package_hotels?.[0]?.description}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +173,7 @@ function PackageDetail() {
                                             <img src={durationIcon} alt='Hotels' className='w-[14px] h-[14px]' />
                                             <p className="font-bold text-[15px]">Duration Perjalanan</p>
                                         </div>
-                                        <p className='font-medium text-[13px] ms-6 mt-1'>{packages.duration} Hari</p>
+                                        <p className='font-medium text-[13px] ms-6 mt-1'>{packages?.duration} Hari</p>
                                     </div>
                                     <div className="flex space-x-1 ms-4">
                                         <div className="h-[16px] flex items-center">
@@ -177,7 +186,7 @@ function PackageDetail() {
                                                 <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Double Room
                                             </h6>
 
-                                            <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{packages.package_hotels[1]?.description}</p>
+                                            <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{packages?.package_hotels?.[1]?.description}</p>
                                         </div>
                                     </div>
                                     <div>
@@ -186,7 +195,7 @@ function PackageDetail() {
                                             <p className="font-bold text-[15px]">Tanggal Keberangkatan</p>
                                         </div>
                                         <p className='font-medium text-[13px] ms-6 mt-1'>
-                                            {new Date(packages.date_departure).toLocaleDateString('id-ID', {
+                                            {new Date(packages?.date_departure).toLocaleDateString('id-ID', {
                                                 day: '2-digit',
                                                 month: 'long',
                                                 year: 'numeric'
@@ -198,7 +207,7 @@ function PackageDetail() {
                                             <img src={planeIcon} alt="icon" className='w-[14px] h-[14px]' />
                                             <p className="font-semibold">Maskapai</p>
                                         </div>
-                                        <p className='font-medium text-[13px] ms-6 mt-1'>{packages.airline}</p>
+                                        <p className='font-medium text-[13px] ms-6 mt-1'>{packages?.airline}</p>
 
                                     </div>
                                     <div>
@@ -206,7 +215,7 @@ function PackageDetail() {
                                             <img src={departureLocIcon} alt='Hotels' className='w-[14px] h-[14px]' />
                                             <p className="font-bold text-[15px]">Kota Keberangkatan</p>
                                         </div>
-                                        <p className='font-medium text-[13px] ms-6 mt-1'>{packages.master_location_departure.location_name}</p>
+                                        <p className='font-medium text-[13px] ms-6 mt-1'>{packages?.master_location_departure?.location_name}</p>
                                     </div>
                                     <div className="flex gap-2 items-center">
                                         <img src={examplePlane} alt="AirAsia" className="w-[34px] h-[34px] " />
@@ -215,11 +224,13 @@ function PackageDetail() {
                                 </div>
                             </div>
 
-                            <div className="bg-gradient-to-r p-3 from-[#10F5EA] to-[#3C97FF] w-full h-1/12 flex items-center justify-center rounded-b-[20px] rounded-t-[5px] shadow-md">
+                            <button
+                                onClick={handleOrderClick}
+                                className="bg-gradient-to-r p-3 from-[#10F5EA] to-[#3C97FF] w-full h-1/12 flex items-center justify-center rounded-b-[20px] rounded-t-[5px] shadow-md">
                                 <h1 className="capitalize text-white text-center font-bold text-[30px]">
                                     Pesan Sekarang
                                 </h1>
-                            </div>
+                            </button>
                         </div>
                     </div>
 
@@ -228,7 +239,7 @@ function PackageDetail() {
                     <div className="w-10/12 h-[600px] p-[40px] rounded-[5px] bg-white">
                         <h1 className='text-[24px] font-medium'>Hotel dan Fasilitasnya</h1>
                         <div className=" h-full grid grid-cols-2 w-11/12 mt-[50px]">
-                            {packages.package_hotels.map((item, index) => (
+                            {packages?.package_hotels?.map((item, index) => (
                                 <div key={index} className='flex flex-col space-y-2 w-full my-2 items-center'>
 
                                     <div className="w-full flex space-x-3.5">
@@ -239,7 +250,7 @@ function PackageDetail() {
                                                 {item?.master_hotel?.hotel_name}
                                                 <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Double Room
                                             </h6>
-                                            <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{item.description}</p>
+                                            <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{item?.description}</p>
                                         </div>
                                     </div>
                                     <div className="w-full flex flex-col ms-[80px] space-y-3.5 items-start ">
@@ -294,7 +305,7 @@ function PackageDetail() {
                     <div className="bg-white w-10/12 p-[40px] rounded-[5px]">
                         <div>
                             <h1 className='text-[24px] font-medium capitalize mb-10'>Jadwal perjalanan</h1>
-                            {currentItems.map((item: any, index: number) => (
+                            {currentItems?.map((item, index) => (
                                 <TravelSchedule
                                     key={index}
                                     scheduleList={item}
@@ -333,7 +344,7 @@ function PackageDetail() {
                     <div className="w-10/12 grid gap-5 grid-cols-3">
                         <div className='bg-white rounded-[5px] w-[740px] h-[673px]'>
                             <h2 className="text-[24px] md:text-2xl font-semibold ml-8 mt-6 mb-4">Ulasan Jemaah</h2>
-                            {review.map((item: any, index: number) => (
+                            {review?.map((item, index) => (
                                 <Review
                                     key={index}
                                     ulasan={item}

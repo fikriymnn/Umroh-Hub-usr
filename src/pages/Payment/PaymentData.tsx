@@ -4,16 +4,23 @@ import DefaultLayout from '../../layout/DefaultLayout'
 import arrowIcons from "../../../src/assets/icons/Vector 664.svg"
 import profileIcon from "../../../src/assets/icons/iconamoon_profile-circle-fill.svg"
 import payTypeIcon from '../../assets/icons/Vector.svg'
+import { getSelectedPackage, saveOrderData } from '../../utils/storage'
+import useProfile from '../../hooks/user/useProfile'
+import { useNavigate } from 'react-router'
+
 function PaymentData() {
+    const navigate = useNavigate();
+    const { packages } = getSelectedPackage();
+    const { user } = useProfile();
     const [jamaahList, setJamaahList] = useState([
         {
-            nama: '',
-            gender: '',
-            telepon: '',
+            name: '',
             email: '',
-            ktp: '',
-            passport: '',
-            kk: ''
+            gender: '',
+            phone_number: '',
+            // ktp: '',
+            // passport: '',
+            // kk: ''
         }
     ]);
     const [fileName, setFileName] = useState("Belum ada file");
@@ -22,23 +29,38 @@ function PaymentData() {
         setFileName(e.target.files[0]?.name || "Belum ada file");
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setJamaahList({ ...jamaahList, [e.target.name]: e.target.value })
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+        index: number
+    ) => {
+        const { name, value } = e.target;
+        const updatedList = [...jamaahList];
+        updatedList[index] = {
+            ...updatedList[index],
+            [name]: value,
+        };
+        setJamaahList(updatedList);
     };
 
     const handleDataJamaah = () => {
         setJamaahList([
             ...jamaahList,
             {
-                nama: '',
-                gender: '',
-                telepon: '',
+                name: '',
                 email: '',
-                ktp: '',
-                passport: '',
-                kk: ''
+                gender: '',
+                phone_number: '',
+                // ktp: '',
+                // passport: '',
+                // kk: ''
             }
         ]);
+    };
+
+    const handleNext = () => {
+        console.log("Data jamaahList sebelum disimpan:", jamaahList);
+        saveOrderData(jamaahList);
+        navigate('/payment');
     };
 
     const handleRemoveJamaah = (index: number) => {
@@ -66,7 +88,9 @@ function PaymentData() {
                             <img src={profileIcon} alt="profile" className='w-[38px] h-[38px]' />
                             <div className="flex flex-col">
                                 <h1 className='text-[20px] font-bold'>Nama Pemesan</h1>
-                                <h1 className='text-[20px] font-medium'>Rudi Kustandi</h1>
+                                {user && (
+                                    <h1 className='text-[20px] font-medium'>{user.name}</h1>
+                                )}
                             </div>
                         </div>
                         <div className="bg-white px-7 py-5 w-full h-[269px] rounded-[5px]">
@@ -98,10 +122,12 @@ function PaymentData() {
                                 </tr>
                             </table>
                         </div>
-                        <div className="bg-gradient-to-r from-[#10F5EA] to-[#0A6BDB] w-full
+                        <button
+                            onClick={handleNext}
+                            className="bg-gradient-to-r from-[#10F5EA] to-[#0A6BDB] w-full
                          h-[58px] rounded-full text-[30px] font-bold text-white flex items-center justify-center">
                             Lanjut Pembayaran
-                        </div>
+                        </button>
                     </div>
                     <div className="bg-white rounded-[5px] w-7/12 py-6 px-10">
                         {jamaahList.map((jamaah, index) => (
@@ -120,25 +146,25 @@ function PaymentData() {
                                     <div className="flex flex-col space-y-[13px]">
                                         <label htmlFor="Gender" className='font-semibold text-[15px]'>Gender</label>
                                         <select
-                                            name="Gender"
+                                            name="gender"
                                             className='text-[#959595] border-[1px] rounded-[10px] border-[#959595] px-2 py-[9px] text-[13px] font-semibold'
                                             value={jamaah.gender}
-                                            onChange={handleChange}
+                                            onChange={(e) => handleChange(e, index)}
                                         >
                                             <option value="" disabled >Pilih Gender</option>
-                                            <option value="Pria">Pria</option>
-                                            <option value="Wanita">Wanita</option>
+                                            <option value="male">Pria</option>
+                                            <option value="female">Wanita</option>
                                         </select>
                                     </div>
                                     <div className="flex flex-col space-y-[13px]">
                                         <label htmlFor="Fullname" className='font-semibold text-[15px]'>Nama Lengkap</label>
                                         <input
                                             type="text"
-                                            name='Fullname'
+                                            name='name'
                                             placeholder="Ketik Nama Lengkap..."
                                             className='text-[#959595] border-[1px] w-[400px] rounded-[10px] border-[#959595] p-2 text-[13px] font-semibold'
-                                            value={jamaah.nama}
-                                            onChange={handleChange}
+                                            value={jamaah.name}
+                                            onChange={(e) => handleChange(e, index)}
                                         />
                                         <h1 className='text-[11px] font-semibold text-[#3C97FF] text-center'>(Sesuai dengan KTP/ Paspor tanpa gelar)</h1>
                                     </div>
@@ -148,24 +174,24 @@ function PaymentData() {
                                         <label htmlFor="Phone" className='font-semibold text-[15px]'>Nomor Telepon</label>
                                         <input
                                             type="text"
-                                            name='Phone'
+                                            name='phone_number'
                                             placeholder="Ketik Nomor Telepon..." className='text-[#959595] border-[1px] w-[203px] rounded-[10px] border-[#959595] p-2 text-[13px] font-semibold'
-                                            value={jamaah.telepon}
-                                            onChange={handleChange}
+                                            value={jamaah.phone_number}
+                                            onChange={(e) => handleChange(e, index)}
                                         />
                                     </div>
                                     <div className="flex flex-col space-y-[13px]">
                                         <label htmlFor="Email" className='font-semibold text-[15px]'>Email</label>
                                         <input
                                             type="text"
-                                            name='Email'
+                                            name='email'
                                             placeholder="Ketik Email..." className='text-[#959595] border-[1px] w-[350px] rounded-[10px] border-[#959595] p-2 text-[13px] font-semibold'
                                             value={jamaah.email}
-                                            onChange={handleChange}
+                                            onChange={(e) => handleChange(e, index)}
                                         />
                                     </div>
                                 </div>
-                                <div className="w-full flex space-x-[15px] mt-[18px]">
+                                {/* <div className="w-full flex space-x-[15px] mt-[18px]">
                                     <div className="flex flex-col space-y-[13px]">
                                         <label className="block text-lg font-semibold mb-2">Lampiran Foto KTP</label>
                                         <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[300px]">
@@ -239,7 +265,7 @@ function PaymentData() {
                                         <p className="text-sm w-[80%] mt-2 text-gray-600 overflow-hidden">{fileName}</p>
                                     </div>
 
-                                </div>
+                                </div> */}
                             </div>
                         ))}
                         <button

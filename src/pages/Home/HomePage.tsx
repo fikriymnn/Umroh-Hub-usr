@@ -147,7 +147,7 @@ const HomePage: React.FC = () => {
 
                 {/* cards */}
                 <div className='w-10/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4   mt-5'>
-                  {cardDataList.map((item: any, index: number) => (
+                  {cardDataList?.map((item, index) => (
                     <Card
                       key={index}
                       data={item}
@@ -172,7 +172,7 @@ const HomePage: React.FC = () => {
                   </h1>
                 </div>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-                  {packages.map((item: any, index: number) => (
+                  {packages?.map((item, index) => (
                     <CardPackage
                       key={index}
                       packages={item}

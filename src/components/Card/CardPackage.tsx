@@ -45,15 +45,15 @@ const CardPackage = ({ packages }: { packages: Package }) => {
                         <img src={planeIcon} alt="background" className="w-[30px] h-[30px]" />
                         <div className="flex-col w-full">
                             <div className="flex w-full">
-                                <h6 className='text-white text-[12px] capitalize font-semibold'>{packages.airline}
+                                <h6 className='text-white text-[12px] capitalize font-semibold'>{packages?.airline}
                                     <span className='text-yellow-300 mx-[7px]'>{renderStars(airlineRating)}</span>
                                 </h6>
                             </div>
-                            <h1 className="text-[#5CE9FF] text-[10px] font-semibold">{packages.master_location_departure.location_name}</h1>
+                            <h1 className="text-[#5CE9FF] text-[10px] font-semibold">{packages?.master_location_departure?.location_name}</h1>
                         </div>
                     </div>
                     <div className="absolute bottom-11 right-5 text-[45px] font-bold bg-gradient-to-br from-[#10F5EA] to-[#3C97FF] inline-block text-transparent bg-clip-text">
-                        {packages.price}
+                        {packages?.price}
                     </div>
                 </div>
                 <div className="flex justify-between px-[17px] py-[20px] w-full mt-[8px] ">
