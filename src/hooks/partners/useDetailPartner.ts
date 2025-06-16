@@ -45,9 +45,9 @@ const useDetailPartner = () => {
         },
     ];
 
-    const totalPages = Math.ceil((partner?.package_umrohs?.length || 0) / itemPages);
+    const totalPages = Math.ceil((partner?.package_umroh?.length || 0) / itemPages);
     const startIndex = (currentPage - 1) * itemPages;
-    const currentItems = partner?.package_umrohs?.slice(startIndex, startIndex + itemPages) || [];
+    const currentItems = partner?.package_umroh?.slice(startIndex, startIndex + itemPages) || [];
 
     return {
         partner,

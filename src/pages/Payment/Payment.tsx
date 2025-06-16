@@ -10,34 +10,17 @@ import examplePlane from '../../assets/images/image 3.png'
 import profileIcon from "../../../src/assets/icons/iconamoon_profile-circle-fill.svg"
 import payMethodIcon from "../../../src/assets/icons/Group 167.svg"
 import bcaIcon from "../../../src/assets/icons/image 7.svg"
-import { clearOrderData, getOrderData, getSelectedPackage } from '../../utils/storage'
 import useProfile from '../../hooks/user/useProfile'
-import { order } from '../../services/orderServices'
+import usePayment from '../../hooks/order/usePayment'
 function Payment() {
   const { user } = useProfile();
-  const packages = getSelectedPackage();
-  const orderData = getOrderData();
-  const [rekening, setRekening] = useState("");
-  const [isPayment, setIsPayment] = useState(false);
-
-  const hadlePaymentClick = async () => {
-    setIsPayment(true);
-    const payload = {
-      ...orderData,
-      payment_method: "Transfer",
-      bank: "bca",
-      no_rek: rekening,
-    }
-    try {
-      const res = await order(payload);
-      console.log(res);
-      alert('Data pesanan berhasil dikirim');
-      clearOrderData();
-    } catch (error) {
-      alert('Gagal kirim');
-      console.error(`Error: ${error}`);
-    }
-  };
+  const {
+    packages,
+    orderData,
+    rekening, setRekening,
+    isPayment,
+    hadlePaymentClick
+  } = usePayment();
 
   return (
     <DefaultLayout>
@@ -167,7 +150,7 @@ function Payment() {
                 <input
                   type="number"
                   value={rekening}
-                  onChange={(e) => (e.target.value)}
+                  onChange={(e) => setRekening(e.target.value)}
                   placeholder="Ketik Nama Pemilik Rekening..."
                   className='placeholder:text-[15px] placeholder:text-[#95959599] placeholder:font-semibold
                  w-full rounded-[10px] mt-2 border-[1px] border-[#959595] h-[51px] px-[20px] py-[15px]' />

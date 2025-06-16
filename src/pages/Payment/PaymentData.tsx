@@ -1,74 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react'
 import DefaultLayout from '../../layout/DefaultLayout'
 import arrowIcons from "../../../src/assets/icons/Vector 664.svg"
 import profileIcon from "../../../src/assets/icons/iconamoon_profile-circle-fill.svg"
 import payTypeIcon from '../../assets/icons/Vector.svg'
-import { getSelectedPackage, saveOrderData } from '../../utils/storage'
 import useProfile from '../../hooks/user/useProfile'
-import { useNavigate } from 'react-router'
+import useOrder from '../../hooks/order/useOrder'
 
 function PaymentData() {
-    const navigate = useNavigate();
-    const { packages } = getSelectedPackage();
     const { user } = useProfile();
-    const [jamaahList, setJamaahList] = useState([
-        {
-            name: '',
-            email: '',
-            gender: '',
-            phone_number: '',
-            // ktp: '',
-            // passport: '',
-            // kk: ''
-        }
-    ]);
-    const [fileName, setFileName] = useState("Belum ada file");
-
-    const handleChangeFile = (e: any) => {
-        setFileName(e.target.files[0]?.name || "Belum ada file");
-    };
-
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
-        index: number
-    ) => {
-        const { name, value } = e.target;
-        const updatedList = [...jamaahList];
-        updatedList[index] = {
-            ...updatedList[index],
-            [name]: value,
-        };
-        setJamaahList(updatedList);
-    };
-
-    const handleDataJamaah = () => {
-        setJamaahList([
-            ...jamaahList,
-            {
-                name: '',
-                email: '',
-                gender: '',
-                phone_number: '',
-                // ktp: '',
-                // passport: '',
-                // kk: ''
-            }
-        ]);
-    };
-
-    const handleNext = () => {
-        console.log("Data jamaahList sebelum disimpan:", jamaahList);
-        saveOrderData(jamaahList);
-        navigate('/payment');
-    };
-
-    const handleRemoveJamaah = (index: number) => {
-        if (jamaahList.length === 1) return;
-        const updatedList = [...jamaahList];
-        updatedList.splice(index, 1);
-        setJamaahList(updatedList);
-    };
+    const {
+        jamaahList,
+        handleChange,
+        handleDataJamaah,
+        handleNext,
+        handleRemoveJamaah
+    } = useOrder();
 
     return (
         <DefaultLayout>

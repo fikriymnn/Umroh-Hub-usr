@@ -39,6 +39,7 @@ function PackageDetail() {
         settings,
         sliderRef,
         formatHarga,
+        formatDate,
         next, previous
     } = useDetailPackage();
 
@@ -86,7 +87,7 @@ function PackageDetail() {
                                 {/* Overlay dan teks */}
                                 <div className="absolute bottom-2 left-0 w-full h-[50px] bg-black/50 flex items-center px-8">
                                     <p className="text-white text-[15px] font-semibold">
-                                        Paket <span className="text-[#10F5EA] ms-4 text-[20px]">Plus</span>
+                                        Paket <span className="text-[#10F5EA] ms-4 text-[20px]">{packages?.master_category_departure?.category_name}</span>
                                     </p>
                                 </div>
                             </div>
@@ -116,7 +117,7 @@ function PackageDetail() {
 
                                         ></div>
                                     </div>
-                                    <p className="text-[12px] mt-1 font-semibold">Pesanan: 100/150</p>
+                                    <p className="text-[12px] mt-1 font-semibold">Pesanan: {packages?.quota_update}/{packages?.quota}</p>
                                 </div>
                             </div>
                         </div>
@@ -195,11 +196,7 @@ function PackageDetail() {
                                             <p className="font-bold text-[15px]">Tanggal Keberangkatan</p>
                                         </div>
                                         <p className='font-medium text-[13px] ms-6 mt-1'>
-                                            {new Date(packages?.date_departure).toLocaleDateString('id-ID', {
-                                                day: '2-digit',
-                                                month: 'long',
-                                                year: 'numeric'
-                                            })}
+                                            {formatDate(packages?.date_departure)}
                                         </p>
                                     </div>
                                     <div>

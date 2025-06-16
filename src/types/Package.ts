@@ -1,22 +1,4 @@
-export interface Mitra {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-  phone_number: string;
-  address: string;
-  company_name: string;
-  website: string;
-  nib: string;
-  npwp: string;
-  siup: string;
-  siuppiu: string;
-  akta: string;
-  image_url: string;
-  is_active: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
+import { Partners } from "./Partners";
 
 export interface HotelFacility {
     id: number;
@@ -123,7 +105,7 @@ export interface MasterHotel {
     id_type_departure: number;
     createdAt: string;
     updatedAt: string;
-    Mitra: Mitra;
+    Mitra: Partners;
     master_type_departure: MasterTypeDeparture;
     master_category_departure: MasterCategoryDeparture;
     master_location_departure: MasterLocationDeparture;

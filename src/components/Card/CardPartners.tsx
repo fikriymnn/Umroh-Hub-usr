@@ -10,7 +10,7 @@ const CardPartners = ({ partners }: { partners: Partners }) => {
                 <div className='w-12 h-12 bg-gray-300 rounded-full'>
                 </div>
                 <div>
-                    <h3 className='text-lg font-semibold'>{partners.compamy_name}</h3>
+                    <h3 className='text-lg font-semibold'>{partners.company_name}</h3>
                     <div className='flex'>
                         <div className='text-sm text-gray-600 ml-[2px]'>
                             60 Penilaian

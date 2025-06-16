@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Sidebar from '../../components/Sidebar'
 import hotelIcon from "../../assets/icons/Component 1.svg"
 import hotelIcons from "../../assets/icons/Group.svg"
@@ -8,9 +8,28 @@ import dateIcon from '../../assets/icons/clarity_date-solid.svg'
 import durationIcon from '../../assets/icons/mdi_calendar-time.svg'
 import examplePlane from '../../assets/images/image 3.png'
 import bedIcons from '../../assets/icons/mdi_guest-room.svg'
+import axios from 'axios'
+import { Order } from '../../types/Order'
 
 function Transaction() {
+    const [order, setOrder] = useState<Order[]>([]);
     const [filter, setFilter] = useState('semua');
+
+    useEffect(() => {
+        async function fetchOrder() {
+            try {
+                const res = axios.get(`${import.meta.env.VITE_PUBLIC_URL}/getOrderUser`, {
+                    withCredentials: true
+                });
+                console.log((await res).data.data);
+                setOrder((await res).data.data);
+            } catch (error) {
+                console.error(`Error: ${error}`);
+            }
+        };
+
+        fetchOrder();
+    }, []);
 
     const transaction = [
         {
@@ -96,18 +115,18 @@ function Transaction() {
                             selesai
                         </h1>
                     </div>
-                    {filteredTransactions.map((item, index) => (
+                    {order?.map((item, index) => (
                         <div key={index} className='mt-[27px] pb-[36px] border-b-[#B0ADAD] px-[56px] border-b'>
                             <div className="flex justify-between w-full">
-                                <h1 className="text-[24px] font-medium">{item.packageName}</h1>
+                                <h1 className="text-[24px] font-medium">{item?.package_umroh?.package_name}</h1>
                                 <div className="flex space-x-2">
 
                                     <h1 className='text-[14px] font-medium'>Status</h1>
-                                    <h1 className='text-[#0A6BDB] text-[14px] font-medium capitalize'>{item.status}</h1>
+                                    <h1 className='text-[#0A6BDB] text-[14px] font-medium capitalize'>{item?.payment_status}</h1>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-4">
-                                <span className="text-[20px] font-medium">{item.partners}</span>
+                                <span className="text-[20px] font-medium">{item?.mitra?.company_name}</span>
                                 <span className='text-yellow-300 text-[18px]'>★ ★ ★ ★ ★</span>
                             </div>
 
@@ -117,14 +136,14 @@ function Transaction() {
                                         <img src={bedIcons} alt='Hotels' className='w-[14px] h-[14px]' />
                                         <p className="font-bold text-[15px]">Pilihan Kamar</p>
                                     </div>
-                                    <p className='font-medium text-[13px] capitalize ms-6 mt-3'>Satu Kamar {item.roomCapacity} Orang <span className='font-semibold'>(QUAD)</span></p>
+                                    <p className='font-medium text-[13px] capitalize ms-6 mt-3'>{item?.package_umroh?.package_hotels[0]?.master_hotel?.room_type}</p>
                                 </div>
                                 <div>
                                     <div className="flex space-x-2 h-[16px] items-center">
                                         <img src={hotelIcons} alt='Hotels' className='w-[14px] h-[14px]' />
                                         <p className="font-bold text-[15px]">Hotel</p>
                                     </div>
-                                    {item.hotel.map((hotel, i) => {
+                                    {item?.package_umroh?.package_hotels?.map((hotel, i) => {
                                         if (i === 0) {
                                             return (
                                                 <div key={i} className='flex space-x-1 ms-4 mt-3'>
@@ -133,11 +152,11 @@ function Transaction() {
                                                     </div>
                                                     <div className='flex-col w-full'>
                                                         <h6 className='text-[12px] font-semibold'>
-                                                            {hotel.nameHotel}
-                                                            <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> {hotel.typeHotel}
+                                                            {hotel?.master_hotel?.hotel_name}
+                                                            <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> {hotel?.master_hotel?.hotel_type}
                                                         </h6>
 
-                                                        <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{hotel.distance}</p>
+                                                        <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{hotel?.description}</p>
                                                     </div>
                                                 </div>
                                             )
@@ -149,9 +168,9 @@ function Transaction() {
                                         <img src={durationIcon} alt='Hotels' className='w-[14px] h-[14px]' />
                                         <p className="font-bold text-[15px]">Duration Perjalanan</p>
                                     </div>
-                                    <p className='font-medium capitalize text-[13px] ms-6 mt-1'>{item.duration} Hari</p>
+                                    <p className='font-medium capitalize text-[13px] ms-6 mt-1'>{item?.package_umroh?.duration} Hari</p>
                                 </div>
-                                {item.hotel.map((hotel, i) => {
+                                {item?.package_umroh?.package_hotels?.map((hotel, i) => {
                                     if (i === 1) {
                                         return (
                                             <div key={i} className='flex space-x-1 ms-4 mt-3'>
@@ -160,11 +179,11 @@ function Transaction() {
                                                 </div>
                                                 <div className='flex-col w-full'>
                                                     <h6 className='text-[12px] font-semibold'>
-                                                        {hotel.nameHotel}
-                                                        <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> {hotel.typeHotel}
+                                                        {hotel?.master_hotel?.hotel_name}
+                                                        <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> {hotel?.master_hotel?.hotel_type}
                                                     </h6>
 
-                                                    <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{hotel.distance}</p>
+                                                    <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{hotel?.description}</p>
                                                 </div>
                                             </div>
                                         )
@@ -175,14 +194,20 @@ function Transaction() {
                                         <img src={dateIcon} alt='Hotels' className='w-[14px] h-[14px]' />
                                         <p className="font-bold text-[15px]">Tanggal Keberangkatan</p>
                                     </div>
-                                    <p className='font-medium capitalize text-[13px] ms-6 mt-1'>{item.date}</p>
+                                    <p className='font-medium capitalize text-[13px] ms-6 mt-1'>
+                                        {new Date(item?.package_umroh?.date_departure).toLocaleDateString('id-ID', {
+                                            day: '2-digit',
+                                            month: 'long',
+                                            year: 'numeric'
+                                        })}
+                                    </p>
                                 </div>
                                 <div>
                                     <div className="h-[16px] flex items-center space-x-2">
                                         <img src={planeIcon} alt="icon" className='w-[14px] h-[14px]' />
                                         <p className="font-semibold">Maskapai</p>
                                     </div>
-                                    <p className='font-medium text-[13px] capitalize ms-6 mt-1'>{item.airline}</p>
+                                    <p className='font-medium text-[13px] capitalize ms-6 mt-1'>{item?.package_umroh?.airline}</p>
 
                                 </div>
                                 <div>
@@ -190,7 +215,7 @@ function Transaction() {
                                         <img src={departureLocIcon} alt='Hotels' className='w-[14px] h-[14px]' />
                                         <p className="font-bold text-[15px]">Kota Keberangkatan</p>
                                     </div>
-                                    <p className='font-medium text-[13px] capitalize ms-6 mt-1'>{item.city}</p>
+                                    <p className='font-medium text-[13px] capitalize ms-6 mt-1'>{item?.package_umroh?.master_location_departure?.location_name}</p>
                                 </div>
                                 <div className="flex gap-2 items-center">
                                     <img src={examplePlane} alt="AirAsia" className="w-[34px] h-[34px] " />

@@ -81,6 +81,14 @@ const useDetailPackage = () => {
         }).format(itung);
     };
 
+    const formatDate = (dateStr: string | Date) => {
+        return new Date(dateStr).toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        })
+    }
+
     const next = () => {
         if (sliderRef.current) {
             sliderRef.current.slickNext();
@@ -103,6 +111,7 @@ const useDetailPackage = () => {
         settings,
         sliderRef,
         formatHarga,
+        formatDate,
         next, previous
     };
 };

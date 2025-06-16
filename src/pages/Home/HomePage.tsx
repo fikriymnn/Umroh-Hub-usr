@@ -27,7 +27,8 @@ import usePackages from "../../hooks/packages/usePackages";
 
 const HomePage: React.FC = () => {
   const {
-    packages
+    packages,
+    currentHomeItems
   } = usePackages();
 
   const cardDataList = [
@@ -172,7 +173,7 @@ const HomePage: React.FC = () => {
                   </h1>
                 </div>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-                  {packages?.map((item, index) => (
+                  {currentHomeItems?.map((item, index) => (
                     <CardPackage
                       key={index}
                       packages={item}
