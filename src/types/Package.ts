@@ -1,4 +1,5 @@
 import { Partners } from "./Partners";
+import { Review } from "./Review";
 
 export interface HotelFacility {
     id: number;
@@ -95,7 +96,7 @@ export interface MasterHotel {
     id_category_departure: number;
     package_name: string;
     description: string;
-    date_departure: string;
+    date_departure: string | Date;
     airline: string;
     duration: number;
     quota: number;
@@ -112,5 +113,6 @@ export interface MasterHotel {
     package_hotels: PackageHotel[];
     package_facilities: PackageFacility[];
     package_schedules: PackageSchedule[];
+    reviews: Review[];
   }
   

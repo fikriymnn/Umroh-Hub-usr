@@ -9,9 +9,11 @@ import usePackages from '../../hooks/packages/usePackages';
 
 function UmrohPackagePage() {
     const {
-        currentPage, setCurrentPage,
+        packages,
+        setCurrentPage,
         totalPages,
-        currentItems
+        filters,
+        setFilters
     } = usePackages();
 
     return (
@@ -38,10 +40,16 @@ function UmrohPackagePage() {
                                                 <select
                                                     id="departure-city"
                                                     name="departure city"
+                                                    onChange={(e) => setFilters((prev) => ({
+                                                        ...prev,
+                                                        id_location_departure: e.target.value,
+                                                        page: 1
+                                                    }))}
                                                     className="bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]"
                                                 >
-                                                    <option value="Bandung">Bandung</option>
-                                                    <option value="Jakarta">Jakarta</option>
+                                                    <option value="">Semua Kota</option>
+                                                    <option value="1">Bandung</option>
+                                                    <option value="3">Jakarta</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -54,8 +62,16 @@ function UmrohPackagePage() {
                                                     alt="City Icon"
                                                     className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
                                                 />
-                                                <select className='bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
-                                                    <option value="Cepat">Cepat</option>
+                                                <select
+                                                    onChange={(e) => setFilters((prev) => ({
+                                                        ...prev,
+                                                        id_type_departure: e.target.value,
+                                                        page: 1
+                                                    }))}
+                                                    className='bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""
+                                                >
+                                                    <option value="">Semua Jenis Keberangkatan</option>
+                                                    <option value="2">Spesial</option>
                                                     <option value="Lambat">Lambat</option>
                                                 </select>
                                             </div>
@@ -93,9 +109,19 @@ function UmrohPackagePage() {
                                                     alt="City Icon"
                                                     className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
                                                 />
-                                                <select className='bg-white ps-9  w-full pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
-                                                    <option value="1 Jam">1 Jam</option>
-                                                    <option value="2 Jam">Bandung</option>
+                                                <select
+                                                    onChange={(e) => setFilters((prev) => ({
+                                                        ...prev,
+                                                        duration: e.target.value,
+                                                        page: 1
+                                                    }))}
+                                                    className='bg-white ps-9  w-full pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""
+                                                >
+                                                    <option value="">Semua Durasi Perjalanan</option>
+                                                    <option value="1">1 Jam</option>
+                                                    <option value="2">2 Jam</option>
+                                                    <option value="3">3 Jam</option>
+                                                    <option value="4">4 Jam</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -103,16 +129,32 @@ function UmrohPackagePage() {
                                     <div className="grid grid-cols-2 gap-3 w-full h-full items-start mt-[40px] px-10 justify-center ">
                                         <div className="flex flex-col">
                                             <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Kategori Paket Umroh</label>
-                                            <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
-                                                <option value="Bandung">Bandung</option>
-                                                <option value="Bandung">Bandung</option>
+                                            <select
+                                                onChange={(e) => setFilters((prev) => ({
+                                                    ...prev,
+                                                    id_category_departure: e.target.value,
+                                                    page: 1
+                                                }))}
+                                                className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""
+                                            >
+                                                <option value="">Semua Kategori</option>
+                                                <option value="3">Regular</option>
+                                                <option value="4">Express</option>
                                             </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Estimasi Biaya</label>
-                                            <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id="">
-                                                <option value="45 Juta">45 Juta</option>
-                                                <option value="Bandung">Bandung</option>
+                                            <select
+                                                onChange={(e) => setFilters((prev) => ({
+                                                    ...prev,
+                                                    price: e.target.value,
+                                                    page: 1
+                                                }))}
+                                                className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""
+                                            >
+                                                <option value="">Semua Harga</option>
+                                                <option value="3500000">3.5 Juta</option>
+                                                <option value="35000000">35 Juta</option>
                                             </select>
                                         </div>
                                     </div>
@@ -124,7 +166,7 @@ function UmrohPackagePage() {
 
                         <div className=" mt-[150px] w-full flex flex-col items-center">
                             <div className="w-10/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-                                {currentItems?.map((item: any, index: number) => (
+                                {packages?.map((item: any, index: number) => (
                                     <CardPackage
                                         key={index}
                                         packages={item}
@@ -133,8 +175,8 @@ function UmrohPackagePage() {
                             </div>
                             <div className='flex justify-center mt-10 space-x-4 text-white'>
                                 <button
-                                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                                    disabled={currentPage === 1}
+                                    onClick={() => setCurrentPage(filters.page - 1)}
+                                    disabled={filters.page === 1}
                                     className='px-3 py-1'
                                 >
                                     &lt;
@@ -144,20 +186,21 @@ function UmrohPackagePage() {
                                     <button
                                         key={index}
                                         onClick={() => setCurrentPage(index + 1)}
-                                        className={`px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-gradient-to-b from-[#109FF5] to-[#0A5D8F] text-white font-bold rounded-2xl' : ''}`}
+                                        className={`px-3 py-1 rounded ${filters.page === index + 1 ? 'bg-gradient-to-b from-[#109FF5] to-[#0A5D8F] text-white font-bold rounded-2xl' : ''}`}
                                     >
                                         {index + 1}
                                     </button>
                                 ))}
 
                                 <button
-                                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                                    disabled={currentPage === totalPages}
+                                    onClick={() => setCurrentPage(filters.page + 1)}
+                                    disabled={filters.page === totalPages}
                                     className='px-3 py-1'
                                 >
                                     &gt;
                                 </button>
                             </div>
+
                         </div>
                     </div>
                 </div>

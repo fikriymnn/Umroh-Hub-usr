@@ -6,14 +6,14 @@ import mitraExampleProfile from "../../../assets/images/pexels-chevanon-1108099.
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Review from '../../../components/Review'
 import useDetailPartner from '../../../hooks/partners/useDetailPartner'
+import Reviews from '../../../components/Review';
 
 function PartnersDetail() {
     const {
         partner,
+        reviews,
         currentPage, setCurrentPage,
-        dataUlasan,
         totalPages,
         currentItems
     } = useDetailPartner();
@@ -137,9 +137,9 @@ function PartnersDetail() {
                     <div className="py-10 px-6 mt-10 bg-white w-[1125px] h-[408px] rounded-[5px]">
                         <h2 className="text-[24px] md:text-2xl font-semibold mb-4 ml-24">Ulasan Jemaah</h2>
                         <Slider {...settings}>
-                            {dataUlasan.map((review, index) => (
+                            {reviews?.map((review, index) => (
                                 <div key={index} className="px-14 w-full max-w-[600px]">
-                                    <Review ulasan={review} />
+                                    <Reviews ulasan={review} />
                                 </div>
                             ))}
                         </Slider>

@@ -1,4 +1,7 @@
-export const saveSelectedPackage = (data: any) => {
+import { Jamaah } from "../types/Order";
+import { Package } from "../types/Package";
+
+export const saveSelectedPackage = (data: Package) => {
     localStorage.setItem("selectedPackage", JSON.stringify(data));
   };
   
@@ -7,7 +10,7 @@ export const saveSelectedPackage = (data: any) => {
     return data ? JSON.parse(data) : null;
   };
 
-  export const saveOrderData = (data: any[]) => {
+  export const saveOrderData = (data: Jamaah[]) => {
     localStorage.setItem("orderData", JSON.stringify(data));
   };
   
@@ -18,6 +21,7 @@ export const saveSelectedPackage = (data: any) => {
   
   export const clearOrderData = () => {
     localStorage.removeItem("orderData");
+    localStorage.removeItem('selectedPackage');
   };
   
   

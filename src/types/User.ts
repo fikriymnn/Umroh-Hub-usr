@@ -3,9 +3,9 @@ export interface User {
     name?: string;
     email?: string;
     password?: string;
-    phone_number?: number;
+    phone_number?: number | string;
     address?: string;
-    no_ktp?: number;
+    no_ktp?: number | string;
     image_url?: string;
     is_active?: boolean;
 };

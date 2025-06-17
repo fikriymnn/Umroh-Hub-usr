@@ -20,7 +20,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import TravelSchedule from '../../../components/TravelSchedule'
-import Review from '../../../components/Review'
+import Reviews from '../../../components/Review'
 import useDetailPackage from '../../../hooks/packages/useDetailPackage'
 import { useNavigate } from 'react-router'
 import { saveSelectedPackage } from '../../../utils/storage'
@@ -33,7 +33,6 @@ function PackageDetail() {
         packages,
         currentPage, setCurrentPage,
         currentItems,
-        review,
         totalPages,
         images,
         settings,
@@ -341,12 +340,14 @@ function PackageDetail() {
                     <div className="w-10/12 grid gap-5 grid-cols-3">
                         <div className='bg-white rounded-[5px] w-[740px] h-[673px]'>
                             <h2 className="text-[24px] md:text-2xl font-semibold ml-8 mt-6 mb-4">Ulasan Jemaah</h2>
-                            {review?.map((item, index) => (
-                                <Review
-                                    key={index}
-                                    ulasan={item}
-                                />
-                            ))}
+                            <div className='overflow-y-auto max-h-[540px] px-8 pr-4'>
+                                {packages?.reviews?.map((item, index) => (
+                                    <Reviews
+                                        key={index}
+                                        ulasan={item}
+                                    />
+                                ))}
+                            </div>
                         </div>
                         <div>
 

@@ -4,22 +4,50 @@ import { getAllPackages } from '../../services/packagesSercice';
 
 const usePackages = () => {
     const [packages, setPackages] = useState<Package[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemPages = 15;
-    const itemHomePages = 6;
+    // const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [filters, setFilters] = useState({
+        page: 1,
+        limit: 5,
+        id_category_departure: '',
+        id_location_departure: '',
+        id_type_departure: '',
+        duration: '',
+        price: '',
+        date_departure: ''
+    });      
+
+    function buildQueryParams(params: Record<string, any>) {
+        const query = Object.entries(params)
+        .filter(([_, value]) => value !== '' && value !== null && value !== undefined)
+        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+        .join('&');
+
+        return query;
+    }  
 
     useEffect(() => {
         async function fetchPackages() {
             try {
-                const res = await getAllPackages();
+                const queryString = buildQueryParams(filters);
+                const res = await getAllPackages(queryString);
+                console.log(res);
                 setPackages(res.data.data);
+                setTotalPages(Math.ceil(res.data.jumlahPaket / filters.limit));
             } catch (error) {
                 console.error(`Error: ${error}`);
             }
         };
 
         fetchPackages();
-    }, []);
+    }, [filters]);
+
+    const setCurrentPage = (page: number) => {
+        setFilters((prev) => ({
+            ...prev,
+            page: page,
+        }));
+    };  
 
     function formatToShortRupiah(value: number) {
         const juta = 1000000;
@@ -31,17 +59,12 @@ const usePackages = () => {
         return value.toString();
     };
 
-    const totalPages = Math.ceil(packages.length / itemPages)
-    const startIndex = (currentPage - 1) * itemPages
-    const currentItems = packages.slice(startIndex, startIndex + itemPages)
-    const currentHomeItems = packages.slice(startIndex, startIndex + itemHomePages);
-
     return {
         packages,
-        currentPage, setCurrentPage,
+        setCurrentPage,
         formatToShortRupiah,
         totalPages,
-        currentItems, currentHomeItems
+        filters, setFilters
     };
 };
 

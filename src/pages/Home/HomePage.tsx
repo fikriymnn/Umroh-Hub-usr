@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import DefaultLayout from "../../layout/DefaultLayout";
 import CarouselHome from "../../components/Carousel/Carousel";
 import CarouselForum from "../../components/Carousel/CarouselForum";
@@ -23,13 +23,12 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
-import usePackages from "../../hooks/packages/usePackages";
+import useHomePage from "../../hooks/home/useHomePage";
 
 const HomePage: React.FC = () => {
   const {
-    packages,
-    currentHomeItems
-  } = usePackages();
+    packages
+  } = useHomePage();
 
   const cardDataList = [
     {
@@ -173,7 +172,7 @@ const HomePage: React.FC = () => {
                   </h1>
                 </div>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-                  {currentHomeItems?.map((item, index) => (
+                  {packages?.map((item, index) => (
                     <CardPackage
                       key={index}
                       packages={item}

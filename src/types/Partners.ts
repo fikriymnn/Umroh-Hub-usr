@@ -20,6 +20,6 @@ import { Package } from "./Package";
     is_active: boolean;
     createdAt: string;
     updatedAt: string;
-    package_umroh: Package[];
+    package_umrohs: Package[];
   }
   
