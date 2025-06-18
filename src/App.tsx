@@ -109,7 +109,7 @@ export default function App() {
               </>
             }
           />
-           <Route
+          <Route
             path="/MyTransactions"
             element={
               <>
@@ -119,7 +119,7 @@ export default function App() {
               </>
             }
           />
-           <Route
+          <Route
             path="/AboutUs"
             element={
               <>

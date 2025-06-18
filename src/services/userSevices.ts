@@ -1,4 +1,5 @@
 import axios from "axios";
+import { User } from "../types/User";
 
 export const getMe = async () => {
     return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/users/me`, {
@@ -6,10 +7,6 @@ export const getMe = async () => {
     });
 };
 
-export const updateUser = async (id: number, data: {
-    name: string;
-    email: string;
-    phone_number: string | number;
-}) => {
+export const updateUser = async (id: number, data: User) => {
     return await axios.put(`${import.meta.env.VITE_PUBLIC_URL}/users/${id}`, data);
 };

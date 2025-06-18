@@ -27,7 +27,7 @@ function OurPartnersPage() {
             //   }}
             >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-10/12 mx-auto">
-                    {currentItems.map((item: any, index: number) => (
+                    {currentItems?.map((item, index) => (
                         <CardPartners
                             key={index}
                             partners={item}

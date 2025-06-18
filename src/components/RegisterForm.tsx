@@ -1,8 +1,11 @@
-import { useState } from 'react';
 import useRegister from '../hooks/auth/useRegister';
 
-const RegisterForm = () => {
-    const [isAnimated, setIsAnimated] = useState(false);
+type RegisterFormProps = {
+    isAnimated: boolean;
+    setIsAnimated: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const RegisterForm = ({ isAnimated, setIsAnimated }: RegisterFormProps) => {
     const {
         name, setName,
         email, setEmail,

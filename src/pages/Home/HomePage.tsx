@@ -23,12 +23,12 @@ import exampleProfil from "../../assets/images/pexels-chevanon-1108099.png"
 import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
-import usePackages from "../../hooks/packages/usePackages";
+import useHomePage from "../../hooks/home/useHomePage";
 
 const HomePage: React.FC = () => {
   const {
     packages
-  } = usePackages();
+  } = useHomePage();
 
   const cardDataList = [
     {
@@ -147,7 +147,7 @@ const HomePage: React.FC = () => {
 
                 {/* cards */}
                 <div className='w-10/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4   mt-5'>
-                  {cardDataList?.map((item: any, index: number) => (
+                  {cardDataList?.map((item, index) => (
                     <Card
                       key={index}
                       data={item}
@@ -172,7 +172,7 @@ const HomePage: React.FC = () => {
                   </h1>
                 </div>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-                  {packages?.map((item: any, index: number) => (
+                  {packages?.map((item, index) => (
                     <CardPackage
                       key={index}
                       packages={item}
@@ -330,7 +330,7 @@ const HomePage: React.FC = () => {
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoour partners Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
                     </p>
                     <div className="mt-[22px]">
-                      {valuesTrust?.map((item: any, index: number) => (
+                      {valuesTrust.map((item: any, index: number) => (
                         <TrustIndicator
                           key={index}
                           dataTrust={item}

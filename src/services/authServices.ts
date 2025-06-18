@@ -1,9 +1,7 @@
 import axios from 'axios';
+import { User } from '../types/User';
 
-export const loginUser = async (data: {
-    email: string;
-    password: string;
-}) => {
+export const loginUser = async (data: User) => {
     return await axios.post(
         `${import.meta.env.VITE_PUBLIC_URL}/auth/login/user`,
         data,
@@ -11,14 +9,7 @@ export const loginUser = async (data: {
     );
 };
 
-export const register = async (data: {
-    name: string;
-    email: string;
-    password: string;
-    phone_number: string;
-    address: string;
-    no_ktp: string;
-}) => {
+export const register = async (data: User) => {
     return await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/users`, data);
 };
 

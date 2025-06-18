@@ -1,34 +1,106 @@
 import {useState, useEffect} from 'react';
 import { Package } from '../../types/Package';
-import { getAllPackages } from '../../services/packagesSercice';
+import { getAllCategory, getAllLocation, getAllPackages, getAllType } from '../../services/packagesSercice';
+import { Category, Location, Type } from '../../types/Filter';
 
 const usePackages = () => {
     const [packages, setPackages] = useState<Package[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemPages = 15;
+    const [category, setCategory] = useState<Category[]>([]);
+    const [location, setLocation] = useState<Location[]>([]);
+    const [type, setType] = useState<Type[]>([]);
+    const [totalPages, setTotalPages] = useState(1);
+    const [filters, setFilters] = useState({
+        page: 1,
+        limit: 6,
+        id_category_departure: '',
+        id_location_departure: '',
+        id_type_departure: '',
+        duration: '',
+        price: '',
+        date_departure: ''
+    });      
+
+    function buildQueryParams(params: Record<string, any>) {
+        const query = Object.entries(params)
+        .filter(([ value]) => value !== '' && value !== null && value !== undefined)
+        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+        .join('&');
+
+        return query;
+    }  
 
     useEffect(() => {
-        async function fetchPackages() {
-            try {
-                const res = await getAllPackages();
-                setPackages(res.data.data);
-            } catch (error) {
-                console.error(`Error: ${error}`);
-            }
-        };
-
         fetchPackages();
-    }, []);
+        fetchCategory();
+        fetchLocation();
+        fetchType();
+    }, [filters]);
 
-    const totalPages = Math.ceil(packages?.length / itemPages)
-    const startIndex = (currentPage - 1) * itemPages
-    const currentItems = packages?.slice(startIndex, startIndex + itemPages)
+    async function fetchPackages() {
+        try {
+            const queryString = buildQueryParams(filters);
+            const res = await getAllPackages(queryString);
+            console.log(res);
+            setPackages(res.data.data);
+            setTotalPages(Math.ceil(res.data.jumlahPaket / filters.limit));
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
+
+    async function fetchCategory() {
+        try {
+            const res = await getAllCategory();
+            setCategory(res.data.data);
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
+
+    async function fetchLocation() {
+        try {
+            const res = await getAllLocation();
+            setLocation(res.data.data);
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
+
+    async function fetchType() {
+        try {
+            const res = await getAllType();
+            setType(res.data.data);
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
+
+    const setCurrentPage = (page: number) => {
+        setFilters((prev) => ({
+            ...prev,
+            page: page,
+        }));
+    };  
+
+    function formatToShortRupiah(value: number) {
+        const juta = 1000000;
+
+        if (value >= juta) {
+            return `${value / juta}jt`;
+        }
+
+        return value.toString();
+    };
 
     return {
         packages,
-        currentPage, setCurrentPage,
+        category,
+        location,
+        type,
+        setCurrentPage,
+        formatToShortRupiah,
         totalPages,
-        currentItems
+        filters, setFilters
     };
 };
 

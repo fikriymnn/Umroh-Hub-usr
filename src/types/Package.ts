@@ -1,22 +1,5 @@
-export interface Mitra {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-  phone_number: string;
-  address: string;
-  company_name: string;
-  website: string;
-  nib: string;
-  npwp: string;
-  siup: string;
-  siuppiu: string;
-  akta: string;
-  image_url: string;
-  is_active: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
+import { Partners } from "./Partners";
+import { Review } from "./Review";
 
 export interface HotelFacility {
     id: number;
@@ -113,7 +96,7 @@ export interface MasterHotel {
     id_category_departure: number;
     package_name: string;
     description: string;
-    date_departure: string;
+    date_departure: string | Date;
     airline: string;
     duration: number;
     quota: number;
@@ -123,12 +106,13 @@ export interface MasterHotel {
     id_type_departure: number;
     createdAt: string;
     updatedAt: string;
-    Mitra: Mitra;
+    Mitra: Partners;
     master_type_departure: MasterTypeDeparture;
     master_category_departure: MasterCategoryDeparture;
     master_location_departure: MasterLocationDeparture;
     package_hotels: PackageHotel[];
     package_facilities: PackageFacility[];
     package_schedules: PackageSchedule[];
+    reviews: Review[];
   }
   

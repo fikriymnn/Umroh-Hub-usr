@@ -6,14 +6,14 @@ import mitraExampleProfile from "../../../assets/images/pexels-chevanon-1108099.
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Review from '../../../components/Review'
 import useDetailPartner from '../../../hooks/partners/useDetailPartner'
+import Reviews from '../../../components/Review';
 
 function PartnersDetail() {
     const {
         partner,
+        reviews,
         currentPage, setCurrentPage,
-        dataUlasan,
         totalPages,
         currentItems
     } = useDetailPartner();
@@ -82,10 +82,9 @@ function PartnersDetail() {
                             />
                             <div className="flex flex-col">
                                 <h1 className="text-[50px] capitalize w-full h-[50px] flex  items-center font-medium">
-                                    {partner.compamy_name}<span className="text-yellow-300 text-[30px] ms-6">★</span> <span className='ms-6 text-[24px]'>(89)</span>
+                                    {partner?.company_name}<span className="text-yellow-300 text-[30px] ms-6">★</span> <span className='ms-6 text-[24px]'>(89)</span>
                                 </h1>
-                                <p className='text-[12px] mt-2 w-[95%]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                                <p className='text-[12px] mt-2 w-[95%]'>{partner?.description}</p>
                                 <div className="flex space-x-10 mt-6">
 
                                     <h1 className="text-[#3C97FF] text-[20px] font-semibold">20 <span className='text-black font-normal'>Paket</span></h1>
@@ -96,10 +95,10 @@ function PartnersDetail() {
                         </div>
                     </div>
                     <div className="flex flex-col w-10/12 items-start mt-[45px] space-y-[25px]">
-                        <h1 className="text-white text-[24px] font-semibold capitalize">Paket dari<span className='text-[#3C97FF] ms-3 capitalize font-medium'>{partner?.compamy_name}</span></h1>
+                        <h1 className="text-white text-[24px] font-semibold capitalize">Paket dari<span className='text-[#3C97FF] ms-3 capitalize font-medium'>{partner?.company_name}</span></h1>
                         <div className=" w-full flex flex-col items-center">
                             <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-                                {currentItems.map((item: any, index: number) => (
+                                {currentItems?.map((item: any, index: number) => (
                                     <CardPackage
                                         key={index}
                                         packages={item}
@@ -138,9 +137,9 @@ function PartnersDetail() {
                     <div className="py-10 px-6 mt-10 bg-white w-[1125px] h-[408px] rounded-[5px]">
                         <h2 className="text-[24px] md:text-2xl font-semibold mb-4 ml-24">Ulasan Jemaah</h2>
                         <Slider {...settings}>
-                            {dataUlasan.map((review, index) => (
+                            {reviews?.map((review, index) => (
                                 <div key={index} className="px-14 w-full max-w-[600px]">
-                                    <Review ulasan={review} />
+                                    <Reviews ulasan={review} />
                                 </div>
                             ))}
                         </Slider>

@@ -57,15 +57,15 @@ function Profile() {
             <div className="flex w-full flex-col space-y-[26px] mt-[37px]">
               <div className="">
                 <h1 className='font-medium'>Nama</h1>
-                <h1 className='font-light capitalize'>{user.name}</h1>
+                <h1 className='font-light capitalize'>{user?.name}</h1>
               </div>
               <div className="">
                 <h1 className='font-medium'>No Telepon/whatsApp</h1>
-                <h1 className='font-light capitalize'>{user.phone_number}</h1>
+                <h1 className='font-light capitalize'>{user?.phone_number}</h1>
               </div>
               <div className="">
                 <h1 className='font-medium'>Email</h1>
-                <h1 className='font-light capitalize'>{user.email}</h1>
+                <h1 className='font-light capitalize'>{user?.email}</h1>
               </div>
             </div>
           </div>

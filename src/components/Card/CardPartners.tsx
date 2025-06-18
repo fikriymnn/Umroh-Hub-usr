@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import { Link } from 'react-router'
+import { Partners } from '../../types/Partners'
 
-const CardPartners = ({ partners }: any) => {
+const CardPartners = ({ partners }: { partners: Partners }) => {
     return (
         <div className='bg-white rounded-xl shadow-md p-4 w-full'>
             <div className='flex items-start gap-4'>
                 <div className='w-12 h-12 bg-gray-300 rounded-full'>
                 </div>
                 <div>
-                    <h3 className='text-lg font-semibold'>{partners.compamy_name}</h3>
+                    <h3 className='text-lg font-semibold'>{partners.company_name}</h3>
                     <div className='flex'>
                         <div className='text-sm text-gray-600 ml-[2px]'>
                             60 Penilaian
@@ -31,7 +32,7 @@ const CardPartners = ({ partners }: any) => {
                 </div>
             </Link>
             <div className='flex gap-2 mt-[10px]'>
-                {partners.package_umrohs.map((item: any, index: number) => (
+                {partners.package_umrohs.map((_, index: number) => (
                     <div key={index} className='flex bg-gray-200 w-[139.33px] h-[97.45px] rounded-md'>
                     </div>
                 ))}

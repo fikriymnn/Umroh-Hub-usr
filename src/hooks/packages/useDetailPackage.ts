@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {useState, useEffect, useRef} from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate} from 'react-router';
 import { Package } from '../../types/Package';
 import { getOnePackages } from '../../services/packagesSercice';
 import Slider from 'react-slick';
 import exampleImage from "../../assets/images/pexels-sultan-alhuthali-175963006-18274181.png"
+import { saveSelectedPackage } from '../../utils/storage';
 
 const useDetailPackage = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [packages, setPackages] = useState<Package>();
     const [currentPage, setCurrentPage] = useState(1);
     const itemPages = 4;
@@ -29,20 +31,11 @@ const useDetailPackage = () => {
         fetchPackage();
     }, []);
 
-    const review = [
-        {
-            nama: 'Acep Waskuy',
-            kota: 'Jakarta',
-            komentar: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit amet',
-            foto: [1, 2, 3, 4],
-        },
-        {
-            nama: 'Adul Sahrumi',
-            kota: 'Bandung',
-            komentar: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit amet',
-            foto: [1, 2, 3, 4],
-        },
-    ];
+    const handleOrderClick = () => {
+        if (!packages) return '';
+        saveSelectedPackage(packages);
+        navigate('/PaymentData')
+    };
 
     const schedule = packages?.package_schedules?.flatMap((schedule: any) =>
         schedule.detail_activities.map((activity: any) => ({
@@ -82,6 +75,14 @@ const useDetailPackage = () => {
         }).format(itung);
     };
 
+    const formatDate = (dateStr: string | Date) => {
+        return new Date(dateStr).toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        })
+    }
+
     const next = () => {
         if (sliderRef.current) {
             sliderRef.current.slickNext();
@@ -98,12 +99,13 @@ const useDetailPackage = () => {
         packages,
         currentPage, setCurrentPage,
         currentItems,
-        review,
+        handleOrderClick,
         totalPages,
         images,
         settings,
         sliderRef,
         formatHarga,
+        formatDate,
         next, previous
     };
 };
