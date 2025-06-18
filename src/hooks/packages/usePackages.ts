@@ -1,9 +1,13 @@
 import {useState, useEffect} from 'react';
 import { Package } from '../../types/Package';
-import { getAllPackages } from '../../services/packagesSercice';
+import { getAllCategory, getAllLocation, getAllPackages, getAllType } from '../../services/packagesSercice';
+import { Category, Location, Type } from '../../types/Filter';
 
 const usePackages = () => {
     const [packages, setPackages] = useState<Package[]>([]);
+    const [category, setCategory] = useState<Category[]>([]);
+    const [location, setLocation] = useState<Location[]>([]);
+    const [type, setType] = useState<Type[]>([]);
     const [totalPages, setTotalPages] = useState(1);
     const [filters, setFilters] = useState({
         page: 1,
@@ -26,20 +30,50 @@ const usePackages = () => {
     }  
 
     useEffect(() => {
-        async function fetchPackages() {
-            try {
-                const queryString = buildQueryParams(filters);
-                const res = await getAllPackages(queryString);
-                console.log(res);
-                setPackages(res.data.data);
-                setTotalPages(Math.ceil(res.data.jumlahPaket / filters.limit));
-            } catch (error) {
-                console.error(`Error: ${error}`);
-            }
-        };
-
         fetchPackages();
+        fetchCategory();
+        fetchLocation();
+        fetchType();
     }, [filters]);
+
+    async function fetchPackages() {
+        try {
+            const queryString = buildQueryParams(filters);
+            const res = await getAllPackages(queryString);
+            console.log(res);
+            setPackages(res.data.data);
+            setTotalPages(Math.ceil(res.data.jumlahPaket / filters.limit));
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
+
+    async function fetchCategory() {
+        try {
+            const res = await getAllCategory();
+            setCategory(res.data.data);
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
+
+    async function fetchLocation() {
+        try {
+            const res = await getAllLocation();
+            setLocation(res.data.data);
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
+
+    async function fetchType() {
+        try {
+            const res = await getAllType();
+            setType(res.data.data);
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
 
     const setCurrentPage = (page: number) => {
         setFilters((prev) => ({
@@ -60,6 +94,9 @@ const usePackages = () => {
 
     return {
         packages,
+        category,
+        location,
+        type,
         setCurrentPage,
         formatToShortRupiah,
         totalPages,

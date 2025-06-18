@@ -22,17 +22,13 @@ import "slick-carousel/slick/slick-theme.css";
 import TravelSchedule from '../../../components/TravelSchedule'
 import Reviews from '../../../components/Review'
 import useDetailPackage from '../../../hooks/packages/useDetailPackage'
-import { useNavigate } from 'react-router'
-import { saveSelectedPackage } from '../../../utils/storage'
-
 
 function PackageDetail() {
-    const navigate = useNavigate();
-
     const {
         packages,
         currentPage, setCurrentPage,
         currentItems,
+        handleOrderClick,
         totalPages,
         images,
         settings,
@@ -41,11 +37,6 @@ function PackageDetail() {
         formatDate,
         next, previous
     } = useDetailPackage();
-
-    const handleOrderClick = () => {
-        saveSelectedPackage(packages);
-        navigate('/PaymentData')
-    };
 
     return (
         <DefaultLayout>

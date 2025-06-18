@@ -10,6 +10,9 @@ import usePackages from '../../hooks/packages/usePackages';
 function UmrohPackagePage() {
     const {
         packages,
+        category,
+        location,
+        type,
         setCurrentPage,
         totalPages,
         filters,
@@ -47,9 +50,10 @@ function UmrohPackagePage() {
                                                     }))}
                                                     className="bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]"
                                                 >
-                                                    <option value="">Semua Kota</option>
-                                                    <option value="1">Bandung</option>
-                                                    <option value="3">Jakarta</option>
+                                                    <option value="">Semua Lokasi</option>
+                                                    {location.map((l) => (
+                                                        <option value={l.id}>{l.location_name}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                         </div>
@@ -70,9 +74,10 @@ function UmrohPackagePage() {
                                                     }))}
                                                     className='bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""
                                                 >
-                                                    <option value="">Semua Jenis Keberangkatan</option>
-                                                    <option value="2">Spesial</option>
-                                                    <option value="Lambat">Lambat</option>
+                                                    <option value="">Semua Jenis</option>
+                                                    {type.map((t) => (
+                                                        <option value={t.id}>{t.type_name}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                         </div>
@@ -147,8 +152,9 @@ function UmrohPackagePage() {
                                                 className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""
                                             >
                                                 <option value="">Semua Kategori</option>
-                                                <option value="3">Regular</option>
-                                                <option value="4">Express</option>
+                                                {category.map((c) => (
+                                                    <option value={c.id}>{c.category_name}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">

@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import Sidebar from '../../components/Sidebar'
 import hotelIcon from "../../assets/icons/Component 1.svg"
 import hotelIcons from "../../assets/icons/Group.svg"
@@ -64,6 +65,11 @@ function Transaction() {
                                             {item?.order_status}
                                         </h1>
                                     </div>
+                                    <Link to={`/Payment/${item?.order_id}`}>
+                                        <button
+                                            className='bg-red-500 w-[100px] px-4 py-2 rounded-2xl'
+                                        >Bayar</button>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-4">

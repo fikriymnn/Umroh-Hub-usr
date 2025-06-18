@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { clearOrderData, getOrderData, getSelectedPackage } from '../../utils/storage';
 import { order, paymentOrder } from '../../services/orderServices';
+import { useParams } from 'react-router';
 
 const usePayment = () => {
+    const {order_id} = useParams();
     const packages = getSelectedPackage();
     const orderData = getOrderData();
     const [rekening, setRekening] = useState("");
