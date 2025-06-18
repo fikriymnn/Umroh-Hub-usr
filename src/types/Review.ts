@@ -10,15 +10,15 @@ export interface review_images {
 }
 
 export interface Review {
-    id: number;
-    id_package: number;
-    id_order: number;
-    id_user: number;
-    description: string;
-    rating: number;
+    id?: number;
+    id_package?: number;
+    id_order?: number;
+    id_user?: number;
+    description?: string;
+    rating?: number;
     is_active: boolean;
-    createdAt: string;
-    updatedAt: string;
-    review_images: review_images[];
-    User: User;
+    createdAt?: string;
+    updatedAt?: string;
+    review_images?: review_images[];
+    User?: User;
 }

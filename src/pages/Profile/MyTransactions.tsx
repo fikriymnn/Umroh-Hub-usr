@@ -15,7 +15,8 @@ function Transaction() {
     const { formatDate } = useDetailPackage();
     const {
         order,
-        filter, setFilter
+        filter, setFilter,
+        handleReviewClick
     } = useMyTransactions();
 
     return (
@@ -65,11 +66,12 @@ function Transaction() {
                                             {item?.order_status}
                                         </h1>
                                     </div>
-                                    <Link to={`/Payment/${item?.order_id}`}>
-                                        <button
-                                            className='bg-red-500 w-[100px] px-4 py-2 rounded-2xl'
-                                        >Bayar</button>
-                                    </Link>
+                                    <button
+                                        onClick={() => handleReviewClick(item)}
+                                        className='bg-red-500 w-[100px] px-4 py-2 rounded-2xl'
+                                    >
+                                        Beri Ulasan
+                                    </button>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-4">

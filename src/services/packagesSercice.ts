@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Review } from "../types/Review";
 
 export const getAllPackages = async (queryString: string) => {
     return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/getPackage?${queryString}`);
@@ -7,6 +8,10 @@ export const getAllPackages = async (queryString: string) => {
 
 export const getOnePackages = async (id: string | number) => {
     return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/getOnePackageUmroh/${id}`)
+};
+
+export const addReview = async (order: Review) => {
+    return await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/addReview`, order);
 };
 
 export const getAllReviews = async () => {

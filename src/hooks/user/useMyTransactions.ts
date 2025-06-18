@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Order } from '../../types/Order';
 import axios from 'axios';
+import { saveSelectedOrder } from '../../utils/storage';
+import { useNavigate } from 'react-router';
 
 const useMyTransactions = () => {
+    const navigate = useNavigate();
     const [order, setOrder] = useState<Order[]>([]);
     const [filter, setFilter] = useState('all');
 
@@ -33,9 +36,16 @@ const useMyTransactions = () => {
         fetchOrder();
     }, [filter]);
 
+    const handleReviewClick = (selectedOrder: Order) => {
+        if (!order) return '';
+        saveSelectedOrder(selectedOrder);
+        navigate('/AddReview');
+    }
+
     return {
         order, setOrder,
-        filter, setFilter
+        filter, setFilter,
+        handleReviewClick
     };
 };
 
