@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const getAllPackages = async (queryString: string) => {
     return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/getPackage?${queryString}`);
+    console.log("URL:", `${import.meta.env.VITE_PUBLIC_URL}/getPackage?${queryString}`);
 };
 
 export const getOnePackages = async (id: string | number) => {

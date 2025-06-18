@@ -13,6 +13,7 @@ import Transaction from "./pages/Profile/MyTransactions";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Forum from "./pages/Forum/Forum";
 import ForumDetail from "./pages/Forum/[id]/Detail";
+import Review from "./pages/AddReview/AddReview";
 
 export default function App() {
   return (
@@ -146,6 +147,16 @@ export default function App() {
                 <PageTitle title="PT CBL" />
 
                 <ForumDetail />
+              </>
+            }
+          />
+            <Route
+            path="/AddReview"
+            element={
+              <>
+                <PageTitle title="PT CBL" />
+
+                <Review />
               </>
             }
           />

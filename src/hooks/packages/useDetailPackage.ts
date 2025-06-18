@@ -21,7 +21,12 @@ const useDetailPackage = () => {
                     const res = await getOnePackages(id);
                     console.log(res.data);
             
+                   if (res.data && typeof res.data === 'object' && res.data.data) {
                     setPackages(res.data.data);
+                    } else {
+                    console.error("Response bukan JSON valid:", res.data);
+                    }
+
                 }
             } catch (error) {
                 console.error(`Error: ${error}`);

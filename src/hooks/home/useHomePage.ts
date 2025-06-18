@@ -11,7 +11,7 @@ const useHomePage = () => {
                 const res = await getAllPackages('limit=6');
                 setPackages(res.data.data);
             } catch (error) {
-                
+                console.log(error)
             }
         };
 
