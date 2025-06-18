@@ -4,11 +4,10 @@ import { getAllPackages } from '../../services/packagesSercice';
 
 const usePackages = () => {
     const [packages, setPackages] = useState<Package[]>([]);
-    // const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [filters, setFilters] = useState({
         page: 1,
-        limit: 5,
+        limit: 6,
         id_category_departure: '',
         id_location_departure: '',
         id_type_departure: '',

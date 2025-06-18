@@ -18,7 +18,8 @@ function Payment() {
     orderData,
     rekening, setRekening,
     isPayment,
-    hadlePaymentClick
+    hadlePaymentClick,
+    handlePaymentOrder
   } = usePayment();
 
   return (
@@ -240,7 +241,12 @@ function Payment() {
                 anda bisa mengirim bukti transaksi dalam kurun waktu 24 jam kedepan,</p>
               <p className='text-[11px] text-[#0A6BDB] font-semibold'>*untuk mengakses halaman ini kembali setelah keluar, buka
                 laman akun &gt; pesanan saya &gt; belum bayar, lalu klik tombol bayar</p>
-              <button className="rounded-[10px] text-[24px] font-semibold text-white w-full mt-2 py-2 bg-gradient-to-br from-[#3C9BFF] to-[#10F5EA]">Kirim</button>
+              <button
+                onClick={handlePaymentOrder}
+                className="rounded-[10px] text-[24px] font-semibold text-white w-full mt-2 py-2 bg-gradient-to-br from-[#3C9BFF] to-[#10F5EA]"
+              >
+                Kirim
+              </button>
             </div>
           </div>
         )}

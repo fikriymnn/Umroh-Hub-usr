@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { clearOrderData, getOrderData, getSelectedPackage } from '../../utils/storage';
-import { order } from '../../services/orderServices';
+import { order, paymentOrder } from '../../services/orderServices';
 
 const usePayment = () => {
     const packages = getSelectedPackage();
@@ -23,9 +23,29 @@ const usePayment = () => {
             const res = await order(payload);
             console.log(res);
             alert('Data pesanan berhasil dikirim');
-            clearOrderData();
+            // clearOrderData();
         } catch (error) {
             alert('Gagal kirim');
+            console.error(`Error: ${error}`);
+        }
+    };
+
+    const handlePaymentOrder = async () => {
+        const payment = {
+            payment_method: 'Transfer',
+            bank: 'BCA',
+            transaction_proof_url: 'example',
+            no_rek: '0982872',
+            by_name_of: 'irfan'
+        };
+
+        try {
+            const res = await paymentOrder(payment);
+            console.log(res);
+            alert('Pembayaran berhasil');
+            clearOrderData();
+        } catch (error) {
+            alert('Pembayaran gagal');
             console.error(`Error: ${error}`);
         }
     };
@@ -35,7 +55,8 @@ const usePayment = () => {
         orderData,
         rekening, setRekening,
         isPayment, setIsPayment,
-        hadlePaymentClick
+        hadlePaymentClick,
+        handlePaymentOrder
     };
 };
 

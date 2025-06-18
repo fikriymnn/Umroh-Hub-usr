@@ -6,3 +6,9 @@ export const order = async (payload: Order) => {
         {withCredentials: true}
     );
 };
+
+export const paymentOrder = async (payment: Order) => {
+    return await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/addOrder`, payment,
+        {withCredentials: true}
+    );
+};

@@ -24,7 +24,7 @@ const CardPackage = ({ packages }: { packages: Package }) => {
         <Link to={`/UmrohPackage/${packages.id}`} className='w-full relative h-[200px] shadow-[-1px_1px_8px] shadow-white'>
             <img src={paketExample} alt="paket" className='w-full h-full object-cover' />
             <div className="w-full h-full bg-gradient-to-b from-black/0 to-black py-3 px-5 flex flex-col space-y-3 absolute top-0">
-                <h1 className=" text-white capitalize font-bold text-[24px] line-clamp-2">
+                <h1 className=" text-white capitalize font-bold text-[24px] whitespace-pre-wrap">
                     {packages.package_name}
                 </h1>
                 <div className="flex space-x-2">

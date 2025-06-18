@@ -77,7 +77,7 @@ function UmrohPackagePage() {
                                             </div>
                                         </div>
                                         <div className="flex flex-col -translate-y-1/6">
-                                            <label htmlFor="departure time" className='text-white text-[12px] ms-4'>Waktu Keberangkatan</label>
+                                            <label htmlFor="departure time" className='text-white text-[12px] ms-4'>Tanggal Keberangkatan</label>
                                             {/* <select className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure time" id="">
                                         <div className="flex flex-col">
                                             <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Jenis Keberangkatan</label>
@@ -98,7 +98,16 @@ function UmrohPackagePage() {
                                                     alt="City Icon"
                                                     className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
                                                 />
-                                                <input type='time' className='bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure time" id="" />
+                                                <input
+                                                    type='date'
+                                                    value={filters.date_departure ? filters.date_departure.slice(0, 10) : ""}
+                                                    onChange={(e) => setFilters((prev) => ({
+                                                        ...prev,
+                                                        date_departure: e.target.value,
+                                                        page: 1
+                                                    }))}
+                                                    className='bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure time" id=""
+                                                />
                                             </div>
                                         </div>
                                         <div className="flex flex-col -translate-y-1/6">
