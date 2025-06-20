@@ -11,7 +11,9 @@ export const getOnePackages = async (id: string | number) => {
 };
 
 export const addReview = async (order: Review) => {
-    return await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/addReview`, order);
+    return await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/addReview`, order, {
+        withCredentials: true
+    });
 };
 
 export const getAllReviews = async () => {

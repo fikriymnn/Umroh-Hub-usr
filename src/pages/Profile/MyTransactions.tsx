@@ -66,12 +66,14 @@ function Transaction() {
                                             {item?.order_status}
                                         </h1>
                                     </div>
-                                    <button
-                                        onClick={() => handleReviewClick(item)}
-                                        className='bg-red-500 w-[100px] px-4 py-2 rounded-2xl'
-                                    >
-                                        Beri Ulasan
-                                    </button>
+                                    {!item?.review_status && (
+                                        <button
+                                            onClick={() => handleReviewClick(item)}
+                                            className='bg-red-500 w-[100px] px-4 py-2 rounded-2xl'
+                                        >
+                                            Beri Ulasan
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                             <div className="flex items-center space-x-4">

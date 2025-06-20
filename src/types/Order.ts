@@ -26,6 +26,7 @@ export interface Order {
     order_status?: string;
     payment_method?: string;
     payment_status?: string;
+    review_status?: boolean;
     bank?: string;
     no_rek?: string | number;
     by_name_of?: string;
