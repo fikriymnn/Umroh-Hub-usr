@@ -27,11 +27,21 @@ export const saveSelectedPackage = (data: Package) => {
     const data = localStorage.getItem("orderData");
     return data ? JSON.parse(data) : null;
   };
+
+  export const savePayment = (data: Order) => {
+    localStorage.setItem("payment", JSON.stringify(data));
+  };
+
+  export const getPayment = () => {
+    const data = localStorage.getItem("payment");
+    return data ? JSON.parse(data) : null;
+  };
   
   export const clearOrderData = () => {
     localStorage.removeItem("orderData");
     localStorage.removeItem('selectedPackage');
     localStorage.removeItem('selectedOrder');
+    localStorage.removeItem('payment');
   };
   
   

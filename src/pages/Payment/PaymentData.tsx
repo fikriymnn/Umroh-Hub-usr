@@ -12,7 +12,7 @@ function PaymentData() {
         jamaahList,
         handleChange,
         handleDataJamaah,
-        handleNext,
+        handleSubmitOrder,
         handleRemoveJamaah
     } = useOrder();
 
@@ -69,7 +69,7 @@ function PaymentData() {
                             </table>
                         </div>
                         <button
-                            onClick={handleNext}
+                            onClick={handleSubmitOrder}
                             className="bg-gradient-to-r from-[#10F5EA] to-[#0A6BDB] w-full
                          h-[58px] rounded-full text-[30px] font-bold text-white flex items-center justify-center">
                             Lanjut Pembayaran

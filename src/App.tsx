@@ -6,7 +6,7 @@ import OurPartnersPage from "./pages/OurPartners/OurPartnersPage";
 import PartnersDetail from "./pages/OurPartners/[id]/PartnersDetail";
 import PackageDetail from "./pages/UmrohPackage/[id]/PackageDetail";
 import LoginRegister from "./pages/Authentications/LoginRegister";
-import Payment from "./pages/Payment/Payment";
+import Payment from "./pages/Payment/[order_id]/Payment";
 import PaymentData from "./pages/Payment/PaymentData";
 import Profile from "./pages/Profile/Profile";
 import Transaction from "./pages/Profile/MyTransactions";
@@ -150,7 +150,7 @@ export default function App() {
               </>
             }
           />
-            <Route
+          <Route
             path="/AddReview"
             element={
               <>

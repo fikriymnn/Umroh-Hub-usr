@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
-import { saveOrderData } from '../../utils/storage';
+import { getSelectedPackage, saveOrderData } from '../../utils/storage';
+import { order } from '../../services/orderServices';
 
 const useOrder = () => {
     const navigate = useNavigate();
+    const packages = getSelectedPackage();
     const [jamaahList, setJamaahList] = useState([
         {
             name: '',
@@ -44,11 +46,20 @@ const useOrder = () => {
         ]);
     };
 
-    const handleNext = () => {
-        console.log("Data jamaahList sebelum disimpan:", jamaahList);
-        saveOrderData(jamaahList);
-        navigate('/payment');
-    };
+    async function handleSubmitOrder() {
+        const payload = {
+            id_package: packages.id,
+            jamaah: jamaahList
+        }
+        try {
+            const res = await order(payload);
+            const order_id = res.data?.order_id;
+            console.log(`Berhasil kirim data: ${res.data}`);
+            navigate(`/Payment/${order_id}`);
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    }
 
     const handleRemoveJamaah = (index: number) => {
         if (jamaahList.length === 1) return;
@@ -61,7 +72,7 @@ const useOrder = () => {
         jamaahList, setJamaahList,
         handleChange,
         handleDataJamaah,
-        handleNext,
+        handleSubmitOrder,
         handleRemoveJamaah
     }
 }

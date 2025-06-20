@@ -1,16 +1,17 @@
-import DefaultLayout from '../../layout/DefaultLayout'
-import hotelIcon from "../../assets/icons/Component 1.svg"
-import hotelIcons from "../../assets/icons/Group.svg"
-import planeIcon from '../../assets/icons/bxs_plane.svg'
-import departureLocIcon from '../../assets/icons/mingcute_location-fill.svg'
-import dateIcon from '../../assets/icons/clarity_date-solid.svg'
-import durationIcon from '../../assets/icons/mdi_calendar-time.svg'
-import examplePlane from '../../assets/images/image 3.png'
-import profileIcon from "../../../src/assets/icons/iconamoon_profile-circle-fill.svg"
-import payMethodIcon from "../../../src/assets/icons/Group 167.svg"
-import bcaIcon from "../../../src/assets/icons/image 7.svg"
-import useProfile from '../../hooks/user/useProfile'
-import usePayment from '../../hooks/order/usePayment'
+import DefaultLayout from '../../../layout/DefaultLayout'
+import hotelIcon from "../../../assets/icons/Component 1.svg"
+import hotelIcons from "../../../assets/icons/Group.svg"
+import planeIcon from '../../../assets/icons/bxs_plane.svg'
+import departureLocIcon from '../../../assets/icons/mingcute_location-fill.svg'
+import dateIcon from '../../../assets/icons/clarity_date-solid.svg'
+import durationIcon from '../../../assets/icons/mdi_calendar-time.svg'
+import examplePlane from '../../../assets/images/image 3.png'
+import profileIcon from "../../../../src/assets/icons/iconamoon_profile-circle-fill.svg"
+import payMethodIcon from "../../../../src/assets/icons/Group 167.svg"
+import bcaIcon from "../../../../src/assets/icons/image 7.svg"
+import useProfile from '../../../hooks/user/useProfile'
+import usePayment from '../../../hooks/order/usePayment'
+import usePaymentProof from '../../../hooks/order/usePaymentProof'
 function Payment() {
   const { user } = useProfile();
   const {
@@ -19,8 +20,12 @@ function Payment() {
     rekening, setRekening,
     isPayment,
     hadlePaymentClick,
-    handlePaymentOrder
   } = usePayment();
+  const {
+    payment,
+    paymentProof, setPaymentProof,
+    handleSubmitPayment,
+  } = usePaymentProof();
 
   return (
     <DefaultLayout>
@@ -242,7 +247,7 @@ function Payment() {
               <p className='text-[11px] text-[#0A6BDB] font-semibold'>*untuk mengakses halaman ini kembali setelah keluar, buka
                 laman akun &gt; pesanan saya &gt; belum bayar, lalu klik tombol bayar</p>
               <button
-                onClick={handlePaymentOrder}
+                onClick={handleSubmitPayment}
                 className="rounded-[10px] text-[24px] font-semibold text-white w-full mt-2 py-2 bg-gradient-to-br from-[#3C9BFF] to-[#10F5EA]"
               >
                 Kirim
