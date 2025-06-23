@@ -1,22 +1,40 @@
-import { useState } from 'react'
-import { clearOrderData, getOrderData, getSelectedPackage, savePayment } from '../../utils/storage';
-import { order, paymentOrder } from '../../services/orderServices';
-import { useParams } from 'react-router';
+import { useEffect, useState } from 'react'
+import { clearOrderData, getSelectedOrder, getSelectedPackage, savePayment } from '../../utils/storage';
+import bcaIcon from "../../../src/assets/icons/image 7.svg"
 
 const usePayment = () => {
-    const {order_id} = useParams();
     const packages = getSelectedPackage();
-    const orderData = getOrderData();
+    const orderData = getSelectedOrder();
+    const [dropdownOpen, setDropdownOpen] = useState(Boolean);
+    const [bank, setBank] = useState("bca");
+    const [nameOf, setNameOf] = useState("");
     const [rekening, setRekening] = useState("");
     const [isPayment, setIsPayment] = useState(false);
+
+    useEffect(() => {
+        const handleClose = () => {
+            clearOrderData();
+        };
+
+        window.addEventListener('beforeunload', handleClose);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleClose);
+        }
+    }, []);
+
+    const bankOptions = [
+        {label: 'BCA', value: 'bca', icon: bcaIcon},
+        {label: 'BCA', value: 'bca', icon: bcaIcon},
+    ];
 
     const hadlePaymentClick = async () => {
         setIsPayment(true);
         const payload = {
             payment_method: "Transfer",
-            bank: "bca",
+            bank,
             no_rek: rekening,
-            by_name_of: "syifa"
+            by_name_of: nameOf
         }
         try {
             console.log(payload);
@@ -31,6 +49,10 @@ const usePayment = () => {
     return {
         packages,
         orderData,
+        dropdownOpen, setDropdownOpen,
+        bank, setBank,
+        bankOptions,
+        nameOf, setNameOf,
         rekening, setRekening,
         isPayment, setIsPayment,
         hadlePaymentClick,

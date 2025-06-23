@@ -23,6 +23,7 @@ import "slick-carousel/slick/slick-theme.css";
 import TravelSchedule from '../../../components/TravelSchedule'
 import Reviews from '../../../components/Review'
 import useDetailPackage from '../../../hooks/packages/useDetailPackage'
+import { renderStarsHotels } from '../../../utils/renderStars'
 
 function PackageDetail() {
     const {
@@ -152,11 +153,12 @@ function PackageDetail() {
                                             </div>
                                             <div className='flex-col w-full'>
                                                 <h6 className='text-[12px] font-semibold'>
-                                                    {packages?.package_hotels?.[0]?.master_hotel?.hotel_name}
-                                                    <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Double Room
+                                                    {packages?.package_hotels[0]?.master_hotel?.hotel_name}
+                                                    {renderStarsHotels(parseInt(packages?.package_hotels[0]?.master_hotel?.hotel_type || '0'))}
+                                                    {packages?.package_hotels[0]?.master_hotel?.room_type}
                                                 </h6>
 
-                                                <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{packages?.package_hotels?.[0]?.description}</p>
+                                                <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{packages?.package_hotels[0]?.description}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -175,10 +177,11 @@ function PackageDetail() {
 
                                             <h6 className='text-[12px] font-semibold'>
                                                 {packages?.package_hotels?.[1]?.master_hotel?.hotel_name}
-                                                <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Double Room
+                                                {renderStarsHotels(parseInt(packages?.package_hotels[1]?.master_hotel?.hotel_type || '0'))}
+                                                {packages?.package_hotels[1]?.master_hotel?.room_type}
                                             </h6>
 
-                                            <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{packages?.package_hotels?.[1]?.description}</p>
+                                            <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{packages?.package_hotels[1]?.description}</p>
                                         </div>
                                     </div>
                                     <div>
@@ -236,7 +239,8 @@ function PackageDetail() {
                                         <div className='flex-col w-full'>
                                             <h6 className='text-[12px] font-semibold'>
                                                 {item?.master_hotel?.hotel_name}
-                                                <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Double Room
+                                                {renderStarsHotels(parseInt(item?.master_hotel?.hotel_type || '0'))}
+                                                {item?.master_hotel?.room_type}
                                             </h6>
                                             <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{item?.description}</p>
                                         </div>

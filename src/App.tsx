@@ -81,7 +81,7 @@ export default function App() {
             }
           />
           <Route
-            path="/Payment"
+            path="/Payment/:order_id"
             element={
               <>
                 <PageTitle title="PT CBL" />

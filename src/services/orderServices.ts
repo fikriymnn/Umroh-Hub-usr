@@ -8,7 +8,7 @@ export const order = async (payload: Order) => {
 };
 
 export const paymentOrder = async (order_id: number | string, payment: Order) => {
-    return await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/addOrder/${order_id}`, payment,
+    return await axios.put(`${import.meta.env.VITE_PUBLIC_URL}/payment/${order_id}`, payment,
         {withCredentials: true}
     );
 };

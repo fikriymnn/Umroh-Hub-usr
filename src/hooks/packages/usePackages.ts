@@ -82,6 +82,14 @@ const usePackages = () => {
         }));
     };  
 
+    const handleChangeFilter = (field: string, value: string) => {
+        setFilters((prev) => ({
+            ...prev,
+            [field]: value,
+            page: 1,
+        }));
+    };  
+
     function formatToShortRupiah(value: number) {
         const juta = 1000000;
 
@@ -100,7 +108,8 @@ const usePackages = () => {
         setCurrentPage,
         formatToShortRupiah,
         totalPages,
-        filters, setFilters
+        filters, setFilters,
+        handleChangeFilter
     };
 };
 

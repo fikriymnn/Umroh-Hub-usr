@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
-import { useParams } from 'react-router';
+import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router';
 import { clearOrderData, getPayment } from '../../utils/storage';
 import { paymentOrder } from '../../services/orderServices';
 
 const usePaymentProof = () => {
+    const navigate = useNavigate();
     const {order_id} = useParams();
     const payment = getPayment();
     const [paymentProof, setPaymentProof] = useState('');
 
     const handleSubmitPayment = async () => {
         const payload = {
-            payment,
+            ...payment,
             transaction_proof_url: 'exampleX'
         };
 
@@ -20,6 +21,7 @@ const usePaymentProof = () => {
                 console.log(res);
                 alert('Pembayaran berhasil');
                 clearOrderData();
+                navigate('/MyTransactions')
             }
         } catch (error) {
             alert('Pembayaran gagal');

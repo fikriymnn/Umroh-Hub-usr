@@ -10,13 +10,16 @@ import examplePlane from '../../assets/images/image 3.png'
 import bedIcons from '../../assets/icons/mdi_guest-room.svg'
 import useDetailPackage from '../../hooks/packages/useDetailPackage'
 import useMyTransactions from '../../hooks/user/useMyTransactions'
+import { saveSelectedOrder } from '../../utils/storage'
+import { renderStarsHotels } from '../../utils/renderStars'
 
 function Transaction() {
     const { formatDate } = useDetailPackage();
     const {
         order,
         filter, setFilter,
-        handleReviewClick
+        handleReviewClick,
+        getPaymentUrl
     } = useMyTransactions();
 
     return (
@@ -49,7 +52,12 @@ function Transaction() {
                         </h1>
                     </div>
                     {order?.map((item, index) => (
-                        <div key={index} className='mt-[27px] pb-[36px] border-b-[#B0ADAD] px-[56px] border-b'>
+                        <Link
+                            to={getPaymentUrl(item)}
+                            onClick={() => saveSelectedOrder(item)}
+                            key={index}
+                            className='mt-[27px] pb-[36px] border-b-[#B0ADAD] px-[56px] border-b'
+                        >
                             <div className="flex justify-between w-full">
                                 <h1 className="text-[24px] font-medium">{item?.package_umroh?.package_name}</h1>
                                 <div className="flex flex-col space-y-1">
@@ -66,14 +74,6 @@ function Transaction() {
                                             {item?.order_status}
                                         </h1>
                                     </div>
-                                    {!item?.review_status && (
-                                        <button
-                                            onClick={() => handleReviewClick(item)}
-                                            className='bg-red-500 w-[100px] px-4 py-2 rounded-2xl'
-                                        >
-                                            Beri Ulasan
-                                        </button>
-                                    )}
                                 </div>
                             </div>
                             <div className="flex items-center space-x-4">
@@ -94,25 +94,20 @@ function Transaction() {
                                         <img src={hotelIcons} alt='Hotels' className='w-[14px] h-[14px]' />
                                         <p className="font-bold text-[15px]">Hotel</p>
                                     </div>
-                                    {item?.package_umroh?.package_hotels?.map((hotel, i) => {
-                                        if (i === 0) {
-                                            return (
-                                                <div key={i} className='flex space-x-1 ms-4 mt-3'>
-                                                    <div className="h-[16px] flex items-center">
-                                                        <img src={hotelIcon} alt="icon" className='w-[11px] h-[11px]' />
-                                                    </div>
-                                                    <div className='flex-col w-full'>
-                                                        <h6 className='text-[12px] font-semibold'>
-                                                            {hotel?.master_hotel?.hotel_name}
-                                                            <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> {hotel?.master_hotel?.hotel_type}
-                                                        </h6>
+                                    <div className='flex space-x-1 ms-4 mt-3'>
+                                        <div className="h-[16px] flex items-center">
+                                            <img src={hotelIcon} alt="icon" className='w-[11px] h-[11px]' />
+                                        </div>
+                                        <div className='flex-col w-full'>
+                                            <h6 className='text-[12px] font-semibold'>
+                                                {item?.package_umroh?.package_hotels[0]?.master_hotel?.hotel_name}
+                                                {renderStarsHotels(parseInt(item?.package_umroh?.package_hotels[0]?.master_hotel?.hotel_type || '0'))}
+                                                {item?.package_umroh?.package_hotels[0]?.master_hotel?.room_type}
+                                            </h6>
 
-                                                        <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{hotel?.description}</p>
-                                                    </div>
-                                                </div>
-                                            )
-                                        }
-                                    })}
+                                            <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{item?.package_umroh?.package_hotels[0]?.description}</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
                                     <div className="flex space-x-2 h-[16px] items-center">
@@ -121,25 +116,20 @@ function Transaction() {
                                     </div>
                                     <p className='font-medium capitalize text-[13px] ms-6 mt-1'>{item?.package_umroh?.duration} Hari</p>
                                 </div>
-                                {item?.package_umroh?.package_hotels?.map((hotel, i) => {
-                                    if (i === 1) {
-                                        return (
-                                            <div key={i} className='flex space-x-1 ms-4 mt-3'>
-                                                <div className="h-[16px] flex items-center">
-                                                    <img src={hotelIcon} alt="icon" className='w-[11px] h-[11px]' />
-                                                </div>
-                                                <div className='flex-col w-full'>
-                                                    <h6 className='text-[12px] font-semibold'>
-                                                        {hotel?.master_hotel?.hotel_name}
-                                                        <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> {hotel?.master_hotel?.hotel_type}
-                                                    </h6>
+                                <div className='flex space-x-1 ms-4 mt-3'>
+                                    <div className="h-[16px] flex items-center">
+                                        <img src={hotelIcon} alt="icon" className='w-[11px] h-[11px]' />
+                                    </div>
+                                    <div className='flex-col w-full'>
+                                        <h6 className='text-[12px] font-semibold'>
+                                            {item?.package_umroh?.package_hotels[1]?.master_hotel?.hotel_name}
+                                            {renderStarsHotels(parseInt(item?.package_umroh?.package_hotels[1]?.master_hotel?.hotel_type || '0'))}
+                                            {item?.package_umroh?.package_hotels[1]?.master_hotel?.room_type}
+                                        </h6>
 
-                                                    <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{hotel?.description}</p>
-                                                </div>
-                                            </div>
-                                        )
-                                    }
-                                })}
+                                        <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{item?.package_umroh?.package_hotels[1]?.description}</p>
+                                    </div>
+                                </div>
                                 <div>
                                     <div className="flex space-x-2 h-[16px] items-center">
                                         <img src={dateIcon} alt='Hotels' className='w-[14px] h-[14px]' />
@@ -170,8 +160,19 @@ function Transaction() {
                                     <img src={examplePlane} alt="AirAsia" className="w-[34px] h-[34px] " />
                                     <span className='font-semibold capitalize'>Air Asia Airlines</span>
                                 </div>
+                                {!item?.review_status && (
+                                    <div className='flex flex-col place-items-center justify-between'>
+                                        <p className='text-yellow-300'>★ ★ ★ ★ ★</p>
+                                        <button
+                                            onClick={() => handleReviewClick(item)}
+                                            className='bg-red-500 w-[118px] px-4 py-2 rounded-2xl'
+                                        >
+                                            Beri Ulasan
+                                        </button>
+                                    </div>
+                                )}
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>

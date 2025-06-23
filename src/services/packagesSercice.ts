@@ -2,12 +2,16 @@ import axios from "axios";
 import { Review } from "../types/Review";
 
 export const getAllPackages = async (queryString: string) => {
-    return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/getPackage?${queryString}`);
+    return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/getPackage?${queryString}`, {
+        withCredentials: true
+    });
     console.log("URL:", `${import.meta.env.VITE_PUBLIC_URL}/getPackage?${queryString}`);
 };
 
 export const getOnePackages = async (id: string | number) => {
-    return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/getOnePackageUmroh/${id}`)
+    return await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/getPackageView/${id}`, {
+        withCredentials: true
+    });
 };
 
 export const addReview = async (order: Review) => {

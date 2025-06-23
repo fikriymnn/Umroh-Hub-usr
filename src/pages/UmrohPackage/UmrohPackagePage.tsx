@@ -16,7 +16,8 @@ function UmrohPackagePage() {
         setCurrentPage,
         totalPages,
         filters,
-        setFilters
+        setFilters,
+        handleChangeFilter
     } = usePackages();
 
     return (
@@ -43,11 +44,7 @@ function UmrohPackagePage() {
                                                 <select
                                                     id="departure-city"
                                                     name="departure city"
-                                                    onChange={(e) => setFilters((prev) => ({
-                                                        ...prev,
-                                                        id_location_departure: e.target.value,
-                                                        page: 1
-                                                    }))}
+                                                    onChange={(e) => handleChangeFilter('id_location_departure', e.target.value)}
                                                     className="bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]"
                                                 >
                                                     <option value="">Semua Lokasi</option>
@@ -67,11 +64,7 @@ function UmrohPackagePage() {
                                                     className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
                                                 />
                                                 <select
-                                                    onChange={(e) => setFilters((prev) => ({
-                                                        ...prev,
-                                                        id_type_departure: e.target.value,
-                                                        page: 1
-                                                    }))}
+                                                    onChange={(e) => handleChangeFilter('id_type_departure', e.target.value)}
                                                     className='bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""
                                                 >
                                                     <option value="">Semua Jenis</option>
@@ -106,11 +99,7 @@ function UmrohPackagePage() {
                                                 <input
                                                     type='date'
                                                     value={filters.date_departure ? filters.date_departure.slice(0, 10) : ""}
-                                                    onChange={(e) => setFilters((prev) => ({
-                                                        ...prev,
-                                                        date_departure: e.target.value,
-                                                        page: 1
-                                                    }))}
+                                                    onChange={(e) => handleChangeFilter('date_departure', e.target.value)}
                                                     className='bg-white w-full ps-9 pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure time" id=""
                                                 />
                                             </div>
@@ -124,11 +113,7 @@ function UmrohPackagePage() {
                                                     className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
                                                 />
                                                 <select
-                                                    onChange={(e) => setFilters((prev) => ({
-                                                        ...prev,
-                                                        duration: e.target.value,
-                                                        page: 1
-                                                    }))}
+                                                    onChange={(e) => handleChangeFilter('duration', e.target.value)}
                                                     className='bg-white ps-9  w-full pe-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""
                                                 >
                                                     <option value="">Semua Durasi Perjalanan</option>
@@ -144,11 +129,7 @@ function UmrohPackagePage() {
                                         <div className="flex flex-col">
                                             <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Kategori Paket Umroh</label>
                                             <select
-                                                onChange={(e) => setFilters((prev) => ({
-                                                    ...prev,
-                                                    id_category_departure: e.target.value,
-                                                    page: 1
-                                                }))}
+                                                onChange={(e) => handleChangeFilter('id_category_departure', e.target.value)}
                                                 className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""
                                             >
                                                 <option value="">Semua Kategori</option>
@@ -160,11 +141,7 @@ function UmrohPackagePage() {
                                         <div className="flex flex-col">
                                             <label htmlFor="departure city" className='text-white text-[12px] ms-4'>Estimasi Biaya</label>
                                             <select
-                                                onChange={(e) => setFilters((prev) => ({
-                                                    ...prev,
-                                                    price: e.target.value,
-                                                    page: 1
-                                                }))}
+                                                onChange={(e) => handleChangeFilter('price', e.target.value)}
                                                 className='bg-white px-4 py-1.5 rounded-[20px] text-[12px] text-[#5E5E5E]' name="departure city" id=""
                                             >
                                                 <option value="">Semua Harga</option>
@@ -197,20 +174,19 @@ function UmrohPackagePage() {
                                     &lt;
                                 </button>
 
-                              {totalPages > 0 &&
-                                [...Array(totalPages)].map((_, index) => (
-                                    <button
-                                    key={index}
-                                    onClick={() => setCurrentPage(index + 1)}
-                                    className={`px-3 py-1 rounded ${
-                                        filters.page === index + 1
-                                        ? 'bg-gradient-to-b from-[#109FF5] to-[#0A5D8F] text-white font-bold rounded-2xl'
-                                        : ''
-                                    }`}
-                                    >
-                                    {index + 1}
-                                    </button>
-                                ))
+                                {totalPages > 0 &&
+                                    [...Array(totalPages)].map((_, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => setCurrentPage(index + 1)}
+                                            className={`px-3 py-1 rounded ${filters.page === index + 1
+                                                ? 'bg-gradient-to-b from-[#109FF5] to-[#0A5D8F] text-white font-bold rounded-2xl'
+                                                : ''
+                                                }`}
+                                        >
+                                            {index + 1}
+                                        </button>
+                                    ))
                                 }
 
                                 <button

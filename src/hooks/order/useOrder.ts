@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
-import { getSelectedPackage, saveOrderData } from '../../utils/storage';
+import { getSelectedPackage, saveSelectedOrder } from '../../utils/storage';
 import { order } from '../../services/orderServices';
 
 const useOrder = () => {
@@ -51,10 +51,16 @@ const useOrder = () => {
             id_package: packages.id,
             jamaah: jamaahList
         }
+        const saveOrder = {
+            id_package: payload.id_package,
+            jamaah: payload.jamaah,
+            package_umroh: packages
+        }
         try {
             const res = await order(payload);
-            const order_id = res.data?.order_id;
+            const order_id = res.data?.orders?.order_id;
             console.log(`Berhasil kirim data: ${res.data}`);
+            saveSelectedOrder(saveOrder);
             navigate(`/Payment/${order_id}`);
         } catch (error) {
             console.error(`Error: ${error}`);

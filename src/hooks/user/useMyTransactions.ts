@@ -42,10 +42,13 @@ const useMyTransactions = () => {
         navigate('/AddReview');
     }
 
+    const getPaymentUrl = (order: Order) => `/Payment/${order.order_id}`;
+
     return {
         order, setOrder,
         filter, setFilter,
-        handleReviewClick
+        handleReviewClick,
+        getPaymentUrl
     };
 };
 

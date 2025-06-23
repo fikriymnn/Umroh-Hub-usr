@@ -19,7 +19,7 @@ export const saveSelectedPackage = (data: Package) => {
     return data ? JSON.parse(data) : null;
   };
 
-  export const saveOrderData = (data: Jamaah[]) => {
+  export const saveOrderData = (data: Order) => {
     localStorage.setItem("orderData", JSON.stringify(data));
   };
 

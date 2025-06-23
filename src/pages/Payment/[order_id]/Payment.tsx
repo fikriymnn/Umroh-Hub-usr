@@ -12,11 +12,16 @@ import bcaIcon from "../../../../src/assets/icons/image 7.svg"
 import useProfile from '../../../hooks/user/useProfile'
 import usePayment from '../../../hooks/order/usePayment'
 import usePaymentProof from '../../../hooks/order/usePaymentProof'
+import useDetailPackage from '../../../hooks/packages/useDetailPackage'
 function Payment() {
   const { user } = useProfile();
   const {
-    packages,
     orderData,
+    packages,
+    dropdownOpen, setDropdownOpen,
+    bank, setBank,
+    bankOptions,
+    nameOf, setNameOf,
     rekening, setRekening,
     isPayment,
     hadlePaymentClick,
@@ -26,6 +31,7 @@ function Payment() {
     paymentProof, setPaymentProof,
     handleSubmitPayment,
   } = usePaymentProof();
+  const { formatDate } = useDetailPackage();
 
   return (
     <DefaultLayout>
@@ -42,8 +48,8 @@ function Payment() {
             <div className='w-full h-full bg-[#D1F4FA] px-[19px] py-[15px]'>
               <h1 className='flex capitalize items-center font-semibold'>Jumlah jemaah <span className='ms-[42px] font-normal text-sm'>5 jemaah</span></h1>
               <ul className='list-disc ms-4 mt-2'>
-                {orderData.map((data: any) => (
-                  <li className='text-[11px] capitalize'>{data.name}</li>
+                {orderData?.jamaah?.map((data: any) => (
+                  <li className='text-[11px] capitalize'>{data?.name}</li>
                 ))}
               </ul>
               <h1 className='flex capitalize mt-4 items-center font-semibold'>Tipe pembayaran</h1>
@@ -59,7 +65,7 @@ function Payment() {
                     <img src={durationIcon} alt='Hotels' className='w-[14px] h-[14px]' />
                     <p className="font-bold text-[15px]">Duration Perjalanan</p>
                   </div>
-                  <p className='font-medium text-[13px] ms-6 mt-1'>{packages.duration} Hari</p>
+                  <p className='font-medium text-[13px] ms-6 mt-1'>{orderData?.package_umroh?.duration} Hari</p>
                 </div>
 
                 <div>
@@ -67,12 +73,8 @@ function Payment() {
                     <img src={dateIcon} alt='Hotels' className='w-[14px] h-[14px]' />
                     <p className="font-bold text-[15px]">Tanggal Keberangkatan</p>
                   </div>
-                  <p className='font-medium text-[13px] ms-6 mt-1'>
-                    {new Date(packages.date_departure).toLocaleDateString('id-ID', {
-                      day: '2-digit',
-                      month: 'long',
-                      year: 'numeric'
-                    })}
+                  <p className='font-medium text-[13px] ms-6 mt-3'>
+                    {formatDate(orderData?.package_umroh?.date_departure)}
                   </p>
                 </div>
                 <div>
@@ -80,7 +82,7 @@ function Payment() {
                     <img src={planeIcon} alt="icon" className='w-[14px] h-[14px]' />
                     <p className="font-semibold">Maskapai Pesawat</p>
                   </div>
-                  <p className='font-medium text-[13px] ms-6 mt-1'>{packages.airline}</p>
+                  <p className='font-medium text-[13px] ms-6 mt-1'>{orderData?.package_umroh?.airline}</p>
 
                 </div>
                 <div>
@@ -88,7 +90,7 @@ function Payment() {
                     <img src={departureLocIcon} alt='Hotels' className='w-[14px] h-[14px]' />
                     <p className="font-bold text-[15px]">Kota Keberangkatan</p>
                   </div>
-                  <p className='font-medium text-[13px] ms-6 mt-1'>{packages.master_location_departure.location_name}</p>
+                  <p className='font-medium text-[13px] ms-6 mt-1'>{orderData?.package_umroh?.master_location_departure?.location_name}</p>
                 </div>
                 <div className="flex gap-2 items-center">
                   <img src={examplePlane} alt="AirAsia" className="w-[34px] h-[34px] " />
@@ -109,11 +111,11 @@ function Payment() {
                   <div className='flex-col w-full'>
 
                     <h6 className='text-[12px] font-semibold'>
-                      {packages.package_hotels[0].master_hotel.hotel_name}
+                      {orderData?.package_umroh?.package_hotels?.[0]?.master_hotel?.hotel_name}
                       <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Quad Room
                     </h6>
 
-                    <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{packages.package_hotels[0].description}</p>
+                    <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{orderData?.package_umroh?.package_hotels?.[0]?.description}</p>
                   </div>
                 </div>
                 <div className="flex space-x-1 ms-4">
@@ -123,11 +125,11 @@ function Payment() {
                   <div className='flex-col w-full'>
 
                     <h6 className='text-[12px] font-semibold'>
-                      {packages.package_hotels[0].master_hotel.hotel_name}
+                      {orderData?.package_umroh?.package_hotels?.[1]?.master_hotel?.hotel_name}
                       <span className='text-yellow-300 mx-[7px]'>★ ★ ★ ★ ★</span> Quad Room
                     </h6>
 
-                    <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{packages.package_hotels[0].description}</p>
+                    <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{orderData?.package_umroh?.package_hotels?.[1]?.description}</p>
                   </div>
                 </div>
               </div>
@@ -144,14 +146,53 @@ function Payment() {
                 <h1 className='text-[20px] flex items-center font-bold'>Metode Pembayaran</h1>
 
               </div>
-              <div className=" flex w-full space-x-4 mt-3 rounded-[5px]">
-                <div className="w-[71px] h-[46px] rounded-[10px] border-2 border-[#D9D9D9D9]">
-                  <img src={bcaIcon} alt="profile" className='w-[63px] h-[44px]' />
+              <div className="relative w-[300px]">
+                <div
+                  className="flex items-center h-[56px] pl-20 pr-4 text-[#A1A1A1] font-medium rounded-md cursor-pointer"
+                  onClick={() => setDropdownOpen((prev) => !prev)}
+                >
+                  <div className="absolute top-[6px] left-[6px] w-[71px] h-[46px] rounded-[10px] border-2 border-[#D9D9D9] flex items-center justify-center">
+                    <img
+                      src={bankOptions.find((b) => b.value === bank)?.icon}
+                      alt={bank}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="ml-2">Transfer Bank ({bankOptions.find((b) => b.value === bank)?.label})</span>
                 </div>
-                <h1 className='text-[#A1A1A1] flex items-center font-medium'>Transfer Bank (Transfer BCA)</h1>
+
+                {dropdownOpen && (
+                  <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+                    {bankOptions.map((bank) => (
+                      <div
+                        key={bank.value}
+                        onClick={() => {
+                          setBank(bank.value);
+                          setDropdownOpen(false);
+                        }}
+                        className="flex items-center p-2 hover:bg-gray-100 cursor-pointer"
+                      >
+                        <div className="w-[71px] h-[46px] rounded-[10px] border-2 border-[#D9D9D9] flex items-center justify-center mr-2">
+                          <img src={bank.icon} alt={bank.label} className="w-full h-full object-contain" />
+                        </div>
+                        <span className="text-[#A1A1A1] font-medium">Transfer Bank ({bank.label})</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
               <div className="mt-[18px]">
                 <label htmlFor="Nama" className='capitalize ms-1 font-semibold'>Nama Pemilik no rekening</label>
+                <input
+                  type="text"
+                  value={nameOf}
+                  onChange={(e) => setNameOf(e.target.value)}
+                  placeholder="Ketik Nama Pemilik Rekening..."
+                  className='placeholder:text-[15px] placeholder:text-[#95959599] placeholder:font-semibold
+                 w-full rounded-[10px] mt-2 border-[1px] border-[#959595] h-[51px] px-[20px] py-[15px]' />
+              </div>
+              <div className="mt-[18px]">
+                <label htmlFor="NoRekenening" className='capitalize ms-1 font-semibold'>Nomor rekening</label>
                 <input
                   type="number"
                   value={rekening}
@@ -202,7 +243,7 @@ function Payment() {
               </div>
               <div className=" flex w-full space-x-4 px-2 border-2 border-[#D9D9D9D9]">
                 <img src={bcaIcon} alt="profile" className='w-[63px] h-[44px]' />
-                <h1 className=' flex items-center font-medium capitalize'>Belia IAIAIAIIAIIA</h1>
+                <h1 className=' flex items-center font-medium capitalize'>{payment?.by_name_of}</h1>
               </div>
               <div className=" grid grid-cols-2 w-full h-[45px] space-x-4 border-2 border-[#D9D9D9D9]">
                 <div className="w-full flex justify-center items-center">
