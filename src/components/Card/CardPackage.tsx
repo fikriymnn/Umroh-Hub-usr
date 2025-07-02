@@ -21,13 +21,18 @@ const CardPackage = ({ packages }: { packages: Package }) => {
 
 
     return (
-        <Link to={`/UmrohPackage/${packages.id}`} className='w-full relative h-[200px] shadow-[-1px_1px_8px] shadow-white'>
-            <img src={paketExample} alt="paket" className='w-full h-full object-cover' />
-            <div className="w-full h-full bg-gradient-to-b from-black/0 to-black py-3 px-5 flex flex-col space-y-3 absolute top-0">
-                <h1 className=" text-white capitalize font-bold text-[24px] whitespace-pre-wrap">
-                    {packages.package_name}
-                </h1>
-                <div className="flex space-x-2">
+      <Link to={`/UmrohPackage/${packages.id}`} className="w-full relative h-[200px] shadow-[-1px_1px_8px] shadow-white">
+  <img src={paketExample} alt="paket" className="w-full h-full object-cover" />
+  
+  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/0 to-black py-3 px-5 flex flex-col justify-end">
+    <div className="w-full overflow-hidden">
+      <h1 className="text-white capitalize font-bold text-[24px] truncate whitespace-nowrap">
+        {packages.package_name}
+      </h1>
+        <div className="bg-black px-2 text-white text-[11px] py-1 font-bold w-fit rounded-[10px]">
+            Waktu Keberangkatan : <span className=' font-semibold text-[#00FFF3F5]'>23/10/2025 - 03/10/2025</span> 
+        </div>
+                <div className="flex mt-2  space-x-2">
                     <img src={hotelIcon} alt="background" className="w-[30px] h-[30px]" />
                     <div className="flex-col w-full">
                         <div className="flex w-full">
@@ -39,7 +44,7 @@ const CardPackage = ({ packages }: { packages: Package }) => {
                         <h1 className="text-[#5CE9FF] text-[10px] font-semibold">{hotelData?.description}</h1>
                     </div>
                 </div>
-                <div className="w-full flex justify-between">
+                <div className="w-full flex mt-1 justify-between">
                     <div className="flex space-x-2">
                         <img src={planeIcon} alt="background" className="w-[30px] h-[30px]" />
                         <div className="flex-col w-full">
@@ -55,7 +60,7 @@ const CardPackage = ({ packages }: { packages: Package }) => {
                         {formatToShortRupiah(packages?.price)}
                     </div>
                 </div>
-                <div className="flex justify-between px-[17px] py-[20px] w-full mt-[8px] ">
+                <div className="flex justify-between px-[17px] py-[20px] w-full">
                     <div className="flex  space-x-2">
                         <div className="w-[100px] h-[5px] rounded-[10px] bg-[#E5E5E5]">
                             <div className="w-[80%] rounded-s-[10px] h-full bg-gradient-to-r from-[#004492] to-[#10F5EA]"
@@ -63,16 +68,17 @@ const CardPackage = ({ packages }: { packages: Package }) => {
                             >
                             </div>
                         </div>
-                        <div className="flex-col text-center -translate-y-4">
+                        <div className="flex-col text-center -translate-y-2">
                             <h1 className=" text-[9px] font-semibold text-center text-white">Pesanan: {packages?.quota}/{packages?.quota_update}</h1>
                             <h1 className=" text-[9px] font-semibold text-center text-white">Tersisa: {remaining}</h1>
                         </div>
                     </div>
-                    <h1 className=" text-[#10F5EA] font-bold text-[12px] -translate-y-1">
+                    <h1 className=" text-[#10F5EA] font-bold text-[12px] -translate-y-2">
                         Lihat detail
                     </h1>
                 </div>
-            </div>
+                </div>
+                </div>
         </Link>
     )
 }

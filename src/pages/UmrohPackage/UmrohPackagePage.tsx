@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import DefaultLayout from "../../layout/DefaultLayout";
 import bg from "../../assets/images/makkah-3986709.png"
@@ -16,7 +17,7 @@ function UmrohPackagePage() {
         setCurrentPage,
         totalPages,
         filters,
-        setFilters,
+        
         handleChangeFilter
     } = usePackages();
 
@@ -49,7 +50,7 @@ function UmrohPackagePage() {
                                                 >
                                                     <option value="">Semua Lokasi</option>
                                                     {location?.map((l) => (
-                                                        <option value={l.id}>{l.location_name}</option>
+                                                        <option key={l.id} value={l.id}>{l.location_name}</option>
                                                     ))}
                                                 </select>
                                             </div>
