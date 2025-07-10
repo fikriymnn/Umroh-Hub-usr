@@ -5,11 +5,12 @@ import profileIcon from "../../../src/assets/icons/iconamoon_profile-circle-fill
 import payTypeIcon from '../../assets/icons/Vector.svg'
 import useProfile from '../../hooks/user/useProfile'
 import useOrder from '../../hooks/order/useOrder'
-import { useState } from 'react'
 
 function PaymentData() {
     const { user } = useProfile();
     const {
+        haveVisa, setVisa,
+        havePassport, setPassport,
         jamaahList,
         handleChange,
         handleDataJamaah,
@@ -17,8 +18,6 @@ function PaymentData() {
         handleRemoveJamaah
     } = useOrder();
 
-    const [haveVisa, setVisa] = useState<string>("");
-    const [havePassport, setPassport] = useState<string>("");
     return (
         <DefaultLayout>
             <div className='w-full min-h-screen pt-[200px] flex flex-col items-center space-y-[34px] background-div'>
@@ -215,38 +214,38 @@ function PaymentData() {
                                     </div>
 
                                 </div> */}
-                                 <div className="flex flex-col mt-[20px] space-y-[13px] mb-6">
+                                <div className="flex flex-col mt-[20px] space-y-[13px] mb-6">
                                     <label className="block text-lg font-semibold mb-2">Apakah jemaah memiliki visa?</label>
                                     <div className={`flex space-x-5 
                                         
                                         `}>
 
                                         <div className="flex space-x-2">
-                                           
+
                                             <input
-                                              type='radio'
-                                              name='visa'
-                                              value="Ya"
-                                              onClick={() => setVisa("Ya")}
-                                              className="cursor-pointer"
+                                                type='radio'
+                                                name='visa'
+                                                value="Ya"
+                                                onClick={() => setVisa("Ya")}
+                                                className="cursor-pointer"
                                             />
-                                             <label className='text-sm font-semibold'>Ya</label>
+                                            <label className='text-sm font-semibold'>Ya</label>
                                         </div>
                                         <div className="flex space-x-2">
                                             <input
-                                              type='radio'
-                                              name='visa'
-                                              value="Tidak"
-                                               onClick={() => setVisa("Tidak")}
-                                              className="cursor-pointer"
+                                                type='radio'
+                                                name='visa'
+                                                value="Tidak"
+                                                onClick={() => setVisa("Tidak")}
+                                                className="cursor-pointer"
                                             />
                                             <label className="text-sm font-semibold">Tidak</label>
                                         </div>
 
-                                    
+
                                     </div>
                                     {haveVisa === "Ya" && (
-                                      <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[300px]">
+                                        <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[300px]">
                                             <div className="relative">
                                                 <input
                                                     id="fileUpload"
@@ -258,7 +257,7 @@ function PaymentData() {
                                                 <label
                                                     htmlFor="fileUpload"
                                                     className="inline-block whitespace-nowrap bg-[#D9D9D9] text-sm font-semibold py-2 px-4 rounded-md hover:bg-gray-300 cursor-pointer"
-                                            >
+                                                >
                                                     Pilih File Visa
                                                 </label>
                                             </div>
@@ -266,11 +265,11 @@ function PaymentData() {
                                         </div>
                                     )}
                                     {haveVisa === "Tidak" && (
-                                      <div className="text-sm text-red-500">
-                                        <p>*Jika tidak punya maka akan dibuatkan oleh Mitra</p>
-                                      </div>
+                                        <div className="text-sm text-red-500">
+                                            <p>*Jika tidak punya maka akan dibuatkan oleh Mitra</p>
+                                        </div>
                                     )}
-                                </div> 
+                                </div>
                                 <div className="flex flex-col mt-[20px] space-y-[13px] mb-6">
                                     <label className="block text-lg font-semibold mb-2">Apakah jemaah memiliki passport?</label>
                                     <div className={`flex space-x-5 
@@ -278,31 +277,31 @@ function PaymentData() {
                                         `}>
 
                                         <div className="flex space-x-2">
-                                           
+
                                             <input
-                                              type='radio'
-                                              name='passport'
-                                              value="Ya"
-                                              onClick={() => setPassport("Ya")}
-                                              className="cursor-pointer"
+                                                type='radio'
+                                                name='passport'
+                                                value="Ya"
+                                                onClick={() => setPassport("Ya")}
+                                                className="cursor-pointer"
                                             />
-                                             <label className='text-sm font-semibold'>Ya</label>
+                                            <label className='text-sm font-semibold'>Ya</label>
                                         </div>
                                         <div className="flex space-x-2">
                                             <input
-                                              type='radio'
-                                              name='passport'
-                                              value="Tidak"
-                                               onClick={() => setPassport("Tidak")}
-                                              className="cursor-pointer"
+                                                type='radio'
+                                                name='passport'
+                                                value="Tidak"
+                                                onClick={() => setPassport("Tidak")}
+                                                className="cursor-pointer"
                                             />
                                             <label className="text-sm font-semibold">Tidak</label>
                                         </div>
 
-                                    
+
                                     </div>
                                     {havePassport === "Ya" && (
-                                      <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[400px]">
+                                        <div className="flex space-x-2 border-[1px] border-[#959595] rounded-[10px] p-2 w-[400px]">
                                             <div className="relative">
                                                 <input
                                                     id="fileUpload"
@@ -314,7 +313,7 @@ function PaymentData() {
                                                 <label
                                                     htmlFor="fileUpload"
                                                     className="inline-block whitespace-nowrap bg-[#D9D9D9] text-sm font-semibold py-2 px-4 rounded-md hover:bg-gray-300 cursor-pointer"
-                                            >
+                                                >
                                                     Pilih File Passport
                                                 </label>
                                             </div>
@@ -322,11 +321,11 @@ function PaymentData() {
                                         </div>
                                     )}
                                     {havePassport === "Tidak" && (
-                                      <div className="text-sm text-red-500">
-                                        <p>*Jika tidak punya maka akan dibuatkan oleh Mitra</p>
-                                      </div>
+                                        <div className="text-sm text-red-500">
+                                            <p>*Jika tidak punya maka akan dibuatkan oleh Mitra</p>
+                                        </div>
                                     )}
-                                </div> 
+                                </div>
                             </div>
                         ))}
                         <button

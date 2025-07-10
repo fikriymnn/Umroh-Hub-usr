@@ -6,6 +6,8 @@ import { order } from '../../services/orderServices';
 const useOrder = () => {
     const navigate = useNavigate();
     const packages = getSelectedPackage();
+    const [haveVisa, setVisa] = useState<string>("");
+    const [havePassport, setPassport] = useState<string>("");
     const [jamaahList, setJamaahList] = useState([
         {
             name: '',
@@ -15,6 +17,8 @@ const useOrder = () => {
             // ktp: '',
             // passport: '',
             // kk: ''
+            visa_url: '',
+            passport_url: ''
         }
     ]);
 
@@ -41,7 +45,9 @@ const useOrder = () => {
                 phone_number: '',
                 // ktp: '',
                 // passport: '',
-                // kk: ''
+                // kk: '',
+                visa_url: '',
+                passport_url: ''
             }
         ]);
     };
@@ -75,6 +81,8 @@ const useOrder = () => {
     };
     return {
         navigate,
+        haveVisa, setVisa,
+        havePassport, setPassport,
         jamaahList, setJamaahList,
         handleChange,
         handleDataJamaah,
