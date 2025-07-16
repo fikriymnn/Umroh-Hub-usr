@@ -7,3 +7,13 @@ export const renderStarsHotels = (count: number) => {
     </span>
   );
 };
+
+export const renderStars = (count: number) => {
+  return (
+    <span>
+      {Array.from({ length: count }).map((_, i) => (
+        <span key={i} className="mx-[4px]">★</span>
+      ))}
+    </span>
+  );
+};

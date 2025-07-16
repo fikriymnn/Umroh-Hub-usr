@@ -101,6 +101,7 @@ export interface MasterHotel {
     duration: number;
     quota: number;
     quota_update: number;
+    rating: number;
     price: number;
     is_active: boolean;
     id_type_departure: number;
