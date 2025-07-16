@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import DefaultLayout from '../../../layout/DefaultLayout'
 import hotelIcon from "../../../assets/icons/Component 1.svg"
 import hotelIcons from "../../../assets/icons/Group.svg"

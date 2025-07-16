@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Link } from 'react-router'
 import Sidebar from '../../components/Sidebar'
 import hotelIcon from "../../assets/icons/Component 1.svg"
@@ -12,6 +13,7 @@ import useDetailPackage from '../../hooks/packages/useDetailPackage'
 import useMyTransactions from '../../hooks/user/useMyTransactions'
 import { saveSelectedOrder } from '../../utils/storage'
 import { renderStarsHotels } from '../../utils/renderStars'
+import AddReview from '../../components/addReview'
 
 function Transaction() {
     const { formatDate } = useDetailPackage();
@@ -19,7 +21,8 @@ function Transaction() {
         order,
         filter, setFilter,
         handleReviewClick,
-        getPaymentUrl
+        isReviewVisible,
+        // getPaymentUrl
     } = useMyTransactions();
 
     return (
@@ -28,6 +31,11 @@ function Transaction() {
                 <Sidebar />
             </div>
             <div className="w-10/12 max-w-screen-xl mx-auto flex h-full pt-[140px] justify-center bg-white overflow-x-hidden relative">
+                {isReviewVisible === true && (
+                   <div className="relative z-20">
+                   <AddReview/>
+                   </div> 
+                )}
                 <div className="w-8/12 ">
                     <div className="flex space-x-[70px] pb-6 border-b-1 border-[#B0ADAD]">
                         <h1
@@ -52,8 +60,8 @@ function Transaction() {
                         </h1>
                     </div>
                     {order?.map((item, index) => (
-                        <Link
-                            to={getPaymentUrl(item)}
+                        <div
+                            // to={getPaymentUrl(item)}
                             onClick={() => saveSelectedOrder(item)}
                             key={index}
                             className='mt-[27px] pb-[36px] border-b-[#B0ADAD] px-[56px] border-b'
@@ -172,7 +180,7 @@ function Transaction() {
                                     </div>
                                 )}
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
             </div>
