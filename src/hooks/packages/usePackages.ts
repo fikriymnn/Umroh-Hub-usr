@@ -12,13 +12,14 @@ const usePackages = () => {
     const [filters, setFilters] = useState({
         page: 1,
         limit: 6,
+        package_status: 'active',
         id_category_departure: '',
         id_location_departure: '',
         id_type_departure: '',
         duration: '',
         price: '',
         date_departure: ''
-    });      
+    });
 
     function buildQueryParams(params: Record<string, any>) {
         const query = Object.entries(params)
