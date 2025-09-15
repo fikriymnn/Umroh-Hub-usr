@@ -3,7 +3,7 @@ import { Package } from '../../types/Package';
 import { getAllCategory, getAllLocation, getAllPackages, getAllType } from '../../services/packagesSercice';
 import { Category, Location, Type } from '../../types/Filter';
 
-const usePackages = () => {
+const useUmrohPackagePage = () => {
     const [packages, setPackages] = useState<Package[]>([]);
     const [category, setCategory] = useState<Category[]>([]);
     const [location, setLocation] = useState<Location[]>([]);
@@ -114,4 +114,4 @@ const usePackages = () => {
     };
 };
 
-export default usePackages;
+export default useUmrohPackagePage;

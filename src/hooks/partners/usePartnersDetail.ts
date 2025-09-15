@@ -5,7 +5,7 @@ import { getPartnersById } from '../../services/partnersServices';
 import { Review } from '../../types/Review';
 import { getAllReviews } from '../../services/packagesSercice';
 
-const useDetailPartner = () => {
+const usePartnersDetail = () => {
     const { id } = useParams();
     const [partner, setPartner] = useState<Partners | null>(null);
     const [reviews, setReviews] = useState<Review[]>([]);
@@ -51,4 +51,4 @@ const useDetailPartner = () => {
     };
 };
 
-export default useDetailPartner;
+export default usePartnersDetail;

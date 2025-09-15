@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import { Partners } from '../../types/Partners';
 import { getAllPartners } from '../../services/partnersServices';
 
-const usePartners = () => {
+const useOurPartnersPage = () => {
     const [partners, setPartners] = useState<Partners[]>([]);
     const [currentPage, setCurrentPage] = useState(1)
     const itemPages = 4;
@@ -32,4 +32,4 @@ const usePartners = () => {
     };
 };
 
-export default usePartners;
+export default useOurPartnersPage;

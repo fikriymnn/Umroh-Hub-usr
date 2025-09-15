@@ -6,7 +6,7 @@ import CardPackage from '../../components/Card/CardPackage';
 import departureCity from "../../assets/icons/Group 28 (1).svg"
 import departureType from "../../assets/icons/Group 206.svg";
 import departureTime from "../../assets/icons/Group 207.svg";
-import usePackages from '../../hooks/packages/usePackages';
+import useUmrohPackagePage from "../../hooks/packages/useUmrohPackagePage";
 
 function UmrohPackagePage() {
     const {
@@ -17,9 +17,9 @@ function UmrohPackagePage() {
         setCurrentPage,
         totalPages,
         filters,
-        
+
         handleChangeFilter
-    } = usePackages();
+    } = useUmrohPackagePage();
 
     return (
         <DefaultLayout>

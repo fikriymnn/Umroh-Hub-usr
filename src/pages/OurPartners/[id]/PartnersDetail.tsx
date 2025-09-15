@@ -6,8 +6,8 @@ import mitraExampleProfile from "../../../assets/images/pexels-chevanon-1108099.
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import useDetailPartner from '../../../hooks/partners/useDetailPartner'
 import Reviews from '../../../components/Review';
+import usePartnersDetail from '../../../hooks/partners/usePartnersDetail';
 
 function PartnersDetail() {
     const {
@@ -16,7 +16,7 @@ function PartnersDetail() {
         currentPage, setCurrentPage,
         totalPages,
         currentItems
-    } = useDetailPartner();
+    } = usePartnersDetail();
 
     const NextArrow = ({ onClick }: any) => (
         <div

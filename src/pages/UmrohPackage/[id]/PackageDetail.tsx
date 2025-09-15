@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
+
 import DefaultLayout from '../../../layout/DefaultLayout'
 import hotelIcon from "../../../assets/icons/Component 1.svg"
 import wifiIcon from "../../../assets/icons/ic_baseline-wifi.svg"
@@ -22,8 +22,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 import TravelSchedule from '../../../components/TravelSchedule'
 import Reviews from '../../../components/Review'
-import useDetailPackage from '../../../hooks/packages/useDetailPackage'
 import { renderStars, renderStarsHotels } from '../../../utils/renderStars'
+import usePackageDetail from '../../../hooks/packages/usePackageDetail'
 
 function PackageDetail() {
     const {
@@ -38,7 +38,7 @@ function PackageDetail() {
         formatHarga,
         formatDate,
         next, previous
-    } = useDetailPackage();
+    } = usePackageDetail();
 
     return (
         <DefaultLayout>
