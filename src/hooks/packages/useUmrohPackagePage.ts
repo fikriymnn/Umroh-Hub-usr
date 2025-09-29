@@ -3,7 +3,7 @@ import { Package } from '../../types/Package';
 import { getAllCategory, getAllLocation, getAllPackages, getAllType } from '../../services/packagesSercice';
 import { Category, Location, Type } from '../../types/Filter';
 
-const usePackages = () => {
+const useUmrohPackagePage = () => {
     const [packages, setPackages] = useState<Package[]>([]);
     const [category, setCategory] = useState<Category[]>([]);
     const [location, setLocation] = useState<Location[]>([]);
@@ -12,13 +12,14 @@ const usePackages = () => {
     const [filters, setFilters] = useState({
         page: 1,
         limit: 6,
+        package_status: 'active',
         id_category_departure: '',
         id_location_departure: '',
         id_type_departure: '',
         duration: '',
         price: '',
         date_departure: ''
-    });      
+    });
 
     function buildQueryParams(params: Record<string, any>) {
         const query = Object.entries(params)
@@ -113,4 +114,4 @@ const usePackages = () => {
     };
 };
 
-export default usePackages;
+export default useUmrohPackagePage;

@@ -13,7 +13,7 @@ import bcaIcon from "../../../../src/assets/icons/image 7.svg"
 import useProfile from '../../../hooks/user/useProfile'
 import usePayment from '../../../hooks/order/usePayment'
 import usePaymentProof from '../../../hooks/order/usePaymentProof'
-import useDetailPackage from '../../../hooks/packages/useDetailPackage'
+import usePackageDetail from '../../../hooks/packages/usePackageDetail'
 function Payment() {
   const { user } = useProfile();
   const {
@@ -32,7 +32,7 @@ function Payment() {
     paymentProof, setPaymentProof,
     handleSubmitPayment,
   } = usePaymentProof();
-  const { formatDate } = useDetailPackage();
+  const { formatDate } = usePackageDetail();
 
   return (
     <DefaultLayout>

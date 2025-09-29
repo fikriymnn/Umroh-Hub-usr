@@ -8,7 +8,7 @@ const useHomePage = () => {
     useEffect(() => {
         async function fetchHomePackages() {
             try {
-                const res = await getAllPackages('limit=6');
+                const res = await getAllPackages('limit=6&package_status=active');
                 setPackages(res.data.data);
             } catch (error) {
                 console.log(error)

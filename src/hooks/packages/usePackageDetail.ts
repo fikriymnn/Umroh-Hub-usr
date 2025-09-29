@@ -7,7 +7,7 @@ import Slider from 'react-slick';
 import exampleImage from "../../assets/images/pexels-sultan-alhuthali-175963006-18274181.png"
 import { saveSelectedPackage } from '../../utils/storage';
 
-const useDetailPackage = () => {
+const usePackageDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [packages, setPackages] = useState<Package>();
@@ -115,4 +115,4 @@ const useDetailPackage = () => {
     };
 };
 
-export default useDetailPackage;
+export default usePackageDetail;

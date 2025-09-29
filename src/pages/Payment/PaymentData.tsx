@@ -4,7 +4,7 @@ import arrowIcons from "../../../src/assets/icons/Vector 664.svg"
 import profileIcon from "../../../src/assets/icons/iconamoon_profile-circle-fill.svg"
 import payTypeIcon from '../../assets/icons/Vector.svg'
 import useProfile from '../../hooks/user/useProfile'
-import useOrder from '../../hooks/order/useOrder'
+import usePaymentData from '../../hooks/order/usePaymentData'
 
 function PaymentData() {
     const { user } = useProfile();
@@ -16,7 +16,7 @@ function PaymentData() {
         handleDataJamaah,
         handleSubmitOrder,
         handleRemoveJamaah
-    } = useOrder();
+    } = usePaymentData();
 
     return (
         <DefaultLayout>

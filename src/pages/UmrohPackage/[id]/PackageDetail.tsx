@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
+
 import DefaultLayout from '../../../layout/DefaultLayout'
 import hotelIcon from "../../../assets/icons/Component 1.svg"
 import wifiIcon from "../../../assets/icons/ic_baseline-wifi.svg"
@@ -22,8 +22,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 import TravelSchedule from '../../../components/TravelSchedule'
 import Reviews from '../../../components/Review'
-import useDetailPackage from '../../../hooks/packages/useDetailPackage'
-import { renderStarsHotels } from '../../../utils/renderStars'
+import { renderStars, renderStarsHotels } from '../../../utils/renderStars'
+import usePackageDetail from '../../../hooks/packages/usePackageDetail'
 
 function PackageDetail() {
     const {
@@ -38,7 +38,7 @@ function PackageDetail() {
         formatHarga,
         formatDate,
         next, previous
-    } = useDetailPackage();
+    } = usePackageDetail();
 
     return (
         <DefaultLayout>
@@ -94,7 +94,7 @@ function PackageDetail() {
                                 <p className="text-[15px] font-medium">Mitra</p>
                                 <div className="flex items-center space-x-4">
                                     <span className="text-[24px] font-medium">{packages?.Mitra?.company_name}</span>
-                                    <span className='text-yellow-300 text-[18px]'>★ ★ ★ ★ ★</span>
+                                    <span className='text-yellow-300 text-[18px]'>{renderStars(packages?.rating)}</span>
                                 </div>
                                 <div className="flex flex-col justify-center space-y-1">
                                     <h1 className="text-[24px] font-medium">{packages?.package_name}</h1>

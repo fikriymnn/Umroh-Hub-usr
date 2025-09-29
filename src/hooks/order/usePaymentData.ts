@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { getSelectedPackage, saveSelectedOrder } from '../../utils/storage';
 import { order } from '../../services/orderServices';
 
-const useOrder = () => {
+const usePaymentData = () => {
     const navigate = useNavigate();
     const packages = getSelectedPackage();
     const [haveVisa, setVisa] = useState<string>("");
@@ -91,4 +91,4 @@ const useOrder = () => {
     }
 }
 
-export default useOrder
+export default usePaymentData;

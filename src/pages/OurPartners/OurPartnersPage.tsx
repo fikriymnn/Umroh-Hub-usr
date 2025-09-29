@@ -1,19 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import React from 'react'
 import DefaultLayout from '../../layout/DefaultLayout'
 import CardPartners from '../../components/Card/CardPartners'
 // import penawaranBg from "../../assets/images/Group.png"
 // import penawaranBg2 from "../../assets/images/Group (1).png"
 import '../../app.css'
-import usePartners from '../../hooks/partners/usePartners'
+import useOurPartnersPage from '../../hooks/partners/useOurPartnersPage'
 
 function OurPartnersPage() {
     const {
         currentPage, setCurrentPage,
         totalPages,
         currentItems
-    } = usePartners();
+    } = useOurPartnersPage();
 
     return (
         <DefaultLayout>

@@ -9,14 +9,17 @@ import dateIcon from '../../assets/icons/clarity_date-solid.svg'
 import durationIcon from '../../assets/icons/mdi_calendar-time.svg'
 import examplePlane from '../../assets/images/image 3.png'
 import bedIcons from '../../assets/icons/mdi_guest-room.svg'
-import useDetailPackage from '../../hooks/packages/useDetailPackage'
 import useMyTransactions from '../../hooks/user/useMyTransactions'
 import { saveSelectedOrder } from '../../utils/storage'
 import { renderStarsHotels } from '../../utils/renderStars'
+
 import AddReview from '../../components/addReview'
 
+import usePackageDetail from '../../hooks/packages/usePackageDetail'
+
+
 function Transaction() {
-    const { formatDate } = useDetailPackage();
+    const { formatDate } = usePackageDetail();
     const {
         order,
         filter, setFilter,
