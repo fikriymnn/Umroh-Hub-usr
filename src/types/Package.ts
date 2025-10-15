@@ -104,6 +104,7 @@ export interface MasterHotel {
     rating: number;
     price: number;
     is_active: boolean;
+    jamaah_requirements: string;
     id_type_departure: number;
     createdAt: string;
     updatedAt: string;

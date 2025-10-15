@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { register } from '../../services/authServices';
+import { isAxiosError } from 'axios';
 
 const useRegister = ({
     isAnimated,
@@ -35,8 +36,13 @@ const useRegister = ({
             setAddress('');
             setKtp('');
         } catch (error) {
-            alert('Register gagal');
-            console.error(`Error: ${error}`);
+            if (isAxiosError(error)) {
+                const message = error.response?.data.message || 'Terjadi kesalahan saat registrasi';
+                alert(message);
+                console.error(`Error: ${message}`);
+            } else {
+                alert('Terjadi kesalahan jaringan atau server');
+            }
         }
     };
 

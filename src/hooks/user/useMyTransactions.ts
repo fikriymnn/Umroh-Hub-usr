@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Order } from '../../types/Order';
-import axios from 'axios';
+import axios, { isAxiosError } from 'axios';
 import { saveSelectedOrder } from '../../utils/storage';
 
 const useMyTransactions = () => {
@@ -27,7 +27,10 @@ const useMyTransactions = () => {
                 console.log((await res));
                 setOrder((await res).data.data);
             } catch (error) {
-                console.error(`Error: ${error}`);
+                if (isAxiosError(error)) {
+                    const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data'
+                    console.error(`Error: ${message}`);
+                }
             }
         };
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import { getSelectedPackage, saveSelectedOrder } from '../../utils/storage';
 import { order } from '../../services/orderServices';
+import { isAxiosError } from 'axios';
 
 const usePaymentData = () => {
     const navigate = useNavigate();
@@ -69,9 +70,12 @@ const usePaymentData = () => {
             saveSelectedOrder(saveOrder);
             navigate(`/Payment/${order_id}`);
         } catch (error) {
-            console.error(`Error: ${error}`);
+            if (isAxiosError(error)) {
+                const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data';
+                console.error(message);
+            }
         }
-    }
+    };
 
     const handleRemoveJamaah = (index: number) => {
         if (jamaahList.length === 1) return;

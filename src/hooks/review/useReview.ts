@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { clearOrderData, getSelectedOrder } from '../../utils/storage';
 import { addReview } from '../../services/packagesSercice';
+import { isAxiosError } from 'axios';
 
 const useReview = () => {
     const orderData = getSelectedOrder();
@@ -24,7 +25,10 @@ const useReview = () => {
             alert('Berhasil kirim review');
             clearOrderData();
         } catch (error) {
-            console.error(`Error: ${error}`);
+            if (isAxiosError(error)) {
+                const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data'
+                console.error(`Error: ${message}`);
+            }
         }
     }
 

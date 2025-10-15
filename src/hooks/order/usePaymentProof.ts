@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router';
 import { clearOrderData, getPayment } from '../../utils/storage';
 import { paymentOrder } from '../../services/orderServices';
+import { isAxiosError } from 'axios';
 
 const usePaymentProof = () => {
     const navigate = useNavigate();
@@ -24,8 +25,11 @@ const usePaymentProof = () => {
                 navigate('/MyTransactions')
             }
         } catch (error) {
-            alert('Pembayaran gagal');
-            console.error(`Error: ${error}`);
+            if (isAxiosError(error)) {
+                const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data';
+                alert(message);
+                console.error(`Error ${message}`);
+            }
         }
     };
 

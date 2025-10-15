@@ -230,7 +230,7 @@ function PackageDetail() {
                     <div className="w-10/12 h-[600px] p-[40px] rounded-[5px] bg-white">
                         <h1 className='text-[24px] font-medium'>Hotel dan Fasilitasnya</h1>
                         <div className=" h-full grid grid-cols-2 w-11/12 mt-[50px]">
-                            {packages?.package_hotels?.map((item, index) => (
+                            {packages?.package_hotels?.map((hotels, index) => (
                                 <div key={index} className='flex flex-col space-y-2 w-full my-2 items-center'>
 
                                     <div className="w-full flex space-x-3.5">
@@ -238,11 +238,11 @@ function PackageDetail() {
                                         <img src={hotelIcon} alt="icon" className='w-[30px] h-[30px]' />
                                         <div className='flex-col w-full'>
                                             <h6 className='text-[12px] font-semibold'>
-                                                {item?.master_hotel?.hotel_name}
-                                                {renderStarsHotels(parseInt(item?.master_hotel?.hotel_type || '0'))}
-                                                {item?.master_hotel?.room_type}
+                                                {hotels?.master_hotel?.hotel_name}
+                                                {renderStarsHotels(parseInt(hotels?.master_hotel?.hotel_type || '0'))}
+                                                {hotels?.master_hotel?.room_type}
                                             </h6>
-                                            <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{item?.description}</p>
+                                            <p className='text-[#209FB2] text-[10px] capitalize font-semibold'>{hotels?.description}</p>
                                         </div>
                                     </div>
                                     <div className="w-full flex flex-col ms-[80px] space-y-3.5 items-start ">
@@ -254,14 +254,14 @@ function PackageDetail() {
 
                                             <img src={locationIcon} alt="icon" className='w-[18px] h-[18px]' />
                                             <p className="text-[15px] font-medium">
-                                                {item?.master_hotel?.address}
+                                                {hotels?.master_hotel?.address}
                                             </p>
                                         </div>
                                         <div className="flex w-8/12 mt-4 space-x-2">
                                             <div className="flex h-[20px] items-center space-x-5 w-7/12">
                                                 <img src={wifiIcon} alt="icon" className='w-[18px] h-[18px]' />
                                                 <p className="text-[15px] capitalize font-medium">
-                                                    {item?.master_hotel?.hotel_facilities?.[0]?.description}
+                                                    {hotels?.master_hotel?.hotel_facilities?.[0]?.description}
                                                 </p>
                                             </div>
                                             <div className="flex space-x-5 w-7/12">
@@ -297,10 +297,10 @@ function PackageDetail() {
                     <div className="bg-white w-10/12 p-[40px] rounded-[5px]">
                         <div>
                             <h1 className='text-[24px] font-medium capitalize mb-10'>Jadwal perjalanan</h1>
-                            {currentItems?.map((item, index) => (
+                            {currentItems?.map((scheduls, index) => (
                                 <TravelSchedule
                                     key={index}
-                                    scheduleList={item}
+                                    scheduleList={scheduls}
                                 />
                             ))}
                         </div>
@@ -337,10 +337,10 @@ function PackageDetail() {
                         <div className='bg-white rounded-[5px] w-[740px] h-[673px]'>
                             <h2 className="text-[24px] md:text-2xl font-semibold ml-8 mt-6 mb-4">Ulasan Jemaah</h2>
                             <div className='overflow-y-auto max-h-[540px] px-8 pr-4'>
-                                {packages?.reviews?.map((item, index) => (
+                                {packages?.reviews?.map((reviews, index) => (
                                     <Reviews
                                         key={index}
-                                        ulasan={item}
+                                        ulasan={reviews}
                                     />
                                 ))}
                             </div>
@@ -351,10 +351,7 @@ function PackageDetail() {
                         <div className=" bg-white rounded-[5px] p-[40px] w-[360px] h-[406px]">
                             <h1 className='text-[24px] font-medium'>Persyaratan</h1>
                             <ul className='list-disc ms-8 mt-4'>
-                                <li>syarat</li>
-                                <li>syarat</li>
-                                <li>syarat</li>
-                                <li>syarat</li>
+                                <li>{packages?.jamaah_requirements}</li>
                             </ul>
                         </div>
                     </div>

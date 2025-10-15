@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import { Package } from '../../types/Package';
 import { getAllCategory, getAllLocation, getAllPackages, getAllType } from '../../services/packagesSercice';
 import { Category, Location, Type } from '../../types/Filter';
+import { isAxiosError } from 'axios';
 
 const useUmrohPackagePage = () => {
     const [packages, setPackages] = useState<Package[]>([]);
@@ -45,7 +46,10 @@ const useUmrohPackagePage = () => {
             setPackages(res.data.data);
             setTotalPages(Math.ceil(res.data.jumlahPaket / filters.limit));
         } catch (error) {
-            console.error(`Error: ${error}`);
+            if (isAxiosError(error)) {
+                const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data';
+                console.error(`Error: ${message}`);
+            }
         }
     };
 
@@ -54,7 +58,10 @@ const useUmrohPackagePage = () => {
             const res = await getAllCategory();
             setCategory(res.data.data);
         } catch (error) {
-            console.error(`Error: ${error}`);
+            if (isAxiosError(error)) {
+                const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data';
+                console.error(`Error: ${message}`);
+            }
         }
     };
 
@@ -63,7 +70,10 @@ const useUmrohPackagePage = () => {
             const res = await getAllLocation();
             setLocation(res.data.data);
         } catch (error) {
-            console.error(`Error: ${error}`);
+            if (isAxiosError(error)) {
+                const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data';
+                console.error(`Error: ${message}`);
+            }
         }
     };
 
@@ -72,7 +82,10 @@ const useUmrohPackagePage = () => {
             const res = await getAllType();
             setType(res.data.data);
         } catch (error) {
-            console.error(`Error: ${error}`);
+            if (isAxiosError(error)) {
+                const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data';
+                console.error(`Error: ${message}`);
+            }
         }
     };
 

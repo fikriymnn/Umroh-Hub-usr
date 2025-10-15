@@ -6,6 +6,7 @@ import { getOnePackages } from '../../services/packagesSercice';
 import Slider from 'react-slick';
 import exampleImage from "../../assets/images/pexels-sultan-alhuthali-175963006-18274181.png"
 import { saveSelectedPackage } from '../../utils/storage';
+import { isAxiosError } from 'axios';
 
 const usePackageDetail = () => {
     const { id } = useParams();
@@ -20,16 +21,13 @@ const usePackageDetail = () => {
                 if (id) {
                     const res = await getOnePackages(id);
                     console.log(res.data);
-            
-                   if (res.data && typeof res.data === 'object' && res.data.data) {
                     setPackages(res.data.data);
-                    } else {
-                    console.error("Response bukan JSON valid:", res.data);
-                    }
-
                 }
             } catch (error) {
-                console.error(`Error: ${error}`);
+                if (isAxiosError(error)) {
+                    const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data'
+                    console.error(message);
+                }
             }
         };
 
