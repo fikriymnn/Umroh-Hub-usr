@@ -34,7 +34,6 @@ function Navbar() {
         const fetchUser = async () => {
             try {
                 const res = await getMe();
-                console.log(res.data);
 
                 setUser(res.data.data);
             } catch (error) {
@@ -108,7 +107,7 @@ function Navbar() {
                         </div>
                         <div className="flex flex-col items-center justify-center">
                             <Link to="/Forum" className='font-semibold text-[13px]'>Forum</Link>
-                            {(currentPath === "/Forum" ) &&
+                            {(currentPath === "/Forum") &&
                                 <div className="w-2 h-1 bg-blue-900 rounded-full"></div>
                             }
                         </div>

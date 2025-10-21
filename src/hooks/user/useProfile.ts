@@ -13,7 +13,6 @@ const useProfile = () => {
         async function fetchUser() {
             try {
                 const res = await getMe();
-                console.log(res.data);
                 const userData = res.data.data;
             
                 setUser(userData);
