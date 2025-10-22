@@ -97,6 +97,7 @@ export interface MasterHotel {
     package_name: string;
     description: string;
     date_departure: string | Date;
+    date_arrival: string | Date;
     airline: string;
     duration: number;
     quota: number;

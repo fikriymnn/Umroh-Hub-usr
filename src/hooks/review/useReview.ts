@@ -5,13 +5,14 @@ import { isAxiosError } from 'axios';
 
 const useReview = () => {
     const orderData = getSelectedOrder();
+    const [rating, setRating] = useState<number | null>(null);
     const [description, setDescription] = useState('');
 
     const handleSubmitReview = async () => {
         const order = {
             id_order: orderData.id,
-            description: description,
-            rating: 1,
+            description,
+            rating: rating ?? 0,
             is_active: true,
             images: [
                 {image_url: 'ssss'},
@@ -22,7 +23,7 @@ const useReview = () => {
         try {
             const res = await addReview(order);
             console.log(res);
-            alert('Berhasil kirim review');
+            alert(res.data.data.message);
             clearOrderData();
         } catch (error) {
             if (isAxiosError(error)) {
@@ -30,9 +31,10 @@ const useReview = () => {
                 console.error(`Error: ${message}`);
             }
         }
-    }
+    };
 
     return {
+        rating, setRating,
         description, setDescription,
         handleSubmitReview,
     };
