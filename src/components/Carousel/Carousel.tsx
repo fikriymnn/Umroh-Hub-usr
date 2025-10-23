@@ -39,34 +39,50 @@ function CarouselHome() {
     };
 
     return (
-        <div className="slider-container w-full h-[500px] relative overflow-visible">
-
-            <Slider {...settings} ref={sliderRef} className="z-0">
-                <div className="relative w-full h-full">
-                    <img src={umrohcarousel} alt="Slide 1" className="w-full h-full object-cover" />
-                    <h1 className="absolute inset-0 font-philosopher flex items-center justify-center text-white text-4xl font-bold text-center">
-                        Solusi Untuk <br /> Umroh
-                    </h1>
-                </div>
-                <div className="w-full h-[500px] bg-blue-600 flex items-center justify-center text-white text-4xl">2</div>
-                <div className="w-full h-[500px] bg-green-600 flex items-center justify-center text-white text-4xl">3</div>
-                <div className="w-full h-[500px] bg-red-600 flex items-center justify-center text-white text-4xl">4</div>
-                <div className="w-full h-[500px] bg-yellow-600 flex items-center justify-center text-white text-4xl">5</div>
-                <div className="w-full h-[500px] bg-purple-600 flex items-center justify-center text-white text-4xl">6</div>
-            </Slider>
-            <button
-                className="absolute left-20 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full"
-                onClick={previous}
-            >
-                <img src={prevNextIcon} alt="Previous" className="-rotate-180 w-8 h-8" />
-            </button>
-            <button
-                className="absolute right-16 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full"
-                onClick={next}
-            >
-                <img src={prevNextIcon} alt="Next" className=" w-8 h-8" />
-            </button>
-
+       <div className="slider-container w-screen h-[300px] sm:h-[400px] md:h-[500px] relative overflow-hidden">
+        <Slider {...settings} ref={sliderRef} className="z-0">
+            <div className="relative w-full h-full">
+            <img
+                src={umrohcarousel}
+                alt="Slide 1"
+                className="w-full h-full object-cover"
+            />
+            <h1 className="absolute inset-0 font-philosopher flex flex-col items-center justify-center text-white text-2xl sm:text-3xl md:text-4xl font-bold text-center leading-snug">
+                Solusi Untuk <br /> Umroh
+            </h1>
+            </div>
+            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] bg-blue-600 flex items-center justify-center text-white text-2xl sm:text-3xl md:text-4xl">
+            2
+            </div>
+            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] bg-green-600 flex items-center justify-center text-white text-2xl sm:text-3xl md:text-4xl">
+            3
+            </div>
+            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] bg-red-600 flex items-center justify-center text-white text-2xl sm:text-3xl md:text-4xl">
+            4
+            </div>
+            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] bg-yellow-600 flex items-center justify-center text-white text-2xl sm:text-3xl md:text-4xl">
+            5
+            </div>
+            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] bg-purple-600 flex items-center justify-center text-white text-2xl sm:text-3xl md:text-4xl">
+            6
+            </div>
+        </Slider>
+        <button
+            className="absolute left-4 sm:left-10 md:left-20 top-1/2 transform -translate-y-1/2 z-10 bg-white p-1 sm:p-2 rounded-full shadow-md"
+            onClick={previous}
+        >
+            <img
+            src={prevNextIcon}
+            alt="Previous"
+            className="-rotate-180 w-6 h-6 sm:w-8 sm:h-8"
+            />
+        </button>
+        <button
+            className="absolute right-4 sm:right-10 md:right-16 top-1/2 transform -translate-y-1/2 z-10 bg-white p-1 sm:p-2 rounded-full shadow-md"
+            onClick={next}
+        >
+            <img src={prevNextIcon} alt="Next" className="w-6 h-6 sm:w-8 sm:h-8" />
+        </button>
         </div>
     );
 }
