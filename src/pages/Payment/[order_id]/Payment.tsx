@@ -47,10 +47,10 @@ function Payment() {
 
           <div className="w-full grid grid-cols-3 gap-2  rounded-[5px]">
             <div className='w-full h-full bg-[#D1F4FA] px-[19px] py-[15px]'>
-              <h1 className='flex capitalize items-center font-semibold'>Jumlah jemaah <span className='ms-[42px] font-normal text-sm'>5 jemaah</span></h1>
+              <h1 className='flex capitalize items-center font-semibold'>Jumlah jemaah <span className='ms-[42px] font-normal text-sm'>{orderData?.jamaah?.length ?? 0} jemaah</span></h1>
               <ul className='list-disc ms-4 mt-2'>
-                {orderData?.jamaah?.map((data: any) => (
-                  <li className='text-[11px] capitalize'>{data?.name}</li>
+                {orderData?.jamaah?.map((jamaah: any, indx: number) => (
+                  <li key={indx} className='text-[11px] capitalize'>{jamaah?.name}</li>
                 ))}
               </ul>
               <h1 className='flex capitalize mt-4 items-center font-semibold'>Tipe pembayaran</h1>

@@ -97,6 +97,7 @@ export interface MasterHotel {
     package_name: string;
     description: string;
     date_departure: string | Date;
+    date_arrival: string | Date;
     airline: string;
     duration: number;
     quota: number;
@@ -104,6 +105,7 @@ export interface MasterHotel {
     rating: number;
     price: number;
     is_active: boolean;
+    jamaah_requirements: string;
     id_type_departure: number;
     createdAt: string;
     updatedAt: string;

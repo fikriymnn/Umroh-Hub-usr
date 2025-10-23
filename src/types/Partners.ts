@@ -22,4 +22,12 @@ import { Package } from "./Package";
     updatedAt: string;
     package_umrohs: Package[];
   }
+
+  export interface DetailPartner {
+    ratingMitra: number;
+    totalJamaah: number;
+    totalPackage: number;
+    totalReview: number;
+    mitra: Partners;
+  }
   

@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import { User } from '../../types/User';
 import { getMe, updateUser } from '../../services/userSevices';
+import { isAxiosError } from 'axios';
 
 const useProfile = () => {
     const [user, setUser] = useState<User>();
@@ -12,7 +13,6 @@ const useProfile = () => {
         async function fetchUser() {
             try {
                 const res = await getMe();
-                console.log(res.data);
                 const userData = res.data.data;
             
                 setUser(userData);
@@ -20,7 +20,10 @@ const useProfile = () => {
                 setEmail(userData.email);
                 setPhone(userData.phone_number);
             } catch (error) {
-                console.error(`Error: ${error}`);
+                if (isAxiosError(error)) {
+                    const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data'
+                    console.error(`Error: ${message}`);
+                }
             }
         };
 
@@ -45,8 +48,11 @@ const useProfile = () => {
                 phone_number: phone
             }));
         } catch (error) {
-            console.error(`Error: ${error}`);
-            alert('Gagal memperbarui')
+            if (isAxiosError(error)) {
+                const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data'
+                alert(message);
+                console.error(`Error: ${message}`);
+            }
         }
     };
 

@@ -5,6 +5,7 @@ import paketExample from "../../assets/images/11848643a6d154484c0aa44d026fef3c.p
 import hotelIcon from "../../assets/icons/Component 1.svg"
 import planeIcon from "../../assets/icons/Component 8.svg"
 import useUmrohPackagePage from '../../hooks/packages/useUmrohPackagePage';
+import { formatDate } from '../../utils/formatDate';
 
 const airlineRating = 5;
 
@@ -30,7 +31,9 @@ const CardPackage = ({ packages }: { packages: Package }) => {
                         {packages.package_name}
                     </h1>
                     <div className="bg-black px-2 text-white text-[11px] py-1 font-bold w-fit rounded-[10px]">
-                        Waktu Keberangkatan : <span className=' font-semibold text-[#00FFF3F5]'>23/10/2025 - 03/10/2025</span>
+                        Waktu Keberangkatan : <span className=' font-semibold text-[#00FFF3F5]'>
+                            {formatDate(String(packages?.date_departure))} - {formatDate(String(packages?.date_arrival))}
+                        </span>
                     </div>
                     <div className="flex mt-2  space-x-2">
                         <img src={hotelIcon} alt="background" className="w-[30px] h-[30px]" />

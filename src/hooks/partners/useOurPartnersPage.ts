@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import { Partners } from '../../types/Partners';
 import { getAllPartners } from '../../services/partnersServices';
+import { isAxiosError } from 'axios';
 
 const useOurPartnersPage = () => {
     const [partners, setPartners] = useState<Partners[]>([]);
@@ -13,7 +14,10 @@ const useOurPartnersPage = () => {
                 const res = await getAllPartners();
                 setPartners(res.data.data.data);
             } catch (error) {
-                console.error(`Error: ${error}`);
+                if (isAxiosError(error)) {
+                    const message = error.response?.data.message || 'Terjadi kesalahan saat pengambilan data';
+                    console.error(`Error: ${message}`);
+                }
             }
         };
 

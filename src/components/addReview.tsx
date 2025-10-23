@@ -7,6 +7,7 @@ import useReview from '../hooks/review/useReview';
 
 function AddReview() {
   const {
+    rating, setRating,
     description, setDescription,
     handleSubmitReview,
   } = useReview();
@@ -47,23 +48,28 @@ function AddReview() {
 
 
           <div className="flex justify-center space-x-3">
-            {[...Array(5)].map((_, index) => (
-              <svg
-                key={index}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="#777"
-                className="w-10 h-10 cursor-pointer"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M11.48 3.499a.562.562 0 011.04 0l2.202 4.464a.563.563 0 00.424.308l4.926.716a.563.563 0 01.312.96l-3.564 3.476a.563.563 0 00-.162.498l.841 4.903a.563.563 0 01-.818.593l-4.404-2.315a.563.563 0 00-.523 0l-4.404 2.315a.563.563 0 01-.818-.593l.84-4.903a.563.563 0 00-.162-.498L2.616 9.947a.563.563 0 01.312-.96l4.926-.716a.563.563 0 00.424-.308l2.202-4.464z"
-                />
-              </svg>
-            ))}
+            {[...Array(5)].map((_, index) => {
+              const starValue = index + 1;
+              const isActive = starValue <= (rating ?? 0);
+              return (
+                <svg
+                  key={index}
+                  onClick={() => setRating(starValue)}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill={isActive ? '#FFD700' : 'none'}
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke={isActive ? '#FFD700' : '#777'}
+                  className="w-10 h-10 cursor-pointer"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M11.48 3.499a.562.562 0 011.04 0l2.202 4.464a.563.563 0 00.424.308l4.926.716a.563.563 0 01.312.96l-3.564 3.476a.563.563 0 00-.162.498l.841 4.903a.563.563 0 01-.818.593l-4.404-2.315a.563.563 0 00-.523 0l-4.404 2.315a.563.563 0 01-.818-.593l.84-4.903a.563.563 0 00-.162-.498L2.616 9.947a.563.563 0 01.312-.96l4.926-.716a.563.563 0 00.424-.308l2.202-4.464z"
+                  />
+                </svg>
+              )
+            })}
           </div>
 
 

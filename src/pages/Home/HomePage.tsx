@@ -24,6 +24,7 @@ import suitcaseIcon from "../../assets/icons/suitcase_fill.svg"
 import userIcon from "../../assets/icons/User_fill.svg"
 import checkIcon from "../../assets/icons/check_ring_round.svg"
 import useHomePage from "../../hooks/home/useHomePage";
+import { Link } from "react-router";
 
 const HomePage: React.FC = () => {
   const {
@@ -177,9 +178,9 @@ const HomePage: React.FC = () => {
                   <h1 className=" text-white font-bold text-[20px]">
                     Paket yang tersedia
                   </h1>
-                  <h1 className=" text-[#10F5EA] font-bold text-[15px]">
+                  <Link to={'/UmrohPackage'} className=" text-[#10F5EA] font-bold text-[15px]">
                     Lihat lebih banyak
-                  </h1>
+                  </Link>
                 </div>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
                   {packages?.map((item, index) => (

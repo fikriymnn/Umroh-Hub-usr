@@ -34,7 +34,6 @@ function Navbar() {
         const fetchUser = async () => {
             try {
                 const res = await getMe();
-                console.log(res.data);
 
                 setUser(res.data.data);
             } catch (error) {
