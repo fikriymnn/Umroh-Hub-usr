@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Login from '../../components/Login';
 import Register from '../../components/Register'
 import LoginForm from '../../components/LoginForm';
@@ -8,7 +8,15 @@ const LoginRegister = () => {
     // const [isLogin, setIsLogin] = useState(true);
 
     // const toggleForm = () => setIsLogin(!isLogin);
-    const [isAnimated, setIsAnimated] = useState(true);
+  const [isAnimated, setIsAnimated] = useState(true);
+   useEffect(() => {
+    if (window.location.hash === '#login') {
+      setIsAnimated(false) 
+    } else if (window.location.hash === '#register') {
+      setIsAnimated(true) 
+    }
+  }, [])
+
     return (
        <div className="w-full h-screen flex items-center justify-center bg-[#DAFAFF]">
   <div className="relative w-9/12 bg-white h-[573px] overflow-hidden rounded-[10px] shadow-lg">

@@ -121,12 +121,12 @@ function Navbar() {
                     <div className="flex lg:flex-row flex-col lg:space-x-[7px] space-y-[2px] h-full items-center lg:me-[53px]">
                         {!user ? (
                             <>
-                                <Link to="/LoginRegister" className='h-full flex items-center'>
+                                <Link to="/LoginRegister#register" className='h-full flex items-center'>
                                     <button className='bg-[#001A4D] h-fit  text-white rounded-[2px] items-center px-1 text-[9px] lg:text-base'>
                                         Daftar
                                     </button>
                                 </Link>
-                                <Link to="/LoginRegister" className='h-full flex items-center'>
+                                <Link to="/LoginRegister#login" className='h-full flex items-center'>
                                     <button className='bg-[#D1F4FA] h-fit  border-[1px] border-[#001A4D] items-center rounded-[2px] px-1 text-[9px] lg:text-base'>
                                         Masuk
                                     </button>
