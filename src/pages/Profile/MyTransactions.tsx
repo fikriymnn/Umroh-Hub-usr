@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Link } from 'react-router'
 import Sidebar from '../../components/Sidebar'
 import hotelIcon from "../../assets/icons/Component 1.svg"
 import hotelIcons from "../../assets/icons/Group.svg"
@@ -14,12 +13,10 @@ import { saveSelectedOrder } from '../../utils/storage'
 import { renderStarsHotels } from '../../utils/renderStars'
 
 import AddReview from '../../components/addReview'
-
-import usePackageDetail from '../../hooks/packages/usePackageDetail'
+import { formatDate } from '../../utils/formatDate'
 
 
 function Transaction() {
-    const { formatDate } = usePackageDetail();
     const {
         order,
         filter, setFilter,
@@ -35,9 +32,9 @@ function Transaction() {
             </div>
             <div className="w-10/12 max-w-screen-xl mx-auto flex h-full pt-[140px] justify-center bg-white overflow-x-hidden relative">
                 {isReviewVisible === true && (
-                   <div className="relative z-20">
-                   <AddReview/>
-                   </div> 
+                    <div className="relative z-20">
+                        <AddReview />
+                    </div>
                 )}
                 <div className="w-8/12 ">
                     <div className="flex space-x-[70px] pb-6 border-b-1 border-[#B0ADAD]">

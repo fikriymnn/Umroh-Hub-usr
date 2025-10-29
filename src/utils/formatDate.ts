@@ -1,7 +1,9 @@
 export const formatDate = (dateStr: string | Date) => {
-    if (dateStr === null) return "Tanggal tidak valid";
-    
-    // Ambil hanya bagian tanggal tanpa geser timezone
-    const [year, month, day] = dateStr.toString().slice(0, 10).split("-");
+    const date = new Date(dateStr);
+
+    const day = String(date.getDay()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
     return `${day}/${month}/${year}`;
 };
