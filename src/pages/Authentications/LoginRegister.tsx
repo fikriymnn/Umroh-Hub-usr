@@ -18,75 +18,93 @@ const LoginRegister = () => {
   }, [])
 
     return (
-       <div className="w-full h-screen flex items-center justify-center bg-[#DAFAFF]">
-  <div className="relative w-9/12 bg-white h-[573px] overflow-hidden rounded-[10px] shadow-lg">
-
-   {/* regsi teks */}
-    <div
-      id="register"
-      className={`absolute top-0 left-0 h-full w-1/2 flex justify-center items-center transition-all duration-500 ease-in-out will-change-transform ${
-        isAnimated
-          ? "translate-x-full opacity-100 scale-100 z-30"
-          : "translate-x-0 opacity-0 scale-95 z-10"
-      }`}
-    >
-      <div className="w-full h-full flex justify-center items-center">
-        <Register isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
-      </div>
-    </div>
-
-   {/* login teks */}
-    <div
-    id="login"
-    className={`absolute top-0 left-0 h-full w-1/2 flex justify-center items-center transition-all duration-500 ease-in-out will-change-transform
-    ${isAnimated ? "translate-x-full opacity-0 scale-95 z-0" : "translate-x-0 opacity-100 scale-100 z-20"}`}
-    >
-    <div className="w-full h-full flex justify-center items-center">
-        <Login isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
-    </div>
-    </div>
-
-
-    <div
-      id="overlay-container"
-      className={`absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-all duration-700 ease-in-out z-40 ${
-        isAnimated ? "-translate-x-full" : ""
-      }`}
-    >
+    <div className="w-full h-screen flex items-center justify-center bg-[#DAFAFF]">
       <div
-        id="overlay"
-        className={`relative -left-full h-full w-[200%] transform transition-all duration-700 ease-in-out ${
-          isAnimated ? "translate-x-1/2" : "translate-x-0"
-        }`}
+        className="relative md:w-9/12 w-10/12 md:h-[573px] h-[600px] bg-white overflow-hidden 
+                  rounded-[10px] shadow-lg flex md:flex-row max-sm:flex-col"
       >
-     {/* login formulir */}
         <div
-          id="login-form"
-          className={`absolute w-1/2 h-full flex justify-center ms-[135px] items-center top-0 right-0 transition-all duration-700 ease-in-out ${
-            isAnimated ? "translate-x-[50%] z-50" : "translate-x-0"
-          }`}
+          id="register"
+          className={`absolute flex justify-center items-center transition-all duration-500 ease-in-out will-change-transform
+            md:top-0 md:left-0 md:h-full md:w-1/2
+            max-sm:top-0 max-sm:left-0 max-sm:w-full max-sm:h-[50%]
+            ${
+              isAnimated
+                ? "md:translate-x-full md:opacity-100 md:scale-100 md:z-30 max-sm:translate-y-full max-sm:opacity-100 max-sm:scale-100 max-sm:z-30"
+                : "md:translate-x-0 md:opacity-0 md:scale-95 md:z-10 max-sm:translate-y-0 max-sm:opacity-0 max-sm:scale-95 max-sm:z-10"
+            }`}
         >
-          <LoginForm />
+          <div className="w-full h-full flex justify-center items-center">
+            <Register isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
+          </div>
         </div>
 
-       {/* regis form */}
         <div
-          id="register-form"
-          className={`absolute w-1/2 h-full flex top-0 left-0 transition-all duration-700 ease-in-out ${
-            isAnimated ? "translate-x-0 z-40" : "-translate-x-[50%]"
-          }`}
+          id="login"
+          className={`absolute flex justify-center items-center transition-all duration-500 ease-in-out will-change-transform
+            md:top-0 md:left-0 md:h-full md:w-1/2
+            max-sm:top-0 max-sm:left-0 max-sm:w-full max-sm:h-1/2
+            ${
+              isAnimated
+                ? "md:translate-x-full md:opacity-0 md:scale-95 md:z-0 max-sm:translate-y-full max-sm:opacity-0 max-sm:scale-95 max-sm:z-0"
+                : "md:translate-x-0 md:opacity-100 md:scale-100 md:z-20 max-sm:translate-y-0 max-sm:opacity-100 max-sm:scale-100 max-sm:z-20"
+            }`}
         >
-          <RegisterForm
-            isAnimated={isAnimated}
-            setIsAnimated={setIsAnimated}
-          />
+          <div className="w-full h-full flex justify-center items-center">
+            <Login isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
+          </div>
+        </div>
+
+        <div
+          id="overlay-container"
+          className={`absolute overflow-hidden transition-all duration-700 ease-in-out z-40
+            md:top-0 md:left-1/2 md:w-1/2 md:h-full
+            max-sm:top-1/2 max-sm:left-0 max-sm:w-full max-sm:h-1/2
+            ${isAnimated ? "md:-translate-x-full max-sm:-translate-y-full" : ""}`}
+        >
+          <div
+            id="overlay"
+            className={`relative transform transition-all duration-700 ease-in-out
+              md:-left-full md:h-full md:w-[200%]
+              max-sm:-top-full max-sm:h-[200%] max-sm:w-full
+              ${isAnimated ? "md:translate-x-1/2 max-sm:translate-y-1/2" : "md:translate-x-0 max-sm:translate-y-0"}`}
+          >
+
+            <div
+              id="login-form"
+              className={`absolute transition-all duration-700 ease-in-out
+                md:w-1/2 md:h-full md:flex md:justify-center md:items-center md:top-0 md:right-0
+                max-sm:w-full max-sm:h-1/2 max-sm:flex max-sm:justify-center max-sm:items-center max-sm:bottom-0
+                ${
+                  isAnimated
+                    ? "md:translate-x-[50%] md:z-50 max-sm:translate-y-[50%] max-sm:z-50"
+                    : "md:translate-x-0 max-sm:translate-y-0"
+                }`}
+            >
+              <div className="max-sm:scale-95">
+                <LoginForm />
+              </div>
+            </div>
+
+            <div
+              id="register-form"
+              className={`absolute transition-all duration-700 ease-in-out
+                md:w-1/2 md:h-full md:flex md:top-0 md:left-0 
+                max-sm:w-full max-sm:h-1/2 max-sm:flex max-sm:justify-center max-sm:items-center
+                ${
+                  isAnimated
+                    ? "md:translate-x-0 md:z-40 max-sm:translate-y-0 max-sm:z-40"
+                    : "md:-translate-x-[50%] max-sm:-translate-y-[50%]"
+                }`}
+            >
+              <div className="max-sm:scale-95">
+                <RegisterForm isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-  </div>
-</div>
-
     )
 }
 
