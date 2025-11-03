@@ -40,6 +40,7 @@ function PackageDetail() {
         next, previous
     } = usePackageDetail();
 
+ 
     return (
         <DefaultLayout>
             {packages && (
