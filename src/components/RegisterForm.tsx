@@ -17,20 +17,23 @@ const RegisterForm = ({ isAnimated, setIsAnimated }: RegisterFormProps) => {
     } = useRegister({ isAnimated, setIsAnimated });
 
     return (
-       <div id="Register" className="w-full h-full px-10 py-12 overflow-y-auto">
-  <h2 className="text-[20px] font-medium mt-5 text-[#004492] ml-[80px] max-md:text-[12px] max-md:ml-[40px]">
-    Selamat Datang Di
-  </h2>
+      <div id="Register" className="w-full h-full px-10 py-12 overflow-y-auto items-center">
+        <div className="flex max-md:flex-row flex-col max-md:space-x-1">
 
-  <h1 className="text-[36px] text-[#004492] ml-[80px] font-philosopher max-md:text-[18px] max-md:ml-[40px]">
-    Umroh<span className="font-bold">Hub</span>
-  </h1>
+        <h2 className="text-[20px] font-medium mt-5 text-[#004492]  max-md:text-[12px]">
+          Selamat Datang Di
+        </h2>
 
-  <p className="text-[15px] font-medium text-[#C0C0C0] mt-4 mb-2 ml-[80px] max-md:text-[10px] max-md:ml-[40px]">
+        <h1 className="text-[36px] text-[#004492] max-md:mt-[14px] font-philosopher max-md:text-[18px]">
+          Umroh<span className="font-bold">Hub</span>
+        </h1>
+        </div>
+
+  <p className="text-[15px] font-medium text-[#C0C0C0] mt-4 max-md:mt-1 mb-2 max-md:mb-1  max-md:text-[10px]">
     Silahkan Isi Data Diri Anda Untuk Daftar
   </p>
 
-  <div className="flex flex-col space-y-4 items-center">
+  <div className="flex flex-col space-y-4 max-md:space-y-3 items-center">
     <input
       type="text"
       name="name"

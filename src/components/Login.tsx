@@ -21,7 +21,7 @@ const Login = ({
             />
 
             {/* Konten */}
-            <div className="relative z-10 flex flex-col items-center justify-center h-full p-10 text-center">
+            <div className="max-sm:scale-95 md:scale-70 lg:scale-100 relative z-10 flex flex-col items-center justify-center h-full p-10 text-center">
                 <h2 className="text-[30px] font-medium max-sm:text-[20px]">Daftar ke</h2>
                 <h1 className="text-[64px] mb-6 font-philosopher max-sm:text-[38px]">Umroh<span className='font-bold'>Hub</span></h1>
                 <p className="text-[15px] max-sm:text-[12px]">Belum Punya Akun Di UmrohHub?</p>

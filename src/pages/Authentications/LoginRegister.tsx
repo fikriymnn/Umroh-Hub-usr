@@ -50,7 +50,7 @@ const LoginRegister = () => {
                 : "md:translate-x-0 md:opacity-100 md:scale-100 md:z-20 max-sm:translate-y-0 max-sm:opacity-100 max-sm:scale-100 max-sm:z-20"
             }`}
         >
-          <div className="w-full h-full flex justify-center items-center">
+          <div className="w-full h-full flex justify-center items-center ">
             <Login isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
           </div>
         </div>
@@ -81,7 +81,7 @@ const LoginRegister = () => {
                     : "md:translate-x-0 max-sm:translate-y-0"
                 }`}
             >
-              <div className="max-sm:scale-95">
+              <div className="max-sm:scale-95 md:scale-70 lg:scale-100">
                 <LoginForm />
               </div>
             </div>
@@ -89,7 +89,7 @@ const LoginRegister = () => {
             <div
               id="register-form"
               className={`absolute transition-all duration-700 ease-in-out
-                md:w-1/2 md:h-full md:flex md:top-0 md:left-0 
+                md:w-1/2 md:h-full md:flex md:justify-center md:items-center md:top-0 md:left-0 
                 max-sm:w-full max-sm:h-1/2 max-sm:flex max-sm:justify-center max-sm:items-center
                 ${
                   isAnimated
@@ -97,7 +97,7 @@ const LoginRegister = () => {
                     : "md:-translate-x-[50%] max-sm:-translate-y-[50%]"
                 }`}
             >
-              <div className="max-sm:scale-95">
+              <div className="max-sm:scale-95 md:scale-70 lg:scale-100">
                 <RegisterForm isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
               </div>
             </div>
